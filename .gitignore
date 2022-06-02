@@ -1,0 +1,4 @@
+*.xz
+workspace*
+build.log
+custompios_path
