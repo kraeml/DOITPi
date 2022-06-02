@@ -1,1 +1,4 @@
-DEVOPSPIOS_VAR="This is a module variable"
+DEVOPSPIOS_VAR="DevOps Variable"
+DEVOPSPIOS_PKGS="screen tmux tree ansible yamllint\
+                expect git vim nmap tree net-tools\
+                cmake unzip zip build-essential"

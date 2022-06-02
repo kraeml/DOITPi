@@ -19,6 +19,10 @@ unpack /filesystem/boot /boot
 
 echo "This is an example module, install and set up what you need here!"
 echo "$DEVOPSPIOS_VAR"
+echo "$DEVOPSPIOS_PKGS"
+
+apt_update_skip
+check_install_pkgs ${DEVOPSPIOS_PKGS}
 
 # Unpack root at the end, so files are modified before
 unpack /filesystem/root /
