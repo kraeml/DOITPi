@@ -10,4 +10,4 @@ export BASE_IMAGE_ENLARGEROOT=5000
 export DOCKER_ADD_USER_TO_GROUP=no
 export BASE_IGNORE_VARIANT_NAME=yes
 
-export MODULES="base(network,devopspios,docker,pythongpio)"
+export MODULES="base(network,pythongpio,devopspios,docker)"

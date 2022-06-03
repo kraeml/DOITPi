@@ -32,5 +32,9 @@ do
   set_config_var $i 0
 done
 
+pushd  /home/pi/workspace
+  gitclone PYTHONGPIO_GPIOBLOCKLY_REPO
+popd
+
 # Unpack root at the end, so files are modified before
 unpack /filesystem/root /
