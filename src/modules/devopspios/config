@@ -1,4 +1,6 @@
 DEVOPSPIOS_VAR="DevOps Variable"
 DEVOPSPIOS_PKGS="screen tmux tree ansible yamllint\
                 expect git vim nmap tree net-tools\
-                cmake unzip zip build-essential"
+                cmake unzip zip build-essential\
+                ssh-import-id dphys-swapfile\
+                lxc lxc-templates"
