@@ -3,3 +3,4 @@ workspace*
 build.log
 custompios_path
 .vagrant
+config.*

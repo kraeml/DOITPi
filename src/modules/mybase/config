@@ -1,0 +1,3 @@
+MYBASE_VAR="Base Variable"
+MYBASE_PKGS="screen tree git vim nmap build-essential\
+                ssh-import-id dphys-swapfile"

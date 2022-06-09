@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+# <Script Name>
+# <Description what this module does>
+# Written by <Author>
+# GPL V3
+########
+
+
+# Source error handling, leave this in place
+set -x
+set -e
+
+source /common.sh
+install_cleanup_trap
+
+unpack /filesystem/home/pi /home/"${BASE_USER}" "${BASE_USER}"
+unpack /filesystem/home/root /root root
+unpack /filesystem/boot /boot
+
+echo "This is an example module, install and set up what you need here!"
+echo "$MYBASE_VAR"
+echo "$MYBASE_PKGS"
+
+apt_update_skip
+check_install_pkgs ${MYBASE_PKGS}
+echo 'Install locale'
+sed -i -E 's;^#\s(de_DE.UTF-8.*);\1;g' /etc/locale.gen
+sed -i -E 's;^#\s(en_US.UTF-8.*);\1;g' /etc/locale.gen
+sed -i -E 's;^#\s(nl_NL.UTF-8.*);\1;g' /etc/locale.gen
+sed -i -E 's;^#\s(fr_FR.UTF-8.*);\1;g' /etc/locale.gen
+
+locale-gen
+
+# Unpack root at the end, so files are modified before
+unpack /filesystem/root /
