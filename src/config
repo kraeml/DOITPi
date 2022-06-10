@@ -10,5 +10,6 @@ export BASE_IMAGE_ENLARGEROOT=6000
 export DOCKER_ADD_USER_TO_GROUP=no
 export BASE_IGNORE_VARIANT_NAME=no
 export BASE_RELEASE_IMG_NAME=${DIST_NAME}
+export DOCKER_ADD_USER_TO_GROUP=yes
 
 export MODULES="base(network,mybase,pythongpio,platformio,devopspios,docker,homeautomation)"
