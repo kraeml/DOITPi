@@ -5,6 +5,7 @@
 # GPL V3
 ########
 
+etckeeper commit "End pythongpio module"
+
 set -x
 set -e
-
