@@ -6,10 +6,25 @@ export RPI_IMAGER_NAME="${DIST_NAME}"
 export RPI_IMAGER_DESCRIPTION="A raspberrypi distro built with CustomPiOS"
 export RPI_IMAGER_WEBSITE="https://github.com/guysoft/CustomPiOS"
 export RPI_IMAGER_ICON="https://raw.githubusercontent.com/guysoft/CustomPiOS/devel/media/rpi-imager-CustomPiOS.png"
+
 export BASE_IMAGE_ENLARGEROOT=6000
-export DOCKER_ADD_USER_TO_GROUP=no
 export BASE_IGNORE_VARIANT_NAME=no
 export BASE_RELEASE_IMG_NAME=${DIST_NAME}
-export DOCKER_ADD_USER_TO_GROUP=yes
 
-export MODULES="base(network,mybase,pythongpio,platformio,devopspios,docker,homeautomation)"
+export AUTO_HOTSPOT_NAME=${DIST_NAME,,}
+export AUTO_HOTSPOT_PASSWORD=raspberry
+export AUTO_HOTSPOT_CHANNEL=6
+
+export DOCKER_ADD_USER_TO_GROUP=yes
+export DOCKER_COMPOSE=yes
+export DOCKER_COMPOSE_BOOT=no
+export DOCKER_COMPOSE_BOOT_PATH=default
+
+export PKGUPGRADE_DISTUPGRADE=y # y/n
+# upgrade vs full upgrade.
+export PKGUPGRADE_DISTUPGRADE_METHOD=full-upgrade
+export PKGUPGRADE_USE_PREINSTALLER=n # y/n
+# Add Packages that should be PKGUPGRADEed.
+export PKGUPGRADE_PRE_INSTALL_PKGS=""
+
+export MODULES="base(network,mybase,autohotspot,pythongpio,platformio,devopspios,docker,homeautomation,pkgupgrade)"
