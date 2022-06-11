@@ -32,6 +32,9 @@ locale-gen
 apt_update_skip
 check_install_pkgs ${MYBASE_PKGS}
 
+TEMP_DEB="$(mktemp)" && wget -O "$TEMP_DEB" ${MYBASE_CODESERVER_URL} && sudo dpkg -i "$TEMP_DEB"
+rm -f "$TEMP_DEB"
+
 # Do not try too long to reach the DHCPD server (blocks booting)
 sed -i "s/#timeout 60;/timeout 10;/g" /etc/dhcp/dhclient.conf
 # By default, the client retries to contact the DHCP server after five min.

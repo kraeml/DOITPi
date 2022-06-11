@@ -1,3 +1,5 @@
 MYBASE_VAR="Base Variable"
 MYBASE_PKGS="screen tree git vim nmap build-essential\
                 ssh-import-id dphys-swapfile etckeeper"
+MYBASE_CODESERVER_VERSION="4.4.0"
+MYBASE_CODESERVER_URL="https://github.com/coder/code-server/releases/download/v${MYBASE_CODESERVER_VERSION}/code-server_${MYBASE_CODESERVER_VERSION}_${BASE_ARCH}.deb"
