@@ -36,5 +36,10 @@ pushd  /home/pi/workspace
   gitclone PYTHONGPIO_GPIOBLOCKLY_REPO
 popd
 
+su - -c "cd /home/${BASE_USER}/bin && virtualenv -p python3 jupyter-venv" "${BASE_USER}"
+su - -c "source /home/${BASE_USER}/bin/jupyter-venv/bin/activate && pip install -U jupyterlab" "${BASE_USER}"
+
 # Unpack root at the end, so files are modified before
 unpack /filesystem/root /
+
+systemctl enable jupyter.service
