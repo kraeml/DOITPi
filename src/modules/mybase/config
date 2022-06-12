@@ -1,5 +1,8 @@
-MYBASE_VAR="Base Variable"
+MYBASE_VAR="MyBase Variable"
 MYBASE_PKGS="screen tree git vim nmap build-essential\
-                ssh-import-id dphys-swapfile etckeeper"
+                ssh-import-id dphys-swapfile etckeeper avahi-utils"
 MYBASE_CODESERVER_VERSION="4.4.0"
-MYBASE_CODESERVER_URL="https://github.com/coder/code-server/releases/download/v${MYBASE_CODESERVER_VERSION}/code-server_${MYBASE_CODESERVER_VERSION}_${BASE_ARCH}.deb"
+MYBASE_CODESERVER_ARCH=${BASE_ARCH}
+[ ${BASE_ARCH} = "armv7l" ] && MYBASE_CODESERVER_ARCH=armhf
+[ ${BASE_ARCH} = "aarch64"] && MYBASE_CODESERVER_ARCH=arm64
+MYBASE_CODESERVER_URL="https://github.com/coder/code-server/releases/download/v${MYBASE_CODESERVER_VERSION}/code-server_${MYBASE_CODESERVER_VERSION}_${MYBASE_CODESERVER_ARCH}.deb"

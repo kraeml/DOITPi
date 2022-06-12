@@ -32,10 +32,13 @@ locale-gen
 apt_update_skip
 check_install_pkgs ${MYBASE_PKGS}
 
-TEMP_DEB="$(mktemp)" && wget -O "$TEMP_DEB" ${MYBASE_CODESERVER_URL} && sudo dpkg -i "$TEMP_DEB"
+echo 'Install Codeserver'
+TEMP_DEB="$(mktemp)" && wget --quiet --output-document="$TEMP_DEB" \
+                        ${MYBASE_CODESERVER_URL} && sudo dpkg --install "$TEMP_DEB"
 rm -f "$TEMP_DEB"
 
-# Do not try too long to reach the DHCPD server (blocks booting)
+
+echo 'Do not try too long to reach the DHCPD server (blocks booting)'
 sed -i "s/#timeout 60;/timeout 10;/g" /etc/dhcp/dhclient.conf
 # By default, the client retries to contact the DHCP server after five min.
 # Reduce this time to 20 sec.
@@ -45,3 +48,5 @@ set_config_var do_boot_wait 1
 
 # Unpack root at the end, so files are modified before
 unpack /filesystem/root /
+systemctl enable codeserver.service
+#systemctl start codeserver.service
