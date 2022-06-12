@@ -1,2 +1,2 @@
 PLATFORMIO_VAR="DevOps Variable"
-PLATFORMIO_PKGS="vim git"
+PLATFORMIO_PKGS="python3-venv"

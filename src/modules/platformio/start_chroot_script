@@ -24,5 +24,19 @@ echo "$PLATFORMIO_PKGS"
 apt_update_skip
 check_install_pkgs ${PLATFORMIO_PKGS}
 
+su - -c "cd /home/${BASE_USER}/.platformio && python3 -m venv penv" "${BASE_USER}"
+su - -c "source /home/${BASE_USER}/.platformio/penv/bin/activate && pip install -U platformio" "${BASE_USER}"
+
+if [ ! -f /etc/udev/rules.d/99-platformio-udev.rules ]
+then
+  wget -P /etc/udev/rules.d https://raw.githubusercontent.com/platformio/platformio-core/master/scripts/99-platformio-udev.rules
+fi
+
+cat >> /home/${BASE_USER}/.bash_aliases <<EOF
+alias pio=~/.platformio/penv/bin/pio
+alias pio_home="pio home --host=0.0.0.0 --no-open &"
+alias platformio=pio
+EOF
+
 # Unpack root at the end, so files are modified before
 unpack /filesystem/root /
