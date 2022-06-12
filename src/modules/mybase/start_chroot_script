@@ -49,4 +49,4 @@ set_config_var do_boot_wait 1
 # Unpack root at the end, so files are modified before
 unpack /filesystem/root /
 systemctl enable codeserver.service
-#systemctl start codeserver.service
+systemctl enable firstboot.service
