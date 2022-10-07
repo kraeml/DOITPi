@@ -59,9 +59,10 @@ jobs:
         echo "::set-output name=image::$IMAGE"
 
     # artifact upload will take care of zipping for us
-    - uses: actions/upload-artifact@v1
-      if: github.event_name == 'schedule'
-      with:
-        name: ${{ steps.copy.outputs.image }}
-        path: ${{ steps.copy.outputs.image }}.img
-
+    - name: compress and upload $IMAGE.img
+      env:
+        NEXTCLOUD_USER: ${{ secrets.NEXTCLOUD_USER }}
+        NEXTCLOUD_PASSWORD: ${{ secrets.NEXTCLOUD_PASSWORD }}
+      run: |
+        xz $IMAGE.img
+        curl curl -u $NEXTCLOUD_USER:$NEXTCLOUD_PASSWORD -T *.xz
