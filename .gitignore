@@ -1,5 +1,5 @@
 *.xz
-workspace*
+src/workspace*
 build.log
 custompios_path
 .vagrant
