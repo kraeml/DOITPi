@@ -4,7 +4,7 @@ Description=Jupyter Notebook
 [Service]
 Type=simple
 PIDFile=/run/jupyter.pid
-ExecStart=/bin/bash -c "source $(getent passwd 1000 | cut --delimiter=: --fields=6)/bin/jupyter-venv/bin/activate; jupyter-lab --notebook-dir=/home/pi/notebooks --no-browser --ServerApp.ip=0.0.0.0 --ServerApp.password=sha1:0a02b42bf037:6cc2f139eae8bdae22ba37dfd24aa6aa62a45b3b"
+ExecStart=/bin/bash -c "source $(getent passwd 1000 | cut --delimiter=: --fields=6)/bin/jupyter-venv/bin/activate; $(getent passwd 1000 | cut --delimiter=: --fields=6)/bin/jupyter-venv/bin/jupyter-lab --notebook-dir=$(getent passwd 1000 | cut --delimiter=: --fields=6)/notebooks --no-browser --ServerApp.ip=0.0.0.0 --ServerApp.password=sha1:0a02b42bf037:6cc2f139eae8bdae22ba37dfd24aa6aa62a45b3b"
 User=1000
 Group=1000
 Restart=always
