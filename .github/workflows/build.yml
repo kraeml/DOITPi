@@ -54,7 +54,7 @@ jobs:
         NOW=$(date +"%Y-%m-%d-%H%M")
         IMAGE=$NOW-devops-$DIST_VERSION
 
-        cp repository/src/image-raspios_lite_arm64/*.img $IMAGE.img
+        cp repository/src/workspace-raspios_lite_arm64/*.img $IMAGE.img
 
         echo "::set-output name=image::$IMAGE"
 
