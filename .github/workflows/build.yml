@@ -63,6 +63,7 @@ jobs:
       env:
         NEXTCLOUD_USER: ${{ secrets.NEXTCLOUD_USER }}
         NEXTCLOUD_PASSWORD: ${{ secrets.NEXTCLOUD_PASSWORD }}
+        NEXTCLOUD_URL: ${{ secrets.NEXTCLOUD_URL }}
       run: |
         xz $IMAGE.img
-        curl curl -u $NEXTCLOUD_USER:$NEXTCLOUD_PASSWORD -T *.xz
+        curl curl -u $NEXTCLOUD_USER:$NEXTCLOUD_PASSWORD -T *.xz $NEXTCLOUD_URL
