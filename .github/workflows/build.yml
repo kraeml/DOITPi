@@ -49,6 +49,10 @@ jobs:
 
     - name: Copy output
       id: copy
+      env:
+        NEXTCLOUD_USER: ${{ secrets.NEXTCLOUD_USER }}
+        NEXTCLOUD_PASSWORD: ${{ secrets.NEXTCLOUD_PASSWORD }}
+        NEXTCLOUD_URL: ${{ secrets.NEXTCLOUD_URL }}
       run: |
         source repository/src/config
         NOW=$(date +"%Y-%m-%d-%H%M")
@@ -58,12 +62,5 @@ jobs:
 
         echo "::set-output name=image::$IMAGE"
 
-    # artifact upload will take care of zipping for us
-    - name: compress and upload $IMAGE.img
-      env:
-        NEXTCLOUD_USER: ${{ secrets.NEXTCLOUD_USER }}
-        NEXTCLOUD_PASSWORD: ${{ secrets.NEXTCLOUD_PASSWORD }}
-        NEXTCLOUD_URL: ${{ secrets.NEXTCLOUD_URL }}
-      run: |
         xz $IMAGE.img
-        curl curl -u $NEXTCLOUD_USER:$NEXTCLOUD_PASSWORD -T *.xz $NEXTCLOUD_URL
+        curl curl -u $NEXTCLOUD_USER:$NEXTCLOUD_PASSWORD -T $IMAGE.img.xz $NEXTCLOUD_URL       
