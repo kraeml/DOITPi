@@ -63,4 +63,4 @@ jobs:
         echo "::set-output name=image::$IMAGE"
 
         xz $IMAGE.img
-        curl curl -u $NEXTCLOUD_USER:$NEXTCLOUD_PASSWORD -T $IMAGE.img.xz $NEXTCLOUD_URL       
+        curl -u $NEXTCLOUD_USER:$NEXTCLOUD_PASSWORD -T $IMAGE.img.xz $NEXTCLOUD_URL       
