@@ -3,8 +3,8 @@ name: Build Image
 on:
   #repository_dispatch:
   push:
-  schedule: 
-    - cron: '0 0 * * *'
+    tags:
+      - '*'
 
 jobs:
   build:
@@ -47,20 +47,36 @@ jobs:
         cd repository/src
         make build_arm64
 
-    - name: Copy output
-      id: copy
+    - name: version
+      run: echo "::set-output name=version::$(grep DIST_VERSION config | cut -d '=' -f 2)"
+      id: version
+
+    - name: release
+      uses: actions/create-release@v1
+      id: create_release
+      with:
+        draft: false
+        prerelease: false
+        release_name: ${{ steps.version.outputs.version }}
+        tag_name: ${{ github.ref }}
+        body_path: CHANGELOG.md
       env:
-        NEXTCLOUD_USER: ${{ secrets.NEXTCLOUD_USER }}
-        NEXTCLOUD_PASSWORD: ${{ secrets.NEXTCLOUD_PASSWORD }}
-        NEXTCLOUD_URL: ${{ secrets.NEXTCLOUD_URL }}
-      run: |
-        source repository/src/config
-        NOW=$(date +"%Y-%m-%d-%H%M")
-        IMAGE=$NOW-devops-$DIST_VERSION
+        GITHUB_TOKEN: ${{ github.token }}
 
-        cp repository/src/workspace-raspios_lite_arm64/*.img $IMAGE.img
+    #- name: Copy output
+    #  id: copy
+    #  env:
+    #    NEXTCLOUD_USER: ${{ secrets.NEXTCLOUD_USER }}
+    #    NEXTCLOUD_PASSWORD: ${{ secrets.NEXTCLOUD_PASSWORD }}
+    #    NEXTCLOUD_URL: ${{ secrets.NEXTCLOUD_URL }}
+    #  run: |
+    #    source repository/src/config
+    #    NOW=$(date +"%Y-%m-%d-%H%M")
+    #    IMAGE=$NOW-devops-$DIST_VERSION
 
-        echo "::set-output name=image::$IMAGE"
+    #    cp repository/src/workspace-raspios_lite_arm64/*.img $IMAGE.img
 
-        xz $IMAGE.img
-        curl -u $NEXTCLOUD_USER:$NEXTCLOUD_PASSWORD -T $IMAGE.img.xz $NEXTCLOUD_URL       
+    #    echo "::set-output name=image::$IMAGE"
+
+    #    xz $IMAGE.img
+    #    curl -u $NEXTCLOUD_USER:$NEXTCLOUD_PASSWORD -T $IMAGE.img.xz $NEXTCLOUD_URL       
