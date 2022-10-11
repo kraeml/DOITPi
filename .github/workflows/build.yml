@@ -48,7 +48,7 @@ jobs:
         make build_arm64
 
     - name: version
-      run: echo "::set-output name=version::$(grep DIST_VERSION config | cut -d '=' -f 2)"
+      run: echo "::set-output name=version::$(grep DIST_VERSION repository/src/config | cut -d '=' -f 2)"
       id: version
 
     - name: release
