@@ -29,7 +29,9 @@ jobs:
 
     - name: Download Raspbian Image
       run: |
-        cd repository/src/image-raspios_lite_arm64
+        cd repository/src/image
+        wget -c --trust-server-names 'https://downloads.raspberrypi.org/raspios_lite_armhf_latest'
+        cd ../image-raspios_lite_arm64
         wget -c --trust-server-names 'https://downloads.raspberrypi.org/raspios_lite_arm64_latest'
 
     - name: Update CustomPiOS Paths
