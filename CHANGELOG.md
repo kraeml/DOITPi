@@ -1,1 +1,1 @@
-* Upload arm64 Image
+* Upload armhf and arm64 Image
