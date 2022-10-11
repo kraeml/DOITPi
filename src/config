@@ -1,5 +1,5 @@
 export DIST_NAME=devopsPiOS
-export DIST_VERSION=0.0.6-a
+export DIST_VERSION=0.0.7
 
 # rpi-imager json generator settings
 export RPI_IMAGER_NAME="${DIST_NAME}"
