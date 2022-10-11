@@ -41,13 +41,13 @@ jobs:
       run: |
         sudo modprobe loop
         cd repository/src
-        make build_arm64
+        make build
 
-    - name: version
+    - name: Version
       run: echo "::set-output name=version::$(grep DIST_VERSION repository/src/config | cut -d '=' -f 2)"
       id: version
 
-    - name: release
+    - name: Release
       uses: actions/create-release@v1
       id: create_release
       with:
@@ -59,30 +59,42 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ github.token }}
 
-    - name: Copy output
-      id: copy
-    #  env:
-    #    NEXTCLOUD_USER: ${{ secrets.NEXTCLOUD_USER }}
-    #    NEXTCLOUD_PASSWORD: ${{ secrets.NEXTCLOUD_PASSWORD }}
-    #    NEXTCLOUD_URL: ${{ secrets.NEXTCLOUD_URL }}
+    - name: Copy armhf output
+      id: copy_armhf
       run: |
         source repository/src/config
-        NOW=$(date +"%Y-%m-%d-%H%M")
-        IMAGE=$NOW-devops-$DIST_VERSION
+        IMAGE=devops-${DIST_VERSION}_armhf
 
-        cp repository/src/workspace-raspios_lite_arm64/*.img $IMAGE.img
+        cp repository/src/workspace/*.img ${IMAGE}.img
+        xz ${IMAGE}.img
+        echo "::set-output name=image::${IMAGE}.img.xz"
 
-        echo "::set-output name=image::$IMAGE"
-
-        xz $IMAGE.img
-    #    curl -u $NEXTCLOUD_USER:$NEXTCLOUD_PASSWORD -T $IMAGE.img.xz $NEXTCLOUD_URL       
-
-    - name: upload linux artifact
+    - name: Upload armhf Image
       uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ github.token }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ${{ steps.copy.outputs.image }}.img.xz
-        asset_name: ${{ steps.copy.outputs.image }}.img.xz
+        asset_path: ${{ steps.copy_armhf.outputs.image }}
+        asset_name: ${{ steps.copy_armhf.outputs.image }}
+        asset_content_type: application/xz
+
+    - name: Copy arm64 output
+      id: copy
+      run: |
+        source repository/src/config
+        IMAGE=devops-${DIST_VERSION}_arm64
+
+        cp repository/src/workspace-raspios_lite_arm64/*.img ${IMAGE}.img
+        xz ${IMAGE}.img
+        echo "::set-output name=image::${IMAGE}.img.xz"
+
+    - name: Upload arm64 Image
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ${{ steps.copy.outputs.image }}
+        asset_name: ${{ steps.copy.outputs.image }}
         asset_content_type: application/xz
