@@ -37,15 +37,11 @@ jobs:
         cd repository/src
         ../../CustomPiOS/src/update-custompios-paths
     
-    #- name: Force apt mirror to work around intermittent mirror hiccups
+    #- name: Build Image
     #  run: |
-    #    echo "OCTOPI_APTMIRROR=http://mirror.us.leaseweb.net/raspbian/raspbian" > repository/src/config.local
-
-    - name: Build Image
-      run: |
-        sudo modprobe loop
-        cd repository/src
-        make build_arm64
+    #    sudo modprobe loop
+    #    cd repository/src
+    #    make build_arm64
 
     - name: version
       run: echo "::set-output name=version::$(grep DIST_VERSION repository/src/config | cut -d '=' -f 2)"
