@@ -37,11 +37,11 @@ jobs:
         cd repository/src
         ../../CustomPiOS/src/update-custompios-paths
     
-    #- name: Build Image
-    #  run: |
-    #    sudo modprobe loop
-    #    cd repository/src
-    #    make build_arm64
+    - name: Build Image
+      run: |
+        sudo modprobe loop
+        cd repository/src
+        make build_arm64
 
     - name: version
       run: echo "::set-output name=version::$(grep DIST_VERSION repository/src/config | cut -d '=' -f 2)"
@@ -59,20 +59,30 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ github.token }}
 
-    #- name: Copy output
-    #  id: copy
+    - name: Copy output
+      id: copy
     #  env:
     #    NEXTCLOUD_USER: ${{ secrets.NEXTCLOUD_USER }}
     #    NEXTCLOUD_PASSWORD: ${{ secrets.NEXTCLOUD_PASSWORD }}
     #    NEXTCLOUD_URL: ${{ secrets.NEXTCLOUD_URL }}
-    #  run: |
-    #    source repository/src/config
-    #    NOW=$(date +"%Y-%m-%d-%H%M")
-    #    IMAGE=$NOW-devops-$DIST_VERSION
+      run: |
+        source repository/src/config
+        NOW=$(date +"%Y-%m-%d-%H%M")
+        IMAGE=$NOW-devops-$DIST_VERSION
 
-    #    cp repository/src/workspace-raspios_lite_arm64/*.img $IMAGE.img
+        cp repository/src/workspace-raspios_lite_arm64/*.img $IMAGE.img
 
-    #    echo "::set-output name=image::$IMAGE"
+        echo "::set-output name=image::$IMAGE"
 
-    #    xz $IMAGE.img
+        xz $IMAGE.img
     #    curl -u $NEXTCLOUD_USER:$NEXTCLOUD_PASSWORD -T $IMAGE.img.xz $NEXTCLOUD_URL       
+
+    - name: upload linux artifact
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ${{ steps.copy.outputs.image }}
+        asset_name: ${{ steps.copy.outputs.image }}
+        asset_content_type: application/xz
