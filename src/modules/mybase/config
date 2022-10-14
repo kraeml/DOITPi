@@ -1,5 +1,5 @@
 MYBASE_VAR="MyBase Variable"
-MYBASE_PKGS="screen tree git vim nmap build-essential\
+MYBASE_PKGS="screen tree git vim nmap build-essential rclone\
                 ssh-import-id dphys-swapfile etckeeper avahi-utils"
 MYBASE_CODESERVER_VERSION="4.7.1"
 MYBASE_CODESERVER_ARCH=${BASE_ARCH}
