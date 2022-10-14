@@ -3,5 +3,5 @@ src/workspace*
 build.log
 custompios_path
 .vagrant
-config.*
+src/config.*
 *.swp
