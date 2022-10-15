@@ -13,9 +13,18 @@ set -e
 source /common.sh
 install_cleanup_trap
 
-unpack /filesystem/home/pi /home/"${BASE_USER}" "${BASE_USER}"
-unpack /filesystem/home/root /root root
-unpack /filesystem/boot /boot
+if [ -d /filesystem/home/pi ]
+then
+    unpack /filesystem/home/pi /home/"${BASE_USER}" "${BASE_USER}"
+fi
+if [ -d /filesystem/home/root ]
+then
+    unpack /filesystem/home/root /root root
+fi
+if [ -d /filesystem/boot ]
+then
+    unpack /filesystem/boot /boot
+fi
 
 echo "This is an example module, install and set up what you need here!"
 echo "$MYBASE_VAR"
@@ -49,6 +58,10 @@ then
 fi
 
 # Unpack root at the end, so files are modified before
-unpack /filesystem/root /
+if [ -d /filesystem/root ]
+then
+    unpack /filesystem/root /
+fi
+
 systemctl enable codeserver.service
 systemctl enable firstboot.service

@@ -1,7 +1,6 @@
 name: Build Image
 
 on:
-  #repository_dispatch:
   push:
     tags:
       - '*'
