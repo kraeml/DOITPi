@@ -1,2 +1,2 @@
-* rclone in Basis enthalten.
-* Der Benutzer /home/pi wird beim ersten boot auf neuen User unter /home nachgezogen
+* Pfadangabe für Neuen Benutzer ohne Slash am Anfang. Jupyter startet.
+* Mit ansible wird der Paketcache im firstboot.sh geladen

@@ -48,12 +48,6 @@ popd
 su - -c "cd /home/${BASE_USER}/bin && virtualenv -p python3 jupyter-venv" "${BASE_USER}"
 su - -c "source /home/${BASE_USER}/bin/jupyter-venv/bin/activate && pip install -U jupyterlab" "${BASE_USER}"
 
-# Workaround für den Hardcoded User PI in virtualenv
-cat >> .bashrc <<'EOF'
-find bin/jupyter-venv/bin/ -perm -u=x -type f | xargs grep /home/pi | cut -d ':' -f 1 | xargs sed -i 's_/home/pi_'"$HOME"'_g'
-EOF
-
-
 # Unpack root at the end, so files are modified before
 if [ -d /filesystem/root ]
 then
