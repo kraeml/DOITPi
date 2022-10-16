@@ -1,2 +1,1 @@
-* Pfadangabe für Neuen Benutzer ohne Slash am Anfang. Jupyter startet.
-* Mit ansible wird der Paketcache im firstboot.sh geladen
+* Löschen der pyc Dateien unterhalb Home/bin. Wegen neuen User von Pi.
