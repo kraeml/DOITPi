@@ -1,1 +1,1 @@
-* Löschen der pyc Dateien unterhalb Home/bin. Wegen neuen User von Pi.
+* Umbennenung in DOITPi für **D**ev**O**ps **I**o**T** **Pi**

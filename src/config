@@ -1,9 +1,9 @@
-export DIST_NAME=devopsPiOS
-export DIST_VERSION=0.1.4
+export DIST_NAME=DOITPi
+export DIST_VERSION=0.2.0
 
 # rpi-imager json generator settings
 export RPI_IMAGER_NAME="${DIST_NAME}"
-export RPI_IMAGER_DESCRIPTION="A raspberrypi distro built with CustomPiOS"
+export RPI_IMAGER_DESCRIPTION="A raspberrypi distro for DevOps and IoT built with CustomPiOS"
 export RPI_IMAGER_WEBSITE="https://github.com/guysoft/CustomPiOS"
 export RPI_IMAGER_ICON="https://raw.githubusercontent.com/guysoft/CustomPiOS/devel/media/rpi-imager-CustomPiOS.png"
 
@@ -27,4 +27,4 @@ export PKGUPGRADE_USE_PREINSTALLER=n # y/n
 # Add Packages that should be PKGUPGRADEed.
 export PKGUPGRADE_PRE_INSTALL_PKGS=""
 
-export MODULES="base(network,mybase,autohotspot,pythongpio,platformio,devopspios,docker,homeautomation,cockpit-install,pkgupgrade)"
+export MODULES="base(network,mybase,autohotspot,pythongpio,platformio,devops,docker,homeautomation,cockpit-install,pkgupgrade)"

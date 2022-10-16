@@ -5,7 +5,7 @@
 # GPL V3
 ########
 
-etckeeper commit "End devopspios module"
+etckeeper commit "End devops module"
 
 set -x
 set -e

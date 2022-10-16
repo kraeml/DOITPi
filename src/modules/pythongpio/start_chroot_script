@@ -28,7 +28,7 @@ fi
 
 echo "This is an example module, install and set up what you need here!"
 echo "$PYTHONGPIO_VAR"
-echo "$DEVOPSPIOS_PKGS"
+echo "$DEVOPS_PKGS"
 
 apt_update_skip
 check_install_pkgs ${PYTHONGPIO_PKGS}
