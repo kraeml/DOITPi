@@ -52,4 +52,4 @@ jobs:
       run: |
         sudo modprobe loop
         cd repository/src
-        make build_all
+        make build_arm64
