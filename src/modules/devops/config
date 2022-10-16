@@ -1,5 +1,5 @@
-DEVOPSPIOS_VAR="DevOps Variable"
-DEVOPSPIOS_PKGS="screen tmux tree ansible yamllint\
+DEVOPS_VAR="DevOps Variable"
+DEVOPS_PKGS="screen tmux tree ansible yamllint\
                 expect git vim nmap tree net-tools\
                 cmake unzip zip build-essential\
                 ssh-import-id dphys-swapfile\
