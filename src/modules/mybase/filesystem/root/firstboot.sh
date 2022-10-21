@@ -11,7 +11,7 @@ function rm_home_pi {
 
 rm_home_pi /etc/systemd/system
 rm_home_pi $(getent passwd 1000 | cut --delimiter=: --fields=6)
-find $(getent passwd 1000 | cut --delimiter=: --fields=6)/bin/ -name '*.pyc' -delete
+find $(getent passwd 1000 | cut --delimiter=: --fields=6)/ -name '*.pyc' -delete
 
 ansible --extra-vars ansible_python_interpreter=/usr/bin/python3 \
   --inventory localhost, --connection local \
