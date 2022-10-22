@@ -38,7 +38,7 @@ sed -i "s/dtparam=i2c_arm=on/dtparam=i2c_arm=on\ndtparam=i2c_vc=on/g" /boot/conf
 
 for i in "do_i2c" "do_spi" "do_serial"
 do
-  set_config_var $i 0
+  raspi-config noint $i 0
 done
 
 pushd  /home/"${BASE_USER}"/workspace
