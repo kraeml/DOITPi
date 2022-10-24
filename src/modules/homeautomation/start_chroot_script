@@ -36,6 +36,7 @@ check_install_pkgs ${HOMEAUTOMATION_PKGS}
 pushd  /home/pi/workspace
   gitclone HOMEAUTOMATION_HOMEAUTOMATION_REPO
   gitclone HOMEAUTOMATION_GETTINGSTARTETESP_REPO
+  gitclone HOMEAUTOMATION_IOTSTACK_REPO
 popd
 
 # Unpack root at the end, so files are modified before
