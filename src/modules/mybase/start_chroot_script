@@ -30,16 +30,23 @@ echo "This is an example module, install and set up what you need here!"
 echo "$MYBASE_VAR"
 echo "$MYBASE_PKGS"
 
+apt_update_skip
+check_install_pkgs ${MYBASE_PKGS}
+
+pushd  /home/pi/workspace
+  gitclone MYBASE_DOITPI_TEST_REPO
+  chown -R "${BASE_USER}": ./doitpi-test
+  su -c "cd ./doitpi-test; python3 -m venv .venv; source .venv/bin/activate && pip install -r requirements.txt" "${BASE_USER}"
+popd
+
 echo 'Install locale'
 sed -i -E 's;^#\s(de_DE.UTF-8.*);\1;g' /etc/locale.gen
 sed -i -E 's;^#\s(en_US.UTF-8.*);\1;g' /etc/locale.gen
 sed -i -E 's;^#\s(nl_NL.UTF-8.*);\1;g' /etc/locale.gen
 sed -i -E 's;^#\s(fr_FR.UTF-8.*);\1;g' /etc/locale.gen
 locale-gen
-
-
-apt_update_skip
-check_install_pkgs ${MYBASE_PKGS}
+# Geht nicht in chroot
+#localectl set-locale LANG=de_DE.UTF-8
 
 echo 'Install Codeserver'
 TEMP_DEB="$(mktemp)" && wget --quiet --output-document="$TEMP_DEB" \
@@ -55,6 +62,7 @@ then
     sed -i "s/#retry 60;/retry 20;/g" /etc/dhcp/dhclient.conf
     echo "Disable wait for network"
     set_config_var do_boot_wait 1
+    raspi-config nonint do_boot_wait 1
 fi
 
 # Unpack root at the end, so files are modified before
@@ -62,6 +70,5 @@ if [ -d /filesystem/root ]
 then
     unpack /filesystem/root /
 fi
-
 systemctl enable codeserver.service
 systemctl enable firstboot.service
