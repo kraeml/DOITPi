@@ -9,15 +9,20 @@ function rm_home_pi {
   fi
 }
 
+# Ersetzt den Pfad /home/pi für aktuellen Benutzer
 rm_home_pi /etc/systemd/system
 rm_home_pi $(getent passwd 1000 | cut --delimiter=: --fields=6)
+
+# Löscht alle pythoncache Dateien, da hier auch noch /home/pi angegeben.
 find $(getent passwd 1000 | cut --delimiter=: --fields=6)/ -name '*.pyc' -delete
 
+#Via ansible wird der Packetcache erneuert.
 ansible --extra-vars ansible_python_interpreter=/usr/bin/python3 \
   --inventory localhost, --connection local \
   --module-name apt \
   --args "update_cache=yes cache_valid_time=3600" localhost
 
+# Löschen von firstboot
 systemctl disable firstboot.service
 
 rm -rf /etc/systemd/system/firstboot.service
