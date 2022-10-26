@@ -22,6 +22,8 @@ ansible --extra-vars ansible_python_interpreter=/usr/bin/python3 \
   --module-name apt \
   --args "update_cache=yes cache_valid_time=3600" localhost
 
+localectl set-locale LANG=de_DE.UTF-8
+
 # Löschen von firstboot
 systemctl disable firstboot.service
 
