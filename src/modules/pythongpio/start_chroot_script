@@ -36,6 +36,8 @@ check_install_pkgs ${PYTHONGPIO_PKGS}
 sed -i -E 's;^#(dtparam=i2c_arm=on);\1;g' /boot/config.txt
 sed -i "s/dtparam=i2c_arm=on/dtparam=i2c_arm=on\ndtparam=i2c_vc=on/g" /boot/config.txt
 
+usermod -aG bluetooth ${BASE_USER}
+
 for i in "do_i2c" "do_spi" "do_serial"
 do
   raspi-config nonint $i 0
