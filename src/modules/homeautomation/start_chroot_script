@@ -39,6 +39,7 @@ pushd  /home/${BASE_USER}/workspace
 popd
 mkdir /home/${BASE_USER}/containers
 pushd /home/${BASE_USER}/containers
+  chown ${BASE_USER}: .
   gitclone HOMEAUTOMATION_IOTSTACK_REPO
 popd
 
