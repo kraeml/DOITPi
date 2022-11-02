@@ -33,9 +33,12 @@ echo "$HOMEAUTOMATION_PKGS"
 apt_update_skip
 check_install_pkgs ${HOMEAUTOMATION_PKGS}
 
-pushd  /home/pi/workspace
+pushd  /home/${BASE_USER}/workspace
   gitclone HOMEAUTOMATION_HOMEAUTOMATION_REPO
   gitclone HOMEAUTOMATION_GETTINGSTARTETESP_REPO
+popd
+mkdir /home/${BASE_USER}/containers
+pushd /home/${BASE_USER}/containers
   gitclone HOMEAUTOMATION_IOTSTACK_REPO
 popd
 

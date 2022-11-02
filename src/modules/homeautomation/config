@@ -1,5 +1,5 @@
 HOMEAUTOMATION_VAR="Homeautomation Variable"
-HOMEAUTOMATION_PKGS="git vim"
+HOMEAUTOMATION_PKGS="git vim mosquitto-clients"
 
 HOMEAUTOMATION_HOMEAUTOMATION_REPO_SHIP="https://github.com/koenvervloesem/raspberry-pi-home-automation.git"
 HOMEAUTOMATION_HOMEAUTOMATION_REPO_BUILD=
