@@ -33,6 +33,11 @@ echo "$DEVOPS_PKGS"
 apt_update_skip
 check_install_pkgs ${DEVOPS_PKGS}
 
+if [ -f /usr/local/bin/docker-compose -a ! -f /usr/bin/docker-compose ]
+then
+   ln -s /usr/local/bin/docker-compose /usr/bin/ 2>/dev/null || true
+fi 
+
 # Unpack root at the end, so files are modified before
 if [ -d /filesystem/root ]
 then
