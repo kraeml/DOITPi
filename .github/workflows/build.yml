@@ -42,7 +42,7 @@ jobs:
       run: |
         sudo modprobe loop
         cd repository/src
-        make build_all
+        make build_arm64
 
     - name: Version
       run: echo "::set-output name=version::$(grep DIST_VERSION repository/src/config | cut -d '=' -f 2)"
@@ -60,25 +60,25 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ github.token }}
 
-    - name: Copy armhf output
-      id: copy_armhf
-      run: |
-        source repository/src/config
-        IMAGE=devops-${DIST_VERSION}_armhf
+    #- name: Copy armhf output
+    #  id: copy_armhf
+    #  run: |
+    #    source repository/src/config
+    #    IMAGE=devops-${DIST_VERSION}_armhf
 
-        cp repository/src/workspace/*.img ${IMAGE}.img
-        xz ${IMAGE}.img
-        echo "::set-output name=image::${IMAGE}.img.xz"
+    #    cp repository/src/workspace/*.img ${IMAGE}.img
+    #    xz ${IMAGE}.img
+    #    echo "::set-output name=image::${IMAGE}.img.xz"
 
-    - name: Upload armhf Image
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ github.token }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ${{ steps.copy_armhf.outputs.image }}
-        asset_name: ${{ steps.copy_armhf.outputs.image }}
-        asset_content_type: application/xz
+    #- name: Upload armhf Image
+    #  uses: actions/upload-release-asset@v1
+    #  env:
+    #    GITHUB_TOKEN: ${{ github.token }}
+    #  with:
+    #    upload_url: ${{ steps.create_release.outputs.upload_url }}
+    #    asset_path: ${{ steps.copy_armhf.outputs.image }}
+    #    asset_name: ${{ steps.copy_armhf.outputs.image }}
+    #    asset_content_type: application/xz
 
     - name: Copy arm64 output
       id: copy
