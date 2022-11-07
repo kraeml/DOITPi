@@ -1,31 +1,52 @@
 # DOITPi
 
-Ist eine Pi-Distro um **D**ev**O**ps und **I**o**T** Tools auf dem **Pi** laufen zu lassen. Es beinhaltet u.a.
+**D**ev  
+**O**ps  
+**I**o**T**  
+Raspberry**Pi**
+
+[DOITPi][doitpi] ist eine DevOps-IoT-Toolsammlung auf Basis von Raspberry Pi OS Lite. Gebaut wird DevOpsPiOS mit Hilfe von [CustomPiOS][custompios].
 
 * [Codeserver][codeserver]  
-    Run VS Code on any machine anywhere and access it in the browser.
+    Führt VS Code auf dem Raspberry aus. Editiert wird über den Browser.
+
 * [Ansible][ansible]  
-    It can configure systems, deploy software, and orchestrate more advanced IT tasks such as continuous deployments or zero downtime rolling updates.
+    Ansible konfiguriert Systeme, stellt Software bereit. Somit sind fortschrittliche IT-Aufgaben, wie kontinuierliche Bereitstellungen oder rollierende Updates, ohne Ausfallzeiten möglich.
+
 * [testinfra][testinfra]  
-    With Testinfra you can write unit tests in Python to test actual state of your servers configured by management tools like Salt, Ansible, Puppet, Chef and so on.
+    Mit Testinfra werden Unit-Tests in Python geschrieben, um den aktuellen Zustand eines Server zu testen, die mit Management-Tools wie Salt, Ansible, Puppet, Chef usw. konfiguriert wurden.
+
 * LXC
+
 * Docker
+
 * [Cockpit][cockpit]  
-    Cockpit is a web-based graphical interface for servers, intended for everyone...
+    Cockpit ist eine webbasierte grafische Oberfläche für Server.
+
 * [autohotspot][autohotspot]  
-    Script sets up an automatic hotspot if no wifi is found.
+    Das Skript richtet automatisch einen Hotspot ein, wenn kein WLAN gefunden wird.
+
 * PiGPIO Dienste
     * pigpiod
     * Setup i2c and other
     * [Blockly-gPIo][blocklypi]
+
 * MCU Development
     * platformio
+
 * Python
     * Jupyter
     * virtualenv
 
-DevOpsPiOS baut auf [CustomPiOS][custompios].
+* ...
 
+Unter [DOITPI Releas latest][doitpi-release] findet man das neuste Image.
+
+Wegen Abhängigkeiten von `docker` kann z.Zt. nur eine `arm64` Version erstellt werden.
+
+
+[doitpi]: https://github.com/kraeml/doitpi
+[doitpi-release]: https://github.com/kraeml/DOITPi/releases/latest
 [codeserver]: https://github.com/coder/code-server
 [ansible]: https://docs.ansible.com/ansible-core/devel/index.html
 [testinfra]: https://testinfra.readthedocs.io/en/latest/index.html
@@ -34,43 +55,49 @@ DevOpsPiOS baut auf [CustomPiOS][custompios].
 [blocklypi]: https://github.com/GrazerComputerClub/Blockly-gPIo
 [custompios]: https://github.com/guysoft/CustomPiOS
 
-## Developing
+## Mitentwickeln?
 
-### Requirements
+**JAA**
+
+### Anforderungen
 
 * qemu-arm-static
 * CustomPiOS
-* Downloaded Raspbian image.
-* root privileges for chroot
+* Heruntergeladenes Raspbian-Image.
+* root-Rechte für chroot
 * Bash
 * git
-* sudo (the script itself calls it, running as root without sudo won't work)
+* sudo  
+  (das Skript selbst ruft es auf. Als root, ohne sudo, wird nicht funktionieren)
 
-### Build DOITPi From within Raspbian / Debian / Ubuntu
+### DOITPi in Raspbian/Debian/Ubuntu aus bauen
 
-DOITPi can be built from Debian, Ubuntu, Raspbian, or even DOITPi. Build requires about 2.5 GB of free space available. You can build it by issuing the following commands:
+DOITPi kann in Debian, Ubuntu, Raspbian oder sogar in DOITPi aus gebaut werden. Die Erstellung erfordert etwa 2,5 GB freien Speicherplatz. Mit den folgenden Befehlen kann DOITPI gebaut werden:
 
-sudo apt-get install gawk util-linux qemu-user-static git p7zip-full python3
+```bash
+sudo apt-get install gawk util-linux qemu-user-static git p7zip-full python3 coreutils
 
 git clone https://github.com/guysoft/CustomPiOS.git
 git clone https://github.com/kraeml/DOITPi.git
 cd DOITPi/src/image
 wget -c --trust-server-names 'https://downloads.raspberrypi.org/raspios_lite_armhf_latest'
+cd ../image-raspios_lite_arm64
+wget -c --trust-server-names 'https://downloads.raspberrypi.org/raspios_lite_arm64_latest'
 cd ..
 ../../CustomPiOS/src/update-custompios-paths
 sudo modprobe loop
-sudo bash -x ./build_dist
+sudo make build_arm64
+```
 
-### Building Using Vagrant
+### ToDo Bauen mit Vagrant
 
-There is a vagrant machine configuration to let build DOITPi in case your build environment behaves differently. Unless you do extra configuration, vagrant must run as root to have nfs folder sync working.
+Es gibt eine Vagrant-Maschinenkonfiguration, mit der DOITPi gebaut werden kann. Wenn Sie keine zusätzliche Konfiguration vornehmen, muss `vagrant` als `root` laufen, damit nfs folder sync funktioniert.
 
-Make sure you have a version of vagrant later than 1.9!
+Vergewissern Sie sich, dass Sie eine Version von vagrant haben, die neuer als 1.9 ist! Wenn Sie ältere Versionen von Ubuntu/Debian verwenden und nicht `apt-get` von der Download-Seite verwenden.
 
-If you are using older versions of Ubuntu/Debian and not using apt-get from the download page.
+Um `vagrant` auf Ubuntu zu benutzen:
 
-To use it:
-
+```bash
 sudo apt-get install vagrant nfs-kernel-server virtualbox
 sudo vagrant plugin install vagrant-nfs_guest
 sudo modprobe nfs
@@ -81,21 +108,28 @@ cd DOITPi/src
 cd DOITPi/src/vagrant
 sudo vagrant up
 run_vagrant_build.sh
+```
 
-After provisioning the machine, its also possible to run a nightly build which updates from devel using:
+Nach der Bereitstellung des Vagrant-Rechners ist es auch möglich, einen nächtlichen Build auszuführen, der Updates von devel verwendet:
 
+```bash
 cd DOITPi/src/vagrant
 run_vagrant_build.sh
+```
 
-To build a variant on the machine simply run:
+Um eine Variante auf der Maschine zu bauen, führen Sie einfach aus:
 
+```bash
 cd src/vagrant
-run_vagrant_build.sh [Variant]
+run_vagrant_build.sh [Variante]
+```
 
-### Usage
+### Verwendung
 
-    If needed, override existing config settings by creating a new file src/config.local. You can override all settings found in src/modules/DOITPi/config. If you need to override the path to the Raspbian image to use for building DOITPi, override the path to be used in ZIP_IMG. By default the most recent file matching *-raspbian.zip found in src/image will be used.
-    Run src/build_dist as root.
-    The final image will be created at the src/workspace
+Falls erforderlich, überschreiben Sie die bestehenden Konfigurationseinstellungen, indem Sie eine neue Datei src/config.local erstellen. Sie können alle in src/modules/DOITPi/config gefundenen Einstellungen überschreiben. Wenn Sie den Pfad zum Raspbian-Image, das für die Erstellung von DOITPi verwendet werden soll, überschreiben müssen, überschreiben Sie den Pfad, der in ZIP_IMG verwendet werden soll. Standardmäßig wird die aktuellste Datei, die mit *-raspbian.zip übereinstimmt und sich in src/image befindet, verwendet.
+Führen Sie src/build_dist als root aus.
+Das endgültige Image wird in src/workspace erstellt.
 
-Code contribution would be appreciated!
+Code-Beiträge sind erwünscht!
+
+
