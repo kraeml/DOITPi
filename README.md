@@ -5,7 +5,7 @@
 **I**o**T**  
 Raspberry**Pi**
 
-[DOITPi][doitpi] ist eine DevOps-IoT-Toolsammlung auf Basis von Raspberry Pi OS Lite. Gebaut wird DevOpsPiOS mit Hilfe von [CustomPiOS][custompios].
+[DOITPi][doitpi] ist eine DevOps-IoT-Toolsammlung auf Basis von Raspberry Pi OS Lite. Gebaut wird DOITPi mit Hilfe von [CustomPiOS][custompios].
 
 * [Codeserver][codeserver]  
     Führt VS Code auf dem Raspberry aus. Editiert wird über den Browser.
@@ -89,6 +89,9 @@ sudo modprobe loop
 sudo make build_arm64
 ```
 
+__Code-Beiträge sind erwünscht!__
+
+
 ### ToDo Bauen mit Vagrant
 
 Es gibt eine Vagrant-Maschinenkonfiguration, mit der DOITPi gebaut werden kann. Wenn Sie keine zusätzliche Konfiguration vornehmen, muss `vagrant` als `root` laufen, damit nfs folder sync funktioniert.
@@ -123,13 +126,5 @@ Um eine Variante auf der Maschine zu bauen, führen Sie einfach aus:
 cd src/vagrant
 run_vagrant_build.sh [Variante]
 ```
-
-### Verwendung
-
-Falls erforderlich, überschreiben Sie die bestehenden Konfigurationseinstellungen, indem Sie eine neue Datei src/config.local erstellen. Sie können alle in src/modules/DOITPi/config gefundenen Einstellungen überschreiben. Wenn Sie den Pfad zum Raspbian-Image, das für die Erstellung von DOITPi verwendet werden soll, überschreiben müssen, überschreiben Sie den Pfad, der in ZIP_IMG verwendet werden soll. Standardmäßig wird die aktuellste Datei, die mit *-raspbian.zip übereinstimmt und sich in src/image befindet, verwendet.
-Führen Sie src/build_dist als root aus.
-Das endgültige Image wird in src/workspace erstellt.
-
-Code-Beiträge sind erwünscht!
 
 
