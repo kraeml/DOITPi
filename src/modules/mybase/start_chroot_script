@@ -64,7 +64,7 @@ then
     set_config_var do_boot_wait 1
     raspi-config nonint do_boot_wait 1
 fi
-raspi-config nonint do_memory_split 16M
+echo "gpu_mem=16M" >> /boot/config.txt
 # Unpack root at the end, so files are modified before
 if [ -d /filesystem/root ]
 then
