@@ -56,4 +56,4 @@ then
   unpack /filesystem/root /
 fi
 
-systemctl enable jupyter.service
+systemctl disable jupyter.service
