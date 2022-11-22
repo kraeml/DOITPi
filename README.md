@@ -5,7 +5,7 @@
 **I**o**T**  
 Raspberry**Pi**
 
-[DOITPi][doitpi] ist eine DevOps-IoT-Toolsammlung auf Basis von Raspberry Pi OS Lite. Gebaut wird DevOpsPiOS mit Hilfe von [CustomPiOS][custompios].
+[DOITPi][doitpi] ist eine DevOps-IoT-Toolsammlung auf Basis von Raspberry Pi OS Lite. Gebaut wird DOITPi mit Hilfe von [CustomPiOS][custompios].
 
 * [Codeserver][codeserver]  
     Führt VS Code auf dem Raspberry aus. Editiert wird über den Browser.
@@ -19,6 +19,28 @@ Raspberry**Pi**
 * LXC
 
 * Docker
+
+    * [IOTstack][iotstack]  
+        IOTstack erstellt docker-compose Dateien, zur einfachen Erstellung und Wartung von IoT-Stacks auf dem Raspberry Pi.  
+        Folgendes kann u.U. eingerichtet werden:
+
+        * [Node-Red][nodered]  
+            Node-RED ist ein Programmierwerkzeug, mit dem sich Hardwaregeräte, APIs und Online-Dienste auf neue und interessante Weise miteinander verbinden lassen.
+        
+        * [Heimdall][heimdall]  
+            Heimdall Application Dashboard ist ein Dashboard für Webanwendungen. Es es nicht auf Anwendungen beschränkt, es können auch Weblinks zu allem hinzugefügt werden.
+        
+        * [Eclipse Mosquitto][mosquitto]  
+            Eclipse Mosquitto ist ein quelloffener Message Broker, der die MQTT-Protokollversionen 5.0, 3.1.1 und 3.1 implementiert. Mosquitto ist leichtgewichtig und eignet sich für den Einsatz auf allen Geräten, von stromsparenden Einplatinencomputern bis hin zu kompletten Servern.   
+
+
+        * Monitoring mit Telegraf, InfluxDB und Grafana
+
+        * [ESP Home][esphome]  
+            ESPHome ist ein System, mit dem ESP8266/ESP32 durch einfache, aber leistungsfähige Konfigurationsdateien (YAML) steuern und über Home Automation Systeme fernsteuern können.
+
+        * Und vieles mehr
+
 
 * [Cockpit][cockpit]  
     Cockpit ist eine webbasierte grafische Oberfläche für Server.
@@ -35,8 +57,11 @@ Raspberry**Pi**
     * platformio
 
 * Python
-    * Jupyter
+    * [Jupyter Lab][jupyterlab]  
+        JupyterLab ist eine webbasierte interaktive Entwicklungsumgebung für Notebooks, Code und Daten. Die flexible Benutzeroberfläche ermöglicht es Benutzern, Arbeitsabläufe in den Bereichen Datenwissenschaft, wissenschaftliches Rechnen, Computerjournalismus und maschinelles Lernen zu konfigurieren und zu gestalten. Ein modulares Design lädt zu Erweiterungen ein, um die Funktionalität zu erweitern und zu bereichern.
     * virtualenv
+
+* Golang
 
 * ...
 
@@ -54,6 +79,12 @@ Wegen Abhängigkeiten von `docker` kann z.Zt. nur eine `arm64` Version erstellt 
 [autohotspot]: https://github.com/guysoft/CustomPiOS/blob/devel/src/modules/auto-hotspot/start_chroot_script
 [blocklypi]: https://github.com/GrazerComputerClub/Blockly-gPIo
 [custompios]: https://github.com/guysoft/CustomPiOS
+[iotstack]: https://sensorsiot.github.io/IOTstack/
+[nodered]: https://nodered.org/
+[heimdall]: https://heimdall.site/
+[mosquitto]: https://mosquitto.org/
+[esphome]: https://esphome.io/
+[jupyterlab]: http://jupyter.org/
 
 ## Mitentwickeln?
 
@@ -89,6 +120,9 @@ sudo modprobe loop
 sudo make build_arm64
 ```
 
+__Code-Beiträge sind erwünscht!__
+
+
 ### ToDo Bauen mit Vagrant
 
 Es gibt eine Vagrant-Maschinenkonfiguration, mit der DOITPi gebaut werden kann. Wenn Sie keine zusätzliche Konfiguration vornehmen, muss `vagrant` als `root` laufen, damit nfs folder sync funktioniert.
@@ -123,13 +157,5 @@ Um eine Variante auf der Maschine zu bauen, führen Sie einfach aus:
 cd src/vagrant
 run_vagrant_build.sh [Variante]
 ```
-
-### Verwendung
-
-Falls erforderlich, überschreiben Sie die bestehenden Konfigurationseinstellungen, indem Sie eine neue Datei src/config.local erstellen. Sie können alle in src/modules/DOITPi/config gefundenen Einstellungen überschreiben. Wenn Sie den Pfad zum Raspbian-Image, das für die Erstellung von DOITPi verwendet werden soll, überschreiben müssen, überschreiben Sie den Pfad, der in ZIP_IMG verwendet werden soll. Standardmäßig wird die aktuellste Datei, die mit *-raspbian.zip übereinstimmt und sich in src/image befindet, verwendet.
-Führen Sie src/build_dist als root aus.
-Das endgültige Image wird in src/workspace erstellt.
-
-Code-Beiträge sind erwünscht!
 
 
