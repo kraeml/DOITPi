@@ -42,7 +42,7 @@ jobs:
       run: |
         sudo modprobe loop
         cd repository/src
-        make build
+        make build_all
 
     - name: Version
       run: echo "::set-output name=version::$(grep DIST_VERSION repository/src/config | cut -d '=' -f 2)"

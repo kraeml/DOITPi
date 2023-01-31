@@ -1,4 +1,5 @@
-VERSION=0.2.12
+VERSION=0.2.11-1
+* Ohne Base Distro respianos
 
 
 VERSION=0.2.11
