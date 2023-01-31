@@ -1,5 +1,6 @@
 VERSION=0.2.11-1
 * Ohne Base Distro respianos
+* Build mit raspios Verzeichnis
 
 
 VERSION=0.2.11
