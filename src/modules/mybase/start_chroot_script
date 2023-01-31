@@ -33,7 +33,13 @@ echo "$MYBASE_PKGS"
 apt_update_skip
 check_install_pkgs ${MYBASE_PKGS}
 
-pushd  /home/pi/workspace
+# ToDo Bootwait für ubuntu arm64
+if [ ${BASE_DISTRO} != "ubuntu" ]
+then
+    apt-get remove cryptsetup
+fi
+
+pushd  /home/${BASE_USER}/workspace
   gitclone MYBASE_DOITPI_TEST_REPO
   chown -R "${BASE_USER}": ./doitpi-test
   su -c "cd ./doitpi-test; python3 -m venv .venv; source .venv/bin/activate && pip install -r requirements.txt" "${BASE_USER}"
@@ -50,7 +56,7 @@ locale-gen
 
 echo 'Install Codeserver'
 TEMP_DEB="$(mktemp)" && wget --quiet --output-document="$TEMP_DEB" \
-                        ${MYBASE_CODESERVER_URL} && sudo dpkg --install "$TEMP_DEB"
+                    ${MYBASE_CODESERVER_URL} && sudo dpkg --install "$TEMP_DEB"
 rm -f "$TEMP_DEB"
 
 if [ -f /etc/dhcp/dhclient.conf ]
@@ -61,8 +67,12 @@ then
     # Reduce this time to 20 sec.
     sed -i "s/#retry 60;/retry 20;/g" /etc/dhcp/dhclient.conf
     echo "Disable wait for network"
-    set_config_var do_boot_wait 1
-    raspi-config nonint do_boot_wait 1
+    # ToDo Bootwait für ubuntu arm64
+    if [ ${BASE_DISTRO} != "ubuntu" ]
+    then
+        set_config_var do_boot_wait 1
+        raspi-config nonint do_boot_wait 1
+    fi
 fi
 echo "gpu_mem=16M" >> /boot/config.txt
 # Unpack root at the end, so files are modified before

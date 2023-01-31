@@ -1,7 +1,13 @@
 PYTHONGPIO_VAR="Python and GPIO Variable"
-PYTHONGPIO_PKGS="python3-pip python3-venv python3-pigpio\
-                 pigpiod pigpio i2c-tools python3-smbus\
+
+PYTHONGPIO_PKGS="python3-pip python3-venv i2c-tools python3-smbus\
                  git virtualenv bluetooth pi-bluetooth bluez thonny"
+# ToDo pigpio für ubuntu
+if [ ${BASE_DISTRO} != 'ubuntu' ]
+then
+PYTHONGPIO_PKGS="${PYTHONGPIO_PKGS} pigpio python3-pigpio pigpiod"
+fi
+
 PYTHONGPIO_GPIOBLOCKLY_REPO_SHIP="https://github.com/GrazerComputerClub/Blockly-gPIo.git"
-PYTHONGPIO_GPIOBLOCKLY_REPO_BUILD=
-PYTHONGPIO_GPIOBLOCKLY_REPO_BRANCH=master
+PYTHONGPIO_GPIOBLOCKLY_REPO_BUILD=""
+PYTHONGPIO_GPIOBLOCKLY_REPO_BRANCH="master"

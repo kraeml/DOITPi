@@ -1,0 +1,26 @@
+#export DIST_NAME=UbuntuDocker
+#export DIST_VERSION=0.4.0
+export BASE_DISTRO=ubuntu
+export BASE_ARCH=aarch64
+#export MODULES="base(network,disable-services(docker, ubuntudocker), usage-statistics)"
+
+# if set will enlarge root parition prior to build by provided size in MB
+#export BASE_IMAGE_ENLARGEROOT=2000
+
+# if set will resize root partition on image after build to minimum size +
+# provided size in MB
+#export BASE_IMAGE_RESIZEROOT=200
+
+export RPI_IMAGER_NAME="Doitpi Ubuntu arm64 version ${DIST_VERSION}"
+export RPI_IMAGER_DESCRIPTION="Ready to use 64bit ARM based on Ubuntu"
+export RPI_IMAGER_ICON="https://raw.githubusercontent.com/guysoft/CustomPiOS/devel/media/rpi-imager-CustomPiOS.png"
+
+
+#export USAGE_STATISTICS_URL=https://ubuntudockerpi-tracking.gnethomelinux.com
+BASE_ARCH=arm64
+BASE_IMAGE_PATH=${DIST_PATH}/image-ubuntu_arm64
+BASE_ZIP_IMG=`ls -t $BASE_IMAGE_PATH/ubuntu-*-arm64+raspi*.xz | head -n 1`
+#BASE_IGNORE_VARIANT_NAME=yes
+
+export MODULES="base(pkgupgrade)"
+
