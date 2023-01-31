@@ -1,3 +1,7 @@
+VERSION=0.2.11-1
+* Ohne Base Distro respianos
+
+
 VERSION=0.2.11
 * Jupyter PW foowashere
 * codeserver in Version 4.9.1
