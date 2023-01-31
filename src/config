@@ -28,4 +28,5 @@ export PKGUPGRADE_USE_PREINSTALLER=n # y/n
 # Add Packages that should be PKGUPGRADEed.
 export PKGUPGRADE_PRE_INSTALL_PKGS=""
 
-export MODULES="base(network,mybase,autohotspot,pythongpio,platformio,docker,devops,homeautomation,cockpit-install,pkgupgrade)"
+# ToDo Cockpit-install mit festen pi-USER
+export MODULES="base(network,mybase,autohotspot,pythongpio,platformio,docker,devops,homeautomation,pkgupgrade)"

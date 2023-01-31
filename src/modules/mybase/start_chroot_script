@@ -33,6 +33,12 @@ echo "$MYBASE_PKGS"
 apt_update_skip
 check_install_pkgs ${MYBASE_PKGS}
 
+# ToDo Bootwait für ubuntu arm64
+if [ ${BASE_DISTRO} != "ubuntu" ]
+then
+    apt-get remove cryptsetup
+fi
+
 pushd  /home/${BASE_USER}/workspace
   gitclone MYBASE_DOITPI_TEST_REPO
   chown -R "${BASE_USER}": ./doitpi-test
@@ -62,7 +68,7 @@ then
     sed -i "s/#retry 60;/retry 20;/g" /etc/dhcp/dhclient.conf
     echo "Disable wait for network"
     # ToDo Bootwait für ubuntu arm64
-    if [ ${BASE_DISTRO != "ubuntu"}]
+    if [ ${BASE_DISTRO} != "ubuntu" ]
     then
         set_config_var do_boot_wait 1
         raspi-config nonint do_boot_wait 1

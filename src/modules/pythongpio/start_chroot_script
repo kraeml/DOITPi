@@ -28,18 +28,21 @@ fi
 
 echo "This is an example module, install and set up what you need here!"
 echo "$PYTHONGPIO_VAR"
-echo "$DEVOPS_PKGS"
+echo "$PYTHONGPIO_PKGS"
 
 apt_update_skip
 check_install_pkgs ${PYTHONGPIO_PKGS}
 
-sed -i -E 's;^#(dtparam=i2c_arm=on);\1;g' /boot/config.txt
-sed -i "s/dtparam=i2c_arm=on/dtparam=i2c_arm=on\ndtparam=i2c_vc=on/g" /boot/config.txt
-
+# ToDo Bootwait für ubuntu arm64
+if [ ${BASE_DISTRO} != "ubuntu" ]
+then
+  sed -i -E 's;^#(dtparam=i2c_arm=on);\1;g' /boot/config.txt
+  sed -i "s/dtparam=i2c_arm=on/dtparam=i2c_arm=on\ndtparam=i2c_vc=on/g" /boot/config.txt
+fi
 usermod -aG bluetooth ${BASE_USER}
 
 # ToDo Bootwait für ubuntu arm64
-if [ ${BASE_DISTRO != "ubuntu"}]
+if [ ${BASE_DISTRO} != "ubuntu" ]
 then
   for i in "do_i2c" "do_spi" "do_serial"
   do

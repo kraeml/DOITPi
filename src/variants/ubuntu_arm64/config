@@ -21,3 +21,6 @@ BASE_ARCH=arm64
 BASE_IMAGE_PATH=${DIST_PATH}/image-ubuntu_arm64
 BASE_ZIP_IMG=`ls -t $BASE_IMAGE_PATH/ubuntu-*-arm64+raspi*.xz | head -n 1`
 #BASE_IGNORE_VARIANT_NAME=yes
+
+export MODULES="base(pkgupgrade)"
+
