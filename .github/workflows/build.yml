@@ -103,7 +103,7 @@ jobs:
         asset_content_type: application/xz
 
     - name: Copy arm64 ubuntu output
-      id: copy
+      id: copy_ubuntu_arm64
       run: |
         source repository/src/config
         IMAGE=devops-${DIST_VERSION}_arm64
