@@ -66,7 +66,7 @@ jobs:
         source repository/src/config
         IMAGE=devops-${DIST_VERSION}_armhf
 
-        cp repository/src/workspace/*.img ${IMAGE}.img
+        cp repository/src/workspace-raspios/*.img ${IMAGE}.img
         xz ${IMAGE}.img
         echo "::set-output name=image::${IMAGE}.img.xz"
 
