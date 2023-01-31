@@ -1,0 +1,3 @@
+# Docker not running in respios 
+# ToDo Install manually
+export MODULES="base(network,mybase,autohotspot,pythongpio,platformio,devops,homeautomation,cockpit-install,pkgupgrade)"

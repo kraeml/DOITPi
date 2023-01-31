@@ -7,7 +7,7 @@
 
 
 # Source error handling, leave this in place
-set -x
+set +x
 set -e
 
 source /common.sh
@@ -38,8 +38,14 @@ su - -c "source /home/${BASE_USER}/.platformio/penv/bin/activate && pip install 
 
 if [ ! -f /etc/udev/rules.d/99-platformio-udev.rules ]
 then
-  wget -P /etc/udev/rules.d https://raw.githubusercontent.com/platformio/platformio-core/master/scripts/99-platformio-udev.rules
+  wget -P /etc/udev/rules.d https://raw.githubusercontent.com/platformio/platformio-core/develop/platformio/assets/system/99-platformio-udev.rules
 fi
+
+echo Run platformio from terminal
+mkdir -p /usr/local/bin
+ln -s ~/.platformio/penv/bin/platformio /usr/local/bin/platformio
+ln -s ~/.platformio/penv/bin/pio /usr/local/bin/pio
+ln -s ~/.platformio/penv/bin/piodebuggdb /usr/local/bin/piodebuggdb
 
 # Unpack root at the end, so files are modified before
 if [ -d /filesystem/root ]
