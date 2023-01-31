@@ -1,3 +1,6 @@
+VERSION=0.2.12
+
+
 VERSION=0.2.11
 * Jupyter PW foowashere
 * codeserver in Version 4.9.1
