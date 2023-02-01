@@ -1,8 +1,9 @@
-VERSION=0.3.2
+VERSION=0.3.2-1
 * Ohne Base Distro respianos
 * Build mit raspios Verzeichnis
 * Ohne cockpit wegen ubuntu User
 * Ubuntu ohne pigpio
+* Build mit ubuntu arm64 copy
 
 
 VERSION=0.2.11
