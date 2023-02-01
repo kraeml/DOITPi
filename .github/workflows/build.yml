@@ -51,7 +51,7 @@ jobs:
       id: version
 
     - name: Release
-      uses: actions/create-release@v1
+      uses: actions/create-release@v3
       id: create_release
       with:
         draft: false
@@ -73,7 +73,7 @@ jobs:
         echo "image=${IMAGE}.img.xz" >> $GITHUB_OUTPUT
 
     - name: Upload armhf Image
-      uses: actions/upload-release-asset@v1
+      uses: actions/upload-release-asset@v3
       env:
         GITHUB_TOKEN: ${{ github.token }}
       with:
@@ -93,7 +93,7 @@ jobs:
         echo "image=${IMAGE}.img.xz" >> $GITHUB_OUTPUT
 
     - name: Upload arm64 Image
-      uses: actions/upload-release-asset@v1
+      uses: actions/upload-release-asset@v3
       env:
         GITHUB_TOKEN: ${{ github.token }}
       with:
@@ -113,7 +113,7 @@ jobs:
         echo "image=${IMAGE}.img.xz" >> $GITHUB_OUTPUT
 
     - name: Upload arm64 ubuntu Image
-      uses: actions/upload-release-asset@v1
+      uses: actions/upload-release-asset@v3
       env:
         GITHUB_TOKEN: ${{ github.token }}
       with:
