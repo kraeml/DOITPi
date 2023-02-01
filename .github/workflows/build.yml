@@ -106,7 +106,7 @@ jobs:
       id: copy_ubuntu_arm64
       run: |
         source repository/src/config
-        IMAGE=devops-${DIST_VERSION}_arm64
+        IMAGE=devops-${DIST_VERSION}_ubuntu_arm64
 
         cp repository/src/workspace-ubuntu_arm64/*.img ${IMAGE}.img
         xz ${IMAGE}.img
