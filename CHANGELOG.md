@@ -7,6 +7,7 @@ VERSION=0.3.2-4
 * Build mit ubuntu im Imagenamen.
 * Neue Build API
 * Ubuntu Build komplett mit raspbianos
+* Rollback build assert v1
 
 
 VERSION=0.2.11
