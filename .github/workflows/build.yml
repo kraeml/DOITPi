@@ -15,13 +15,13 @@ jobs:
         sudo apt install coreutils p7zip-full qemu-user-static
 
     - name: Checkout CustomPiOS
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         repository: 'guysoft/CustomPiOS'
         path: CustomPiOS
 
     - name: Checkout Project Repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         path: repository
         submodules: true
@@ -47,7 +47,7 @@ jobs:
         make build_all
 
     - name: Version
-      run: echo "::set-output name=version::$(grep DIST_VERSION repository/src/config | cut -d '=' -f 2)"
+      run: echo "version=$(grep DIST_VERSION repository/src/config | cut -d '=' -f 2)" >> $GITHUB_OUTPUT
       id: version
 
     - name: Release
@@ -70,7 +70,7 @@ jobs:
 
         cp repository/src/workspace-raspios/*.img ${IMAGE}.img
         xz ${IMAGE}.img
-        echo "::set-output name=image::${IMAGE}.img.xz"
+        echo "image=${IMAGE}.img.xz" >> $GITHUB_OUTPUT
 
     - name: Upload armhf Image
       uses: actions/upload-release-asset@v1
@@ -90,7 +90,7 @@ jobs:
 
         cp repository/src/workspace-raspios_lite_arm64/*.img ${IMAGE}.img
         xz ${IMAGE}.img
-        echo "::set-output name=image::${IMAGE}.img.xz"
+        echo "image=${IMAGE}.img.xz" >> $GITHUB_OUTPUT
 
     - name: Upload arm64 Image
       uses: actions/upload-release-asset@v1
@@ -110,7 +110,7 @@ jobs:
 
         cp repository/src/workspace-ubuntu_arm64/*.img ${IMAGE}.img
         xz ${IMAGE}.img
-        echo "::set-output name=image::${IMAGE}.img.xz"
+        echo "image=${IMAGE}.img.xz" >> $GITHUB_OUTPUT
 
     - name: Upload arm64 ubuntu Image
       uses: actions/upload-release-asset@v1
