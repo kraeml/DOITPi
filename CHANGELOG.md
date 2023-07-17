@@ -1,3 +1,5 @@
+VERSION=0.4.1
+* Mit armhf
 VERSION=0.4.0
 * Neue Basis Images 2023-05-03 raspios und ubuntu22.0.4.2
 
