@@ -62,25 +62,25 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ github.token }}
 
-    #- name: Copy armhf output
-    #  id: copy_armhf
-    #  run: |
-    #    source repository/src/config
-    #    IMAGE=devops-${DIST_VERSION}_armhf
+    - name: Copy armhf output
+      id: copy_armhf
+      run: |
+        source repository/src/config
+        IMAGE=devops-${DIST_VERSION}_armhf
 
-    #    cp repository/src/workspace-raspios/*.img ${IMAGE}.img
-    #    xz ${IMAGE}.img
-    #    echo "image=${IMAGE}.img.xz" >> $GITHUB_OUTPUT
+        cp repository/src/workspace-raspios/*.img ${IMAGE}.img
+        xz ${IMAGE}.img
+        echo "image=${IMAGE}.img.xz" >> $GITHUB_OUTPUT
 
-    #- name: Upload armhf Image
-    #  uses: actions/upload-release-asset@v1
-    #  env:
-    #    GITHUB_TOKEN: ${{ github.token }}
-    #  with:
-    #    upload_url: ${{ steps.create_release.outputs.upload_url }}
-    #    asset_path: ${{ steps.copy_armhf.outputs.image }}
-    #    asset_name: ${{ steps.copy_armhf.outputs.image }}
-    #    asset_content_type: application/xz
+    - name: Upload armhf Image
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ${{ steps.copy_armhf.outputs.image }}
+        asset_name: ${{ steps.copy_armhf.outputs.image }}
+        asset_content_type: application/xz
 
     - name: Copy arm64 output
       id: copy

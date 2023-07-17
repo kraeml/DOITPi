@@ -43,7 +43,7 @@ jobs:
         cd ../image-raspios_lite_arm64
         wget -c --trust-server-names 'https://downloads.raspberrypi.org/raspios_lite_arm64_latest'
         cd ../image-ubuntu_arm64
-        wget -c --trust-server-names 'https://cdimage.ubuntu.com/releases/22.04.1/release/ubuntu-22.04.2-preinstalled-server-arm64+raspi.img.xz'
+        wget -c --trust-server-names 'https://cdimage.ubuntu.com/releases/22.04/release/ubuntu-22.04.2-preinstalled-server-arm64+raspi.img.xz'
 
     - name: Update CustomPiOS Paths
       run: |
