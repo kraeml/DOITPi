@@ -17,8 +17,8 @@ export RPI_IMAGER_ICON="https://raw.githubusercontent.com/guysoft/CustomPiOS/dev
 
 
 #export USAGE_STATISTICS_URL=https://ubuntudockerpi-tracking.gnethomelinux.com
-BASE_ARCH=arm64
-BASE_IMAGE_PATH=${DIST_PATH}/image-ubuntu_arm64
-BASE_ZIP_IMG=`ls -t $BASE_IMAGE_PATH/ubuntu-*-arm64+raspi*.xz | head -n 1`
+#BASE_ARCH=arm64
+export BASE_IMAGE_PATH=${DIST_PATH}/image-ubuntu_arm64
+export BASE_ZIP_IMG=`ls -t $BASE_IMAGE_PATH/ubuntu-*-arm64+raspi*.xz | head -n 1`
 #BASE_IGNORE_VARIANT_NAME=yes
 

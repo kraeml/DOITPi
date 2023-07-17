@@ -1,3 +1,6 @@
+VERSION=0.4.0
+* Neue Basis Images 2023-05-03 raspios und ubuntu22.0.4.2
+
 VERSION=0.3.2-4
 * Ohne Base Distro respianos
 * Build mit raspios Verzeichnis
