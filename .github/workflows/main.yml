@@ -64,13 +64,13 @@ jobs:
       id: copy_armhf
       run: |
         source repository/src/config
-        IMAGE=devops-${DIST_VERSION}_armhf
+        IMAGE=devops-${{ steps.version.outputs.version }}_armhf
 
         cp repository/src/workspace-raspios/*.img ${IMAGE}.img
         xz ${IMAGE}.img
         echo "image=${IMAGE}.img.xz" >> $GITHUB_OUTPUT
 
-    - name: Upload armhf Image
+    - name: Upload armhf Image Artifakt
       uses: actions/upload-artifact@v2
       env:
         GITHUB_TOKEN: ${{ github.token }}
@@ -82,14 +82,14 @@ jobs:
       id: copy
       run: |
         source repository/src/config
-        IMAGE=devops-${DIST_VERSION}_arm64
+        IMAGE=devops-${{ steps.version.outputs.version }}_arm64
 
         cp repository/src/workspace-raspios_lite_arm64/*.img ${IMAGE}.img
         xz ${IMAGE}.img
         echo "image=${IMAGE}.img.xz" >> $GITHUB_OUTPUT
 
-    - name: Upload arm64 Image
-      uses: actions/upload-release-asset@v1
+    - name: Upload arm64 Image Artifakt
+      uses: actions/upload-artifact@v2
       env:
         GITHUB_TOKEN: ${{ github.token }}
       with:
@@ -100,13 +100,13 @@ jobs:
     #  id: copy_ubuntu_arm64
     #  run: |
     #    source repository/src/config
-    #    IMAGE=devops-${DIST_VERSION}_ubuntu_arm64
+    #    IMAGE=devops-${{ steps.version.outputs.version }}_ubuntu_arm64
 
     #    cp repository/src/workspace-ubuntu_arm64/*.img ${IMAGE}.img
     #    xz ${IMAGE}.img
     #    echo "image=${IMAGE}.img.xz" >> $GITHUB_OUTPUT
 
-    #- name: Upload arm64 ubuntu Image
+    #- name: Upload arm64 ubuntu Image Artifakt
     #  uses: actions/upload-release-asset@v1
     #  env:
     #    GITHUB_TOKEN: ${{ github.token }}

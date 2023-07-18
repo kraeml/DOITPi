@@ -48,6 +48,22 @@ jobs:
         cd repository/src
         make build_all
 
+  # jobs:
+  #build:
+  #  runs-on: ubuntu-latest
+
+  #  steps:
+  #    - name: Checkout repository
+  #      uses: actions/checkout@v2
+
+  #    - name: Download artifacts
+  #      uses: actions/download-artifact@v2
+  #      with:
+  #        name: my-artifacts
+  #        path: path/to/download
+
+  #    # Führe hier deine Build-Schritte aus und verwende die heruntergeladenen Artefakte
+
     - name: Version
       run: echo "version=$(grep DIST_VERSION repository/src/config | cut -d '=' -f 2)" >> $GITHUB_OUTPUT
       id: version
