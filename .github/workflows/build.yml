@@ -2,8 +2,11 @@ name: Build Image
 
 on:
   push:
-    tags:
-      - '*'
+    # Triggers the workflow on push or pull request events
+    branches:
+      #- master
+      #- develop
+      - nop
 
 jobs:
   build:
@@ -33,7 +36,7 @@ jobs:
         cd ../image-raspios_lite_arm64
         wget -c --trust-server-names 'https://downloads.raspberrypi.org/raspios_lite_arm64_latest'
         cd ../image-ubuntu_arm64
-        wget -c --trust-server-names 'https://cdimage.ubuntu.com/releases/22.04.1/release/ubuntu-22.04.1-preinstalled-server-arm64+raspi.img.xz'
+        wget -c --trust-server-names 'https://cdimage.ubuntu.com/releases/22.04/release/ubuntu-22.04.2-preinstalled-server-arm64+raspi.img.xz'
 
     - name: Update CustomPiOS Paths
       run: |
@@ -45,6 +48,22 @@ jobs:
         sudo modprobe loop
         cd repository/src
         make build_all
+
+  # jobs:
+  #build:
+  #  runs-on: ubuntu-latest
+
+  #  steps:
+  #    - name: Checkout repository
+  #      uses: actions/checkout@v2
+
+  #    - name: Download artifacts
+  #      uses: actions/download-artifact@v2
+  #      with:
+  #        name: my-artifacts
+  #        path: path/to/download
+
+  #    # Führe hier deine Build-Schritte aus und verwende die heruntergeladenen Artefakte
 
     - name: Version
       run: echo "version=$(grep DIST_VERSION repository/src/config | cut -d '=' -f 2)" >> $GITHUB_OUTPUT
