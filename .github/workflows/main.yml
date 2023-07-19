@@ -60,8 +60,8 @@ jobs:
       run: echo "version=$(grep DIST_VERSION repository/src/config | cut -d '=' -f 2)" >> $GITHUB_OUTPUT
       id: version
 
-    - name: Copy armhf output
-      id: copy_armhf
+    - name: Get armhf info
+      id: get_armhf_info
       run: |
         source repository/src/config
         IMAGE=devops-${{ steps.version.outputs.version }}_armhf
@@ -75,8 +75,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ github.token }}
       with:
-        path: ${{ steps.copy_armhf.outputs.image }}
-        name: ${{ steps.copy_armhf.outputs.image }}
+        path: ${{ steps.get_armhf_info.outputs.image }}
+        name: ${{ steps.get_armhf_info.outputs.image }}
 
     - name: Copy arm64 output
       id: copy
@@ -118,49 +118,48 @@ jobs:
   
   release:
     needs: build
+    runs-on: ubuntu-latest
     if: startsWith(github.ref, 'refs/tags/v')
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-      runs-on: ubuntu-latest
-        steps:
-          - name: Checkout repository
-            uses: actions/checkout@v2
+      - name: Version
+        run: echo "version=$(grep DIST_VERSION repository/src/config | cut -d '=' -f 2)" >> $GITHUB_OUTPUT
+        id: version
 
-          - name: Version
-            run: echo "version=$(grep DIST_VERSION repository/src/config | cut -d '=' -f 2)" >> $GITHUB_OUTPUT
-            id: version
+      - name: Create Release
+        uses: actions/create-release@v1
+        id: create_release
+        with:
+          draft: false
+          prerelease: false
+          release_name: Release ${{ steps.version.outputs.version }}
+          tag_name: ${{ github.ref }}
+          body_path: repository/CHANGELOG.md
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+      
+      - name: Get armhf info
+        id: get_armhf_info
+        run: |
+          IMAGE=devops-${{ steps.version.outputs.version }}_armhf
+          echo "image=${IMAGE}.img.xz" >> $GITHUB_OUTPUT
+      
+      - name: Download arm artifacts
+        uses: actions/download-artifact@v2
+        with:
+          path: ${{ steps.get_armhf_info.outputs.image }}
+          name: ${{ steps.get_armhf_info.outputs.image }}
+      
+      - name: Upload armhf Image
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ${{ steps.get_armhf_info.outputs.image }}
+          asset_name: ${{ steps.get_armhf_info.outputs.image }}
+          asset_content_type: application/xz
 
-          - name: Create Release
-            uses: actions/create-release@v1
-            id: create_release
-            with:
-              draft: false
-              prerelease: false
-              release_name: Release ${{ steps.version.outputs.version }}
-              tag_name: ${{ github.ref }}
-              body_path: repository/CHANGELOG.md
-            env:
-              GITHUB_TOKEN: ${{ github.token }}
-          
-          - name: Get armhf info
-            id: copy_armhf
-            run: |
-              IMAGE=devops-${{ steps.version.outputs.version }}_armhf
-              echo "image=${IMAGE}.img.xz" >> $GITHUB_OUTPUT
-          
-          - name: Download arm artifacts
-            uses: actions/download-artifact@v2
-            with:
-              path: ${{ steps.copy_armhf.outputs.image }}
-              name: ${{ steps.copy_armhf.outputs.image }}
-          
-          - name: Upload armhf Image
-            uses: actions/upload-release-asset@v1
-            env:
-              GITHUB_TOKEN: ${{ github.token }}
-            with:
-              upload_url: ${{ steps.create_release.outputs.upload_url }}
-              asset_path: ${{ steps.copy_armhf.outputs.image }}
-              asset_name: ${{ steps.copy_armhf.outputs.image }}
-              asset_content_type: application/xz
-
-          #    # Führe hier deine Build-Schritte aus und verwende die heruntergeladenen Artefakte
+      #    # Führe hier deine Build-Schritte aus und verwende die heruntergeladenen Artefakte
