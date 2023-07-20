@@ -1,3 +1,6 @@
+VERSION=0.4.3
+* Build auf master
+
 VERSION=0.4.2
 * Build workflow angepasst
 
