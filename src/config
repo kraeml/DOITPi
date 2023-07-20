@@ -1,5 +1,5 @@
 export DIST_NAME=DOITPi
-export DIST_VERSION=v0.4.2-pre
+export DIST_VERSION=v0.4.2
 
 # rpi-imager json generator settings
 export RPI_IMAGER_NAME="${DIST_NAME}"

@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI ohne Artifakte
+name: CI mit Artifakte
 
 # Controls when the workflow will run
 on:
@@ -78,8 +78,8 @@ jobs:
         path: ${{ steps.get_armhf_info.outputs.image }}
         name: ${{ steps.get_armhf_info.outputs.image }}
 
-    - name: Copy arm64 output
-      id: copy
+    - name: Get arm64 info
+      id: get_arm64_info
       run: |
         source repository/src/config
         IMAGE=devops-${{ steps.version.outputs.version }}_arm64
@@ -93,8 +93,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ github.token }}
       with:
-        path: ${{ steps.copy.outputs.image }}
-        name: ${{ steps.copy.outputs.image }}
+        path: ${{ steps.get_arm64_info.outputs.image }}
+        name: ${{ steps.get_arm64_info.outputs.image }}
 
     #- name: Copy arm64 ubuntu output
     #  id: copy_ubuntu_arm64
@@ -168,13 +168,13 @@ jobs:
           IMAGE=devops-${{ steps.version.outputs.version }}_armhf
           echo "image=${IMAGE}.img.xz" >> $GITHUB_OUTPUT
       
-      - name: Download arm artifacts
+      - name: Download arm64 artifacts
         uses: actions/download-artifact@v2
         with:
           path: ${{ steps.get_arm64_info.outputs.image }}
           name: ${{ steps.get_arm64_info.outputs.image }}
       
-      - name: Upload armhf Image
+      - name: Upload arm64 Image
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ github.token }}
