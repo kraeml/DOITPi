@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Ausgabe von github.ref
-        run: echo "Der Wert von github.ref ist ${{ github.ref }}"
+      run: echo "Der Wert von github.ref ist ${{ github.ref }}"
 
     - name: Install Dependencies
       run: |
