@@ -6,7 +6,9 @@ name: CI mit Artifakte
 on:
   # Triggers the workflow on push or pull request events
   push:
-    branches: [ "develop" ]
+    branches: 
+      - develop
+      - master
   pull_request:
     branches: [ "master" ]
   # Allows you to run this workflow manually from the Actions tab
