@@ -21,6 +21,9 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     steps:
+    - name: Ausgabe von github.ref
+        run: echo "Der Wert von github.ref ist ${{ github.ref }}"
+
     - name: Install Dependencies
       run: |
         sudo apt update
