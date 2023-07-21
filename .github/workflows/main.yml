@@ -156,18 +156,20 @@ jobs:
           echo "image=${IMAGE}.img.xz" >> $GITHUB_OUTPUT
       
       - name: Download arm artifacts
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
+        id: download_armhf
         with:
           path: ${{ steps.get_armhf_info.outputs.image }}
           name: ${{ steps.get_armhf_info.outputs.image }}
       
       - name: Upload armhf Image
         uses: actions/upload-release-asset@v1
+        id: upload-release-asset
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ${{ steps.get_armhf_info.outputs.image }}
+          asset_path: ${{ steps.download_armhf.outputs.download-path }}
           asset_name: ${{ steps.get_armhf_info.outputs.image }}
           asset_content_type: application/xz
 
@@ -178,9 +180,10 @@ jobs:
           echo "image=${IMAGE}.img.xz" >> $GITHUB_OUTPUT
       
       - name: Download arm64 artifacts
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
+        id: download_arm64
         with:
-          path: ${{ steps.get_arm64_info.outputs.image }}
+          #path: ${{ steps.get_arm64_info.outputs.image }}
           name: ${{ steps.get_arm64_info.outputs.image }}
       
       - name: Upload arm64 Image
@@ -189,6 +192,6 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ${{ steps.get_arm64_info.outputs.image }}
+          asset_path: ${{ steps.download_arm64.outputs.download-path }}
           asset_name: ${{ steps.get_arm64_info.outputs.image }}
           asset_content_type: application/xz
