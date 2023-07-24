@@ -75,7 +75,7 @@ jobs:
         echo "image=${IMAGE}.img.xz" >> $GITHUB_OUTPUT
 
     - name: Upload armhf Image Artifakt
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       env:
         GITHUB_TOKEN: ${{ github.token }}
       with:
@@ -93,7 +93,7 @@ jobs:
         echo "image=${IMAGE}.img.xz" >> $GITHUB_OUTPUT
 
     - name: Upload arm64 Image Artifakt
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       env:
         GITHUB_TOKEN: ${{ github.token }}
       with:
@@ -169,7 +169,7 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./${{ steps.download_armhf.outputs.download-path }}
+          asset_path: ${{ steps.download_armhf.outputs.download-path }}
           asset_name: ${{ steps.get_armhf_info.outputs.image }}
           asset_content_type: application/xz
 
