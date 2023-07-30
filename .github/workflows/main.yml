@@ -49,16 +49,28 @@ jobs:
       run: |
         cd repository/src
         ../../CustomPiOS/src/update-custompios-paths
+
+    - name: Version
+      run: echo "version=$(grep DIST_VERSION repository/src/config | cut -d '=' -f 2)" >> $GITHUB_OUTPUT
+      id: version
+
+    - name: Release Name
+      run: |
+        ls
+        echo ${{ github.evnet.ref }}
+        ref='refs/tags/v'
+        if [[ ${{ github.event.ref }} == *${ref}* ]]; then
+          echo "release=$(grep DIST_VERSION repository/src/config | cut -d '=' -f 2)" >> $GITHUB_OUTPUT
+        else
+          echo "release=$(grep DIST_VERSION repository/src/config | cut -d '=' -f 2)-${{ github.event.release.tag_name }}" >> $GITHUB_OUTPUT
+        fi
+      id: release_name
     
     - name: Build Image
       run: |
         sudo modprobe loop
         cd repository/src
         make build_all
-
-    - name: Version
-      run: echo "version=$(grep DIST_VERSION repository/src/config | cut -d '=' -f 2)" >> $GITHUB_OUTPUT
-      id: version
 
     - name: Get armhf info
       id: get_armhf_info
@@ -116,18 +128,6 @@ jobs:
     #    asset_path: ${{ steps.copy_ubuntu_arm64.outputs.image }}
     #    asset_name: ${{ steps.copy_ubuntu_arm64.outputs.image }}
     #    asset_content_type: application/xz
-
-    - name: Release Name
-      run: |
-        ls
-        echo ${{ github.ref }}
-        ref='refs/tags/v'
-        if [[ ${{ github.ref }} == *${ref}* ]]; then
-          echo "release=$(grep DIST_VERSION repository/src/config | cut -d '=' -f 2)" >> $GITHUB_OUTPUT
-        else
-          echo "release=$(grep DIST_VERSION repository/src/config | cut -d '=' -f 2)-${{ github.event.release.tag_name }}" >> $GITHUB_OUTPUT
-        fi
-      id: release_name
 
     - name: Create Release
       uses: softprops/action-gh-release@v1
