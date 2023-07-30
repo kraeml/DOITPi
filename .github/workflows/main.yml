@@ -159,9 +159,12 @@ jobs:
         uses: actions/download-artifact@v3
         id: download_armhf
         with:
-          path: ${{ steps.get_armhf_info.outputs.image }}
+          #path: ${{ steps.get_armhf_info.outputs.image }}
           name: ${{ steps.get_armhf_info.outputs.image }}
       
+      - name: Display structure of downloaded files
+        run: ls -Rl
+
       - name: Upload armhf Image
         uses: actions/upload-release-asset@v1
         id: upload-release-asset
