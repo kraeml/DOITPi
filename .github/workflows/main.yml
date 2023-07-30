@@ -78,7 +78,7 @@ jobs:
       id: get_armhf_info
       run: |
         source repository/src/config
-        IMAGE=devops-${{ steps.version.outputs.version }}_armhf
+        IMAGE=devops-${{ steps.release_name.outputs.release }}_armhf
 
         cp repository/src/workspace-raspios/*.img ${IMAGE}.img
         xz ${IMAGE}.img
@@ -96,7 +96,7 @@ jobs:
       id: get_arm64_info
       run: |
         source repository/src/config
-        IMAGE=devops-${{ steps.version.outputs.version }}_arm64
+        IMAGE=devops-${{ steps.release_name.outputs.release }}_arm64
 
         cp repository/src/workspace-raspios_lite_arm64/*.img ${IMAGE}.img
         xz ${IMAGE}.img

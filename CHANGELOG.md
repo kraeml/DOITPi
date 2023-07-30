@@ -1,3 +1,7 @@
+VERSION=0.4.4
+* ToDo Prometheus
+* ToDo Grafana
+
 VERSION=0.4.3
 * Build auf master
 
