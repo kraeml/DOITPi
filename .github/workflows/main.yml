@@ -125,7 +125,7 @@ jobs:
         draft: false
         prerelease: false
         #name: Release ${{ steps.version.outputs.version }}
-        tag_name: ${{ github.ref }}
+        #tag_name: ${{ github.ref }}
         body_path: repository/CHANGELOG.md
         files: |
           ${{ steps.get_armhf_info.outputs.image }}
