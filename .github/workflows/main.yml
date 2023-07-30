@@ -50,11 +50,11 @@ jobs:
         cd repository/src
         ../../CustomPiOS/src/update-custompios-paths
 
-    - name: Version
+    - name: Determine versions number 
       run: echo "version=$(grep DIST_VERSION repository/src/config | cut -d '=' -f 2)" >> $GITHUB_OUTPUT
       id: version
 
-    - name: Release Name
+    - name: Generate Release Name
       run: |
         echo ${{ github.evnet.ref }}
         ref='refs/tags/v'
@@ -74,7 +74,7 @@ jobs:
         cd repository/src
         make build_all
 
-    - name: Get armhf info
+    - name: Create armhf image
       id: get_armhf_info
       run: |
         source repository/src/config
@@ -84,7 +84,7 @@ jobs:
         xz ${IMAGE}.img
         echo "image=${IMAGE}.img.xz" >> $GITHUB_OUTPUT
 
-    - name: Upload armhf Image Artifakt
+    - name: Uploading armhf image artifact
       uses: actions/upload-artifact@v3
       env:
         GITHUB_TOKEN: ${{ github.token }}
@@ -92,7 +92,7 @@ jobs:
         path: ${{ steps.get_armhf_info.outputs.image }}
         name: ${{ steps.get_armhf_info.outputs.image }}
 
-    - name: Get arm64 info
+    - name: Create arm64 image
       id: get_arm64_info
       run: |
         source repository/src/config
@@ -102,7 +102,7 @@ jobs:
         xz ${IMAGE}.img
         echo "image=${IMAGE}.img.xz" >> $GITHUB_OUTPUT
 
-    - name: Upload arm64 Image Artifakt
+    - name: Uploading get_arm64_info image artifact
       uses: actions/upload-artifact@v3
       env:
         GITHUB_TOKEN: ${{ github.token }}

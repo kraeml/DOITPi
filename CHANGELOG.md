@@ -1,6 +1,52 @@
 VERSION=0.4.4
-* ToDo Prometheus
-* ToDo Grafana
+
+- [ ] Prometheus
+- [ ] Grafana
+
+```bash
+   sudo apt update
+   wget https://github.com/prometheus/prometheus/releases/download/v2.45.0/prometheus-2.45.0.linux-arm64.tar.gz
+   tar xfz prometheus-2.45.0.linux-arm64.tar.gz
+   rm prometheus-2.45.0.linux-arm64.tar.gz 
+   mv prometheus-2.45.0.linux-arm64/ prometheus
+
+   sudo vi /etc/systemd/system/prometheus.service
+
+   cat /etc/systemd/system/prometheus.service
+[Unit]
+Description=Prometheus Server
+Documentation=https://prometheus.io/docs/introduction/overview/
+After=network-online.target
+
+[Service]
+User=michl
+Restart=on-failure
+
+#Change this line if Prometheus is somewhere different
+ExecStart=/home/michl/prometheus/prometheus \
+  --config.file=/home/michl/prometheus/prometheus.yml \
+  --storage.tsdb.path=/home/michl/prometheus/data
+
+[Install]
+WantedBy=multi-user.target
+
+   sudo systemctl daemon-reload 
+   sudo systemctl start prometheus.service 
+   sudo systemctl status prometheus.service
+   sudo systemctl enable prometheus.service 
+# ToDo Link von localhost:9090 nicht auf FQDN
+   sudo vi /etc/hosts
+   hostname -f
+# ToDo End
+   sudo apt-get install -y adduser libfontconfig1
+   wget https://dl.grafana.com/enterprise/release/grafana-enterprise_10.0.3_arm64.deb
+   sudo dpkg -i grafana-enterprise_10.0.3_arm64.deb
+   sudo systemctl start grafana-server.service 
+   sudo systemctl status grafana-server.service 
+   sudo systemctl enable grafana-server.service
+```
+
+* Umstrukturierung des Github-Workflows
 
 VERSION=0.4.3
 * Build auf master
