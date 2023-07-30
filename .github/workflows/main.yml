@@ -118,11 +118,15 @@ jobs:
     #    asset_content_type: application/xz
 
     - name: Release Name
-      if: [[ startsWith(github.event.ref, 'refs/tags/v') ]]; then
-        run: echo "release=$(grep DIST_VERSION repository/src/config | cut -d '=' -f 2)" >> $GITHUB_OUTPUT
-      else:
-        run: echo "release=$(grep DIST_VERSION repository/src/config | cut -d '=' -f 2)-${{ github.event.release.tag_name }}" >> $GITHUB_OUTPUT
-      fi:
+      run: |
+        ls
+        echo ${{ github.ref }}
+        ref='refs/tags/v'
+        if [[ ${{ github.ref }} == *${ref}* ]]; then
+          echo "release=$(grep DIST_VERSION repository/src/config | cut -d '=' -f 2)" >> $GITHUB_OUTPUT
+        else
+          echo "release=$(grep DIST_VERSION repository/src/config | cut -d '=' -f 2)-${{ github.event.release.tag_name }}" >> $GITHUB_OUTPUT
+        fi
       id: release_name
 
     - name: Create Release
