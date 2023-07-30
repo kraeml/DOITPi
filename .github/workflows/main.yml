@@ -122,7 +122,7 @@ jobs:
         run: echo "release=$(grep DIST_VERSION repository/src/config | cut -d '=' -f 2)" >> $GITHUB_OUTPUT
       else:
         run: echo "release=$(grep DIST_VERSION repository/src/config | cut -d '=' -f 2)-${{ github.event.release.tag_name }}" >> $GITHUB_OUTPUT
-      fi
+      fi:
       id: release_name
 
     - name: Create Release
