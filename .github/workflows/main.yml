@@ -6,11 +6,6 @@ name: CI mit Artifakte
 on:
   # Triggers the workflow on push or pull request events
   push:
-    branches: 
-      - develop
-      - master
-    tags:
-      - '*'
   pull_request:
     branches: [ "master" ]
   # Allows you to run this workflow manually from the Actions tab
@@ -23,6 +18,7 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     steps:
+    # Prepare Build
     - name: Install Dependencies
       run: |
         sudo apt update
@@ -53,16 +49,30 @@ jobs:
       run: |
         cd repository/src
         ../../CustomPiOS/src/update-custompios-paths
+
+    - name: Version
+      run: echo "version=$(grep DIST_VERSION repository/src/config | cut -d '=' -f 2)" >> $GITHUB_OUTPUT
+      id: version
+
+    - name: Release Name
+      run: |
+        echo ${{ github.evnet.ref }}
+        ref='refs/tags/v'
+        if [[ ${{ github.event.ref }} == *${ref}* ]]; then
+          echo "release=${{ steps.version.outputs.version }}" >> $GITHUB_OUTPUT
+          echo "prerelease=false" >> $GITHUB_OUTPUT
+        else
+          echo "release=${{ steps.version.outputs.version }}-${{ github.ref_name }}-$(date +%y.%m.%d-%H:%M:%S)" >> $GITHUB_OUTPUT
+          echo "prerelease=true" >> $GITHUB_OUTPUT
+        fi
+        cat $GITHUB_OUTPUT
+      id: release_name
     
     - name: Build Image
       run: |
         sudo modprobe loop
         cd repository/src
         make build_all
-
-    - name: Version
-      run: echo "version=$(grep DIST_VERSION repository/src/config | cut -d '=' -f 2)" >> $GITHUB_OUTPUT
-      id: version
 
     - name: Get armhf info
       id: get_armhf_info
@@ -100,6 +110,7 @@ jobs:
         path: ${{ steps.get_arm64_info.outputs.image }}
         name: ${{ steps.get_arm64_info.outputs.image }}
 
+
     #- name: Copy arm64 ubuntu output
     #  id: copy_ubuntu_arm64
     #  run: |
@@ -119,82 +130,21 @@ jobs:
     #    asset_path: ${{ steps.copy_ubuntu_arm64.outputs.image }}
     #    asset_name: ${{ steps.copy_ubuntu_arm64.outputs.image }}
     #    asset_content_type: application/xz
-  
-  release:
-    needs: build
-    runs-on: ubuntu-latest
-    if: startsWith(github.ref, 'refs/tags/v')
-    #if: github.ref == 'refs/heads/develop' && needs.build.result == 'success'
-    steps:
-      - name: Checkout Project Repository
-        uses: actions/checkout@v3
-        with:
-          path: repository
-          submodules: true
 
-      - name: Get version
-        run: | 
-          echo "version=$(grep DIST_VERSION repository/src/config | cut -d '=' -f 2)" >> $GITHUB_OUTPUT
-        id: version
-
-      - name: Create Release
-        uses: actions/create-release@v1
-        id: create_release
-        with:
-          draft: false
-          prerelease: false
-          release_name: Release ${{ steps.version.outputs.version }}
-          tag_name: ${{ github.ref }}
-          body_path: repository/CHANGELOG.md
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
+    - name: Create Release
+      uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/tags/')
+      id: create_release
+      with:
+        draft: false
+        prerelease: ${{ steps.release_name.outputs.prerelease == 'true' }}
+        name: Release ${{ steps.release_name.outputs.release }}
+        #tag_name: ${{ github.ref }}
+        body_path: repository/CHANGELOG.md
+        files: |
+          ${{ steps.get_armhf_info.outputs.image }}
+          ${{ steps.get_arm64_info.outputs.image }}
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
       
-      - name: Get armhf info
-        id: get_armhf_info
-        run: |
-          IMAGE=devops-${{ steps.version.outputs.version }}_armhf
-          echo "image=${IMAGE}.img.xz" >> $GITHUB_OUTPUT
       
-      - name: Download arm artifacts
-        uses: actions/download-artifact@v3
-        id: download_armhf
-        with:
-          #path: ${{ steps.get_armhf_info.outputs.image }}
-          name: ${{ steps.get_armhf_info.outputs.image }}
-      
-      - name: Display structure of downloaded files
-        run: ls -Rl
-
-      - name: Upload armhf Image
-        uses: actions/upload-release-asset@v1
-        id: upload-release-asset
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ${{ steps.download_armhf.outputs.download-path }}
-          asset_name: ${{ steps.get_armhf_info.outputs.image }}
-          asset_content_type: application/xz
-
-      - name: Get arm64 info
-        id: get_arm64_info
-        run: |
-          IMAGE=devops-${{ steps.version.outputs.version }}_armhf
-          echo "image=${IMAGE}.img.xz" >> $GITHUB_OUTPUT
-      
-      - name: Download arm64 artifacts
-        uses: actions/download-artifact@v3
-        id: download_arm64
-        with:
-          #path: ${{ steps.get_arm64_info.outputs.image }}
-          name: ${{ steps.get_arm64_info.outputs.image }}
-      
-      - name: Upload arm64 Image
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ${{ steps.download_arm64.outputs.download-path }}
-          asset_name: ${{ steps.get_arm64_info.outputs.image }}
-          asset_content_type: application/xz
