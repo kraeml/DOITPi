@@ -62,8 +62,9 @@ jobs:
         if [[ ${{ github.event.ref }} == *${ref}* ]]; then
           echo "release=${{ steps.version.outputs.version }}" >> $GITHUB_OUTPUT
         else
-          echo "release=${{ steps.version.outputs.version }}-${GITHUB_REF#refs/heads/}" >> $GITHUB_OUTPUT
+          echo "release=${{ steps.version.outputs.version }}-${{ github.ref_name }}" >> $GITHUB_OUTPUT
         fi
+        echo $GITHUB_OUTPUT
       id: release_name
     
     - name: Build Image
