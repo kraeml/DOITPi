@@ -96,6 +96,7 @@ jobs:
         path: ${{ steps.get_arm64_info.outputs.image }}
         name: ${{ steps.get_arm64_info.outputs.image }}
 
+
     #- name: Copy arm64 ubuntu output
     #  id: copy_ubuntu_arm64
     #  run: |
@@ -115,7 +116,8 @@ jobs:
     #    asset_path: ${{ steps.copy_ubuntu_arm64.outputs.image }}
     #    asset_name: ${{ steps.copy_ubuntu_arm64.outputs.image }}
     #    asset_content_type: application/xz
-  
+
+    
     - name: Get version
       run: | 
         echo "version=$(grep DIST_VERSION repository/src/config | cut -d '=' -f 2)" >> $GITHUB_OUTPUT
