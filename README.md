@@ -57,11 +57,16 @@ Raspberry**Pi**
     * platformio
 
 * Python
+
     * [Jupyter Lab][jupyterlab]  
         JupyterLab ist eine webbasierte interaktive Entwicklungsumgebung für Notebooks, Code und Daten. Die flexible Benutzeroberfläche ermöglicht es Benutzern, Arbeitsabläufe in den Bereichen Datenwissenschaft, wissenschaftliches Rechnen, Computerjournalismus und maschinelles Lernen zu konfigurieren und zu gestalten. Ein modulares Design lädt zu Erweiterungen ein, um die Funktionalität zu erweitern und zu bereichern.
+
     * virtualenv
 
 * Golang
+
+* Prometheus und Grafana
+    Diese werden nicht als Dienst eingerichtet.
 
 * ...
 
