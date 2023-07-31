@@ -1,5 +1,6 @@
 VERSION=0.4.4
 
+- [ ] Ubuntu (Geht wegen docker nicht)
 - [ ] Prometheus
 - [ ] Grafana
 
