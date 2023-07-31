@@ -2,7 +2,9 @@
 #export DIST_VERSION=0.4.0
 export BASE_DISTRO=ubuntu
 export BASE_ARCH=aarch64
+
 #export MODULES="base(network,disable-services(docker, ubuntudocker), usage-statistics)"
+export DOCKER_COMPOSE=no
 
 # if set will enlarge root parition prior to build by provided size in MB
 #export BASE_IMAGE_ENLARGEROOT=2000
