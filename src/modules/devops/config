@@ -16,9 +16,9 @@ DEVOPS_GRAFANA="grafana-enterprise_${DEVOPS_GRAFANA_VERSION}_${DEVOPS_ARCH_GRAFA
 
 DEVOPS_PKGS="screen tmux tree ansible yamllint \
                 expect git vim nmap tree net-tools \
-                cmake unzip zip build-essential \
+                lxc lxc-templates unzip zip build-essential \
                 ssh-import-id \
                 python3-testinfra \
                 adduser libfontconfig1"
 
-                # Removed: lxc lxc-templates
+                # Removed: cmake

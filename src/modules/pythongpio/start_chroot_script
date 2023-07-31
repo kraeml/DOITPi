@@ -26,7 +26,7 @@ then
     unpack /filesystem/boot /boot
 fi
 
-echo "This is an example module, install and set up what you need here!"
+echo "echo "From here the PYTHONGPIO-Module starts""
 echo "$PYTHONGPIO_VAR"
 echo "$PYTHONGPIO_PKGS"
 

@@ -26,7 +26,7 @@ then
     unpack /filesystem/boot /boot
 fi
 
-echo "This is an example module, install and set up what you need here!"
+echo "From here the Platformio-Module starts"
 echo "$PLATFORMIO_VAR"
 echo "$PLATFORMIO_PKGS"
 
