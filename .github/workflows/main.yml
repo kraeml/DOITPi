@@ -4,12 +4,18 @@ name: CI mit Artifakte
 
 # Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events
+  # Triggers the workflow on push develop or tag or pull request events
   push:
+    branches:
+      - develop
+      - feature*
+      - release*
+    tags:
+      - '*'
   pull_request:
     branches: [ "master" ]
   # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+  # workflow_dispatch:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -50,11 +56,11 @@ jobs:
         cd repository/src
         ../../CustomPiOS/src/update-custompios-paths
 
-    - name: Version
+    - name: Determine versions number 
       run: echo "version=$(grep DIST_VERSION repository/src/config | cut -d '=' -f 2)" >> $GITHUB_OUTPUT
       id: version
 
-    - name: Release Name
+    - name: Generate Release Name
       run: |
         echo ${{ github.evnet.ref }}
         ref='refs/tags/v'
@@ -62,7 +68,7 @@ jobs:
           echo "release=${{ steps.version.outputs.version }}" >> $GITHUB_OUTPUT
           echo "prerelease=false" >> $GITHUB_OUTPUT
         else
-          echo "release=${{ steps.version.outputs.version }}-${{ github.ref_name }}-$(date +%y.%m.%d-%H:%M:%S)" >> $GITHUB_OUTPUT
+          echo "release=${{ steps.version.outputs.version }}-${{ github.ref_name }}-$(date +%y.%m.%d-%H_%M_%S)" >> $GITHUB_OUTPUT
           echo "prerelease=true" >> $GITHUB_OUTPUT
         fi
         cat $GITHUB_OUTPUT
@@ -74,17 +80,17 @@ jobs:
         cd repository/src
         make build_all
 
-    - name: Get armhf info
+    - name: Create armhf image
       id: get_armhf_info
       run: |
         source repository/src/config
-        IMAGE=devops-${{ steps.version.outputs.version }}_armhf
+        IMAGE=devops-${{ steps.release_name.outputs.release }}_armhf
 
         cp repository/src/workspace-raspios/*.img ${IMAGE}.img
         xz ${IMAGE}.img
         echo "image=${IMAGE}.img.xz" >> $GITHUB_OUTPUT
 
-    - name: Upload armhf Image Artifakt
+    - name: Uploading armhf image artifact
       uses: actions/upload-artifact@v3
       env:
         GITHUB_TOKEN: ${{ github.token }}
@@ -92,17 +98,17 @@ jobs:
         path: ${{ steps.get_armhf_info.outputs.image }}
         name: ${{ steps.get_armhf_info.outputs.image }}
 
-    - name: Get arm64 info
+    - name: Create arm64 image
       id: get_arm64_info
       run: |
         source repository/src/config
-        IMAGE=devops-${{ steps.version.outputs.version }}_arm64
+        IMAGE=devops-${{ steps.release_name.outputs.release }}_arm64
 
         cp repository/src/workspace-raspios_lite_arm64/*.img ${IMAGE}.img
         xz ${IMAGE}.img
         echo "image=${IMAGE}.img.xz" >> $GITHUB_OUTPUT
 
-    - name: Upload arm64 Image Artifakt
+    - name: Uploading get_arm64_info image artifact
       uses: actions/upload-artifact@v3
       env:
         GITHUB_TOKEN: ${{ github.token }}
