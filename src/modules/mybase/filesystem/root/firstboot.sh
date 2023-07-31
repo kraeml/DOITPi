@@ -9,9 +9,19 @@ function rm_home_pi {
   fi
 }
 
+function rm_user_pi {
+  if grep -r 'User=pi' $1
+  then
+	  grep -rl 'User=pi' $1 | xargs sed -i 's@User=pi@'User=$(getent passwd 1000 | cut --delimiter=: --fields=1)'@g'
+  fi
+}
+
 # Ersetzt den Pfad /home/pi für aktuellen Benutzer
 rm_home_pi /etc/systemd/system
 rm_home_pi $(getent passwd 1000 | cut --delimiter=: --fields=6)
+
+# ToDo Ersetze User=pi mit richtigen user
+rm_user_pi /etc/systemd/system
 
 # Löscht alle pythoncache Dateien, da hier auch noch /home/pi angegeben.
 find $(getent passwd 1000 | cut --delimiter=: --fields=6)/ -name '*.pyc' -delete

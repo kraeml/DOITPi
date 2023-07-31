@@ -1,6 +1,9 @@
 DEVOPS_VAR="DevOps Variable"
-DEVOPS_PKGS="screen tmux tree ansible yamllint\
-                expect git vim nmap tree net-tools\
-                cmake unzip zip build-essential\
-                ssh-import-id lxc lxc-templates\
-                python3-testinfra"
+DEVOPS_PROMETHEUS_VERSION="2.45.0"
+DEVOPS_GRAFANA_VERSION="10.0.3"
+DEVOPS_PKGS="screen tmux tree ansible yamllint \
+                expect git vim nmap tree net-tools \
+                cmake unzip zip build-essential \
+                ssh-import-id lxc lxc-templates \
+                python3-testinfra \
+                adduser libfontconfig1"

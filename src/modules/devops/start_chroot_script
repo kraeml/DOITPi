@@ -43,3 +43,16 @@ if [ -d /filesystem/root ]
 then
     unpack /filesystem/root /
 fi
+
+echo "Installing prometheus"
+
+wget https://github.com/prometheus/prometheus/releases/download/v${DEVOPS_PROMETHEUS_VERSION}/prometheus-${DEVOPS_PROMETHEUS_VERSION}.linux-arm64.tar.gz
+tar xfz prometheus-${DEVOPS_PROMETHEUS_VERSION}.linux-arm64.tar.gz
+rm prometheus-${DEVOPS_PROMETHEUS_VERSION}.linux-arm64.tar.gz 
+mv prometheus-${DEVOPS_PROMETHEUS_VERSION}.linux-arm64/ /usr/local/bin/prometheus
+
+echo "Installing Grafana"
+
+wget https://dl.grafana.com/enterprise/release/grafana-enterprise_${DEVOPS_GRAFANA_VERSION}_arm64.deb
+dpkg -i grafana-enterprise_${DEVOPS_GRAFANA_VERSION}_arm64.deb
+rm grafana-enterprise_${DEVOPS_GRAFANA_VERSION}_arm64.deb
