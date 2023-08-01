@@ -81,6 +81,8 @@ jobs:
         echo "Plattenplatz vor Build"
         df -h
         make build_all
+        echo "Plattenplatz nach Build"
+        df -h
         
 
     - name: Create armhf image
@@ -89,9 +91,7 @@ jobs:
         source repository/src/config
         IMAGE=devops-${{ steps.release_name.outputs.release }}_armhf
 
-        mv repository/src/workspace-raspios/*.img ${IMAGE}.img
-        xz ${IMAGE}.img
-        rm ${IMAGE}.img || true
+        mv repository/src/workspace-raspios/*.img.xz ${IMAGE}.img.xz
         echo "image=${IMAGE}.img.xz" >> $GITHUB_OUTPUT
         df -h
 
@@ -109,9 +109,7 @@ jobs:
         source repository/src/config
         IMAGE=devops-${{ steps.release_name.outputs.release }}_arm64
 
-        mv repository/src/workspace-raspios_lite_arm64/*.img ${IMAGE}.img
-        xz ${IMAGE}.img
-        rm ${IMAGE}.img || true
+        mv repository/src/workspace-raspios_lite_arm64/*.img.xz ${IMAGE}.img.xz
         echo "image=${IMAGE}.img.xz" >> $GITHUB_OUTPUT
         df -h
 
@@ -130,9 +128,7 @@ jobs:
         source repository/src/config
         IMAGE=devops-${{ steps.release_name.outputs.release }}_ubuntu_arm64
 
-        mv repository/src/workspace-ubuntu_arm64/*.img ${IMAGE}.img
-        xz ${IMAGE}.img
-        rm ${IMAGE}.img || true
+        mv repository/src/workspace-ubuntu_arm64/*.img.xz ${IMAGE}.img.xz
         echo "image=${IMAGE}.img.xz" >> $GITHUB_OUTPUT
         df -h
 
