@@ -22,13 +22,13 @@ jobs:
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
     # Prepare Build
     - name: Install Dependencies
       run: |
-        sudo apt update
-        sudo apt install coreutils p7zip-full qemu-user-static
+        sudo apt-get update
+        sudo apt-get install --yes coreutils p7zip-full qemu-user-static
 
     - name: Checkout CustomPiOS
       uses: actions/checkout@v3
@@ -41,15 +41,6 @@ jobs:
       with:
         path: repository
         submodules: true
-
-    - name: Download Raspbian Image
-      run: |
-        cd repository/src/image
-        wget --continue --quiet  --trust-server-names 'https://downloads.raspberrypi.org/raspios_lite_armhf_latest'
-        cd ../image-raspios_lite_arm64
-        wget --continue --quiet  --trust-server-names 'https://downloads.raspberrypi.org/raspios_lite_arm64_latest'
-        cd ../image-ubuntu_arm64
-        wget --continue --quiet --trust-server-names 'https://cdimage.ubuntu.com/releases/22.04/release/ubuntu-22.04.2-preinstalled-server-arm64+raspi.img.xz'
 
     - name: Update CustomPiOS Paths
       run: |
@@ -73,17 +64,26 @@ jobs:
         fi
         cat $GITHUB_OUTPUT
       id: release_name
+
+    - name: Download Raspbian Image
+      run: |
+        cd repository/src/image
+        wget --continue --quiet  --trust-server-names 'https://downloads.raspberrypi.org/raspios_lite_armhf_latest'
     
-    - name: Build Image
+    - name: Build armhf Image
       run: |
         sudo modprobe loop
         cd repository/src
         echo "Plattenplatz vor Build"
         df -h
-        make build_all
+        make build
         echo "Plattenplatz nach Build"
         df -h
-        
+
+    - name: Remove Raspbian Image
+      run: |
+        cd repository/src/image
+        rm *
 
     - name: Create armhf image
       id: get_armhf_info
@@ -95,7 +95,7 @@ jobs:
         echo "image=${IMAGE}.img.xz" >> $GITHUB_OUTPUT
         df -h
 
-    - name: Uploading armhf image artifact
+    - name: Uploading armhf image as artifact
       uses: actions/upload-artifact@v3
       env:
         GITHUB_TOKEN: ${{ github.token }}
@@ -103,17 +103,37 @@ jobs:
         path: ${{ steps.get_armhf_info.outputs.image }}
         name: ${{ steps.get_armhf_info.outputs.image }}
 
+    - name: Download Raspbian arm64 Image
+      run: |
+        cd ../image-raspios_lite_arm64
+        wget --continue --quiet  --trust-server-names 'https://downloads.raspberrypi.org/raspios_lite_arm64_latest'
+
+    - name: Build arm64 Image
+      run: |
+        sudo modprobe loop
+        cd repository/src
+        echo "Plattenplatz vor Build"
+        df -h
+        make build_arm64
+        echo "Plattenplatz nach Build"
+        df -h
+
+    - name: Remove Raspbian arm64 Image
+      run: |
+        cd repository/src/image_lite_arm64
+        rm *
+
     - name: Create arm64 image
       id: get_arm64_info
       run: |
         source repository/src/config
         IMAGE=devops-${{ steps.release_name.outputs.release }}_arm64
-
+        
         mv repository/src/workspace-raspios_lite_arm64/*.img.xz ${IMAGE}.img.xz
         echo "image=${IMAGE}.img.xz" >> $GITHUB_OUTPUT
         df -h
 
-    - name: Uploading arm64 image artifact
+    - name: Uploading arm64 image as artifact
       uses: actions/upload-artifact@v3
       env:
         GITHUB_TOKEN: ${{ github.token }}
@@ -121,6 +141,26 @@ jobs:
         path: ${{ steps.get_arm64_info.outputs.image }}
         name: ${{ steps.get_arm64_info.outputs.image }}
 
+
+    - name: Download Ubuntu Image
+      run: |
+        cd ../image-ubuntu_arm64
+        wget --continue --quiet --trust-server-names 'https://cdimage.ubuntu.com/releases/22.04/release/ubuntu-22.04.2-preinstalled-server-arm64+raspi.img.xz'
+
+    - name: Build ubuntu Image
+      run: |
+        sudo modprobe loop
+        cd repository/src
+        echo "Plattenplatz vor Build"
+        df -h
+        make build_ubuntu
+        echo "Plattenplatz nach Build"
+        df -h
+
+    - name: Remove Ubuntu Image
+      run: |
+        cd repository/src/image-ubuntu_arm64
+        rm *
 
     - name: Create ubuntu_arm64 image
       id: get_ubuntu_arm64_info
@@ -132,7 +172,7 @@ jobs:
         echo "image=${IMAGE}.img.xz" >> $GITHUB_OUTPUT
         df -h
 
-    - name: Uploading arm64 ubuntu image artifact
+    - name: Uploading arm64 ubuntu image as artifact
       uses: actions/upload-artifact@v3
       env:
         GITHUB_TOKEN: ${{ github.token }}
@@ -153,6 +193,7 @@ jobs:
         files: |
           ${{ steps.get_armhf_info.outputs.image }}
           ${{ steps.get_arm64_info.outputs.image }}
+          ${{ steps.get_ubuntu_arm64_info.outputs.image }}
       env:
         GITHUB_TOKEN: ${{ github.token }}
       

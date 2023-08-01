@@ -10,7 +10,6 @@ build_ubuntu:
 	sudo bash ./build_dist ubuntu_arm64
 	sudo xz workspace-ubuntu_arm64/*.img
 
-# Falls github CD/CI dann noch .github/build.yml anpassen, falls build_ubuntu oder build
 build_all: build_ubuntu build_arm64 build
 
 release:
