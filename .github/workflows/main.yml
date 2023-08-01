@@ -79,6 +79,7 @@ jobs:
         sudo modprobe loop
         cd repository/src
         make build_all
+        df -h
 
     - name: Create armhf image
       id: get_armhf_info
@@ -90,6 +91,7 @@ jobs:
         xz ${IMAGE}.img
         rm ${IMAGE}.img || true
         echo "image=${IMAGE}.img.xz" >> $GITHUB_OUTPUT
+        df -h
 
     - name: Uploading armhf image artifact
       uses: actions/upload-artifact@v3
@@ -109,6 +111,7 @@ jobs:
         xz ${IMAGE}.img
         rm ${IMAGE}.img || true
         echo "image=${IMAGE}.img.xz" >> $GITHUB_OUTPUT
+        df -h
 
     - name: Uploading arm64 image artifact
       uses: actions/upload-artifact@v3
@@ -129,6 +132,7 @@ jobs:
         xz ${IMAGE}.img
         rm ${IMAGE}.img || true
         echo "image=${IMAGE}.img.xz" >> $GITHUB_OUTPUT
+        df -h
 
     - name: Uploading arm64 ubuntu image artifact
       uses: actions/upload-artifact@v3
