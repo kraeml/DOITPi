@@ -86,8 +86,9 @@ jobs:
         source repository/src/config
         IMAGE=devops-${{ steps.release_name.outputs.release }}_armhf
 
-        cp repository/src/workspace-raspios/*.img ${IMAGE}.img
+        mv repository/src/workspace-raspios/*.img ${IMAGE}.img
         xz ${IMAGE}.img
+        rm ${IMAGE}.img || true
         echo "image=${IMAGE}.img.xz" >> $GITHUB_OUTPUT
 
     - name: Uploading armhf image artifact
@@ -104,8 +105,9 @@ jobs:
         source repository/src/config
         IMAGE=devops-${{ steps.release_name.outputs.release }}_arm64
 
-        cp repository/src/workspace-raspios_lite_arm64/*.img ${IMAGE}.img
+        mv repository/src/workspace-raspios_lite_arm64/*.img ${IMAGE}.img
         xz ${IMAGE}.img
+        rm ${IMAGE}.img || true
         echo "image=${IMAGE}.img.xz" >> $GITHUB_OUTPUT
 
     - name: Uploading arm64 image artifact
@@ -123,8 +125,9 @@ jobs:
         source repository/src/config
         IMAGE=devops-${{ steps.release_name.outputs.release }}_ubuntu_arm64
 
-        cp repository/src/workspace-ubuntu_arm64/*.img ${IMAGE}.img
+        mv repository/src/workspace-ubuntu_arm64/*.img ${IMAGE}.img
         xz ${IMAGE}.img
+        rm ${IMAGE}.img || true
         echo "image=${IMAGE}.img.xz" >> $GITHUB_OUTPUT
 
     - name: Uploading arm64 ubuntu image artifact

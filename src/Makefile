@@ -8,7 +8,7 @@ build_ubuntu:
 	sudo bash ./build_dist ubuntu_arm64
 
 # Falls github CD/CI dann noch .github/build.yml anpassen, falls build_ubuntu oder build
-build_all: build_arm64 build
+build_all: build_ubuntu build_arm64 build
 
 release:
 	release=$$(grep VERSION ../CHANGELOG.md | head -n 1 | cut -d '=' -f 2); \
