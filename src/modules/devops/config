@@ -18,7 +18,7 @@ DEVOPS_PKGS="screen tmux tree ansible yamllint \
                 expect git vim nmap tree net-tools \
                 lxc lxc-templates unzip zip build-essential \
                 ssh-import-id cmake\
-                python3-testinfra"
+                python3-testinfra adduser libfontconfig1"
                 
 
-                # Removed: adduser libfontconfig1
+                # Removed: 
