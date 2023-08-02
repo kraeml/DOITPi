@@ -1,12 +1,15 @@
 build:
+	sudo rm workspace-raspios/*.xz
 	sudo bash ./build_dist raspios
 	sudo xz workspace-raspios/*.img
 
 build_arm64:
+	sudo rm workspace-raspios_lite_arm64/*.xz
 	sudo bash ./build_dist raspios_lite_arm64
 	sudo xz workspace-raspios_lite_arm64/*.img
 
 build_ubuntu:
+	sudo rm workspace-ubuntu_arm64/*.xz
 	sudo bash ./build_dist ubuntu_arm64
 	sudo xz workspace-ubuntu_arm64/*.img
 
