@@ -120,7 +120,7 @@ jobs:
 
     - name: Remove Raspbian arm64 Image
       run: |
-        cd repository/src/image_lite_arm64
+        cd repository/src/image-raspios_lite_arm64
         rm *
 
     - name: Create arm64 image
