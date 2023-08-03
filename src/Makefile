@@ -17,7 +17,7 @@ build_all: build_ubuntu build_arm64 build
 
 release:
 	release=$$(grep VERSION ../CHANGELOG.md | head -n 1 | cut -d '=' -f 2); \
-	git flow release start v${release}; \
+	git flow release start v$${release}; \
 	#sed -i 's@DIST_VERSION=v.*@DIST_VERSION=v'$${release}'@g' config; \
 	#major=$$(echo "$${release}" | awk -F"." '{print $$1}'); \
 	#minor=$$(echo "$${release}" | awk -F"." '{print $$2}'); \
