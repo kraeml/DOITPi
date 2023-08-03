@@ -1,5 +1,5 @@
 export DIST_NAME=DOITPi
-export DIST_VERSION=v0.4.4
+export DIST_VERSION=v0.4.5
 
 # rpi-imager json generator settings
 export RPI_IMAGER_NAME="${DIST_NAME}"
@@ -30,3 +30,5 @@ export PKGUPGRADE_PRE_INSTALL_PKGS=""
 
 # ToDo Cockpit-install mit festem pi-USER
 export MODULES="base(network,mybase,autohotspot,pythongpio,platformio,docker,devops,homeautomation,pkgupgrade)"
+
+export DOCKER_COMPOSE=no

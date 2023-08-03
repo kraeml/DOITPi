@@ -26,7 +26,7 @@ then
     unpack /filesystem/boot /boot
 fi
 
-echo "This is an example module, install and set up what you need here!"
+echo "echo "From here the PYTHONGPIO-Module starts""
 echo "$PYTHONGPIO_VAR"
 echo "$PYTHONGPIO_PKGS"
 
@@ -55,7 +55,7 @@ pushd  /home/"${BASE_USER}"/workspace
 popd
 
 su - -c "cd /home/${BASE_USER}/bin && virtualenv -p python3 jupyter-venv" "${BASE_USER}"
-su - -c "source /home/${BASE_USER}/bin/jupyter-venv/bin/activate && pip install -U pip wheel && pip install -U jupyterlab" "${BASE_USER}"
+su - -c "source /home/${BASE_USER}/bin/jupyter-venv/bin/activate && pip install -U pip wheel && pip install -U jupyterlab notebook qtconsole ipywidgets" "${BASE_USER}"
 
 # Unpack root at the end, so files are modified before
 if [ -d /filesystem/root ]
