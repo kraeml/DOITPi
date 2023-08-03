@@ -1,6 +1,7 @@
 VERSION=0.4.5
 
-- [ ] Coderserver Version v4.16.0
+- [x] Coderserver Version v4.16.0
+- [x] Ubuntu
 
 VERSION=0.4.4
 

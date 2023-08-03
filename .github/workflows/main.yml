@@ -25,12 +25,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     # Prepare Build
-    - name: Install Dependencies
+    - name: Install Dependencies remove not needed directories
       run: |
         sudo apt-get update
         sudo apt-get install --yes coreutils p7zip-full qemu-user-static
         sudo rm -rf /usr/local/lib/android
         sudo rm -rf /opt/hostedtoolcache/CodeQL
+        df -h
 
     - name: Checkout CustomPiOS
       uses: actions/checkout@v3
