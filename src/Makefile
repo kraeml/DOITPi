@@ -49,8 +49,7 @@ workspace-ubuntu_arm64/${UBUNTU_SERVER_ARM64_VERSION}.img.xz: image-ubuntu_arm64
 build_all: workspace-ubuntu_arm64/${UBUNTU_SERVER_ARM64_VERSION}.img.xz workspace-raspios_lite_arm64/${RASPIOS_LITE_ARM64_VERSION}.img.xz workspace-raspios/${RASPIOS_LITE_ARMHF_VERSION}.img.xz
 
 build_clean: clean_all build_all
-
-.PHONY: build_clean build_all ubuntu_clean arm64_clean armhf_clean
+	rm image*/*.xz
 
 release:
 	release=$$(grep VERSION ../CHANGELOG.md | head -n 1 | cut -d '=' -f 2); \
@@ -62,4 +61,6 @@ release:
 	#new_patch=$$(echo "$$patch + 1" | bc); \
 	#new_version="$$major.$$minor.$$new_patch"; \
 	#sed -i '1s/^/VERSION='$$new_version'\n- [ ] \n/' ../CHANGELOG.md
+
+.PHONY: build_clean build_all ubuntu_clean arm64_clean armhf_clean release
 

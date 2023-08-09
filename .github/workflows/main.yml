@@ -74,12 +74,12 @@ jobs:
         cd repository/src
         echo "Plattenplatz vor Build"
         df -h
-        make build_clean
+        time make build_clean
         echo "Plattenplatz nach Build"
         df -h
 
 
-    - name: Create ubuntu_arm64 image
+    - name: Create devops-${{ steps.release_name.outputs.release }}_ubuntu_arm64 image
       id: get_ubuntu_arm64_info
       run: |
         source repository/src/config
@@ -89,7 +89,7 @@ jobs:
         echo "image=${IMAGE}.img.xz" >> $GITHUB_OUTPUT
         df -h
 
-    - name: Uploading arm64 ubuntu image as artifact
+    - name: Uploading devops-${{ steps.release_name.outputs.release }}_ubuntu_arm64 image as artifact
       uses: actions/upload-artifact@v3
       env:
         GITHUB_TOKEN: ${{ github.token }}
@@ -97,7 +97,7 @@ jobs:
         path: ${{ steps.get_ubuntu_arm64_info.outputs.image }}
         name: ${{ steps.get_ubuntu_arm64_info.outputs.image }}
 
-    - name: Create arm64 image
+    - name: Create devops-${{ steps.release_name.outputs.release }}_arm64 image
       id: get_arm64_info
       run: |
         source repository/src/config
@@ -107,7 +107,7 @@ jobs:
         echo "image=${IMAGE}.img.xz" >> $GITHUB_OUTPUT
         df -h
 
-    - name: Uploading arm64 image as artifact
+    - name: Uploading devops-${{ steps.release_name.outputs.release }}_arm64 image as artifact
       uses: actions/upload-artifact@v3
       env:
         GITHUB_TOKEN: ${{ github.token }}
@@ -115,7 +115,7 @@ jobs:
         path: ${{ steps.get_arm64_info.outputs.image }}
         name: ${{ steps.get_arm64_info.outputs.image }}
 
-    - name: Create armhf image
+    - name: Create devops-${{ steps.release_name.outputs.release }}_armhf image
       id: get_armhf_info
       run: |
         source repository/src/config
@@ -125,7 +125,7 @@ jobs:
         echo "image=${IMAGE}.img.xz" >> $GITHUB_OUTPUT
         df -h
 
-    - name: Uploading armhf image as artifact
+    - name: Uploading devops-${{ steps.release_name.outputs.release }}_armhf image as artifact
       uses: actions/upload-artifact@v3
       env:
         GITHUB_TOKEN: ${{ github.token }}
@@ -133,7 +133,7 @@ jobs:
         path: ${{ steps.get_armhf_info.outputs.image }}
         name: ${{ steps.get_armhf_info.outputs.image }}
     
-    - name: Create Release
+    - name: Create Release ${{ steps.release_name.outputs.release }}
       uses: softprops/action-gh-release@v1
       if: startsWith(github.ref, 'refs/tags/')
       id: create_release
