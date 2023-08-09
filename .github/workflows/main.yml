@@ -68,7 +68,7 @@ jobs:
         cat $GITHUB_OUTPUT
       id: release_name
 
-    - name: Build ubuntu Image
+    - name: Build Images
       run: |
         sudo modprobe loop
         cd repository/src

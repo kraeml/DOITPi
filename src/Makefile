@@ -42,7 +42,7 @@ workspace-raspios_lite_arm64/${RASPIOS_LITE_ARM64_VERSION}.img.xz: image-raspios
 	sudo xz workspace-raspios_lite_arm64/*.img
 	
 
-workspace-ubuntu_arm64/${UBUNTU_SERVER_ARM64_VERSION}.img.xz:
+workspace-ubuntu_arm64/${UBUNTU_SERVER_ARM64_VERSION}.img.xz: image-ubuntu_arm64/${UBUNTU_SERVER_ARM64_VERSION}.img.xz
 	sudo bash ./build_dist ubuntu_arm64
 	sudo xz workspace-ubuntu_arm64/*.img
 
