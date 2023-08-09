@@ -68,25 +68,16 @@ jobs:
         cat $GITHUB_OUTPUT
       id: release_name
 
-    - name: Download Ubuntu Image
-      run: |
-        cd repository/src/image-ubuntu_arm64
-        wget --continue --quiet --trust-server-names 'https://cdimage.ubuntu.com/releases/22.04/release/ubuntu-22.04.2-preinstalled-server-arm64+raspi.img.xz'
-
     - name: Build ubuntu Image
       run: |
         sudo modprobe loop
         cd repository/src
         echo "Plattenplatz vor Build"
         df -h
-        make build_ubuntu
+        make build_clean
         echo "Plattenplatz nach Build"
         df -h
 
-    - name: Remove Ubuntu Image
-      run: |
-        cd repository/src/image-ubuntu_arm64
-        rm *
 
     - name: Create ubuntu_arm64 image
       id: get_ubuntu_arm64_info
@@ -106,26 +97,6 @@ jobs:
         path: ${{ steps.get_ubuntu_arm64_info.outputs.image }}
         name: ${{ steps.get_ubuntu_arm64_info.outputs.image }}
 
-    - name: Download Raspbian arm64 Image
-      run: |
-        cd repository/src/image-raspios_lite_arm64
-        wget --continue --quiet  --trust-server-names 'https://downloads.raspberrypi.org/raspios_lite_arm64_latest'
-
-    - name: Build arm64 Image
-      run: |
-        sudo modprobe loop
-        cd repository/src
-        echo "Plattenplatz vor Build"
-        df -h
-        make build_arm64
-        echo "Plattenplatz nach Build"
-        df -h
-
-    - name: Remove Raspbian arm64 Image
-      run: |
-        cd repository/src/image-raspios_lite_arm64
-        rm *
-
     - name: Create arm64 image
       id: get_arm64_info
       run: |
@@ -143,26 +114,6 @@ jobs:
       with:
         path: ${{ steps.get_arm64_info.outputs.image }}
         name: ${{ steps.get_arm64_info.outputs.image }}
-
-    - name: Download Raspbian Image
-      run: |
-        cd repository/src/image
-        wget --continue --quiet  --trust-server-names 'https://downloads.raspberrypi.org/raspios_lite_armhf_latest'
-    
-    - name: Build armhf Image
-      run: |
-        sudo modprobe loop
-        cd repository/src
-        echo "Plattenplatz vor Build"
-        df -h
-        make build
-        echo "Plattenplatz nach Build"
-        df -h
-
-    - name: Remove Raspbian Image
-      run: |
-        cd repository/src/image
-        rm *
 
     - name: Create armhf image
       id: get_armhf_info
