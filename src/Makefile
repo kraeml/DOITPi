@@ -1,14 +1,9 @@
-MAKEFLAGS+="-j -l 2"
+MAKEFLAGS+="-j "
 
 RASPIOS_LITE_ARMHF_VERSION = 2023-05-03-raspios-bullseye-armhf-lite
 RASPIOS_LITE_ARM64_VERSION = 2023-05-03-raspios-bullseye-arm64-lite
 UBUNTU_SERVER_ARM64_VERSION = ubuntu-22.04.2-preinstalled-server-arm64+raspi
 
-
-
-pwd:
-	cd ./image
-	pwd
 
 image/${RASPIOS_LITE_ARMHF_VERSION}.img.xz:
 	@cd ./image/ ; \
@@ -23,33 +18,48 @@ image-ubuntu_arm64/${UBUNTU_SERVER_ARM64_VERSION}.img.xz:
 	wget --continue --quiet --trust-server-names 'https://cdimage.ubuntu.com/releases/22.04/release/${UBUNTU_SERVER_ARM64_VERSION}.img.xz'
 
 armhf_clean:
-	@sudo rm workspace-raspios/*.xz 2>/dev/null || true
+	@sudo rm ./workspace-raspios/*.xz 2>/dev/null || true
+	@sudo rm ./workspace-raspios/*.img 2>/dev/null || true
 
 arm64_clean:
-	@sudo rm workspace-raspios_lite_arm64/*.xz 2>/dev/null || true
+	@sudo rm ./workspace-raspios_lite_arm64/*.xz 2>/dev/null || true
+	@sudo rm ./workspace-raspios_lite_arm64/*.img 2>/dev/null || true
 
 ubuntu_clean:
-	@sudo rm workspace-ubuntu_arm64/*.xz 2>/dev/null || true
+	@sudo rm ./workspace-ubuntu_arm64/*.xz 2>/dev/null || true
+	@sudo rm ./workspace-ubuntu_arm64/*.img 2>/dev/null || true
 
-clean_all: ubuntu_clean arm64_clean armhf_clean
+clean_images:
+	@rm ./image*/*.xz 2>/dev/null || true
 
-workspace-raspios/${RASPIOS_LITE_ARMHF_VERSION}.img.xz: image/${RASPIOS_LITE_ARMHF_VERSION}.img.xz
+clean_workspaces: ubuntu_clean arm64_clean armhf_clean 
+
+clean_all: clean_images clean_workspaces
+
+workspace-raspios/${RASPIOS_LITE_ARMHF_VERSION}.img.xz: | image/${RASPIOS_LITE_ARMHF_VERSION}.img.xz
 	sudo bash ./build_dist raspios
 	sudo xz workspace-raspios/*.img
 
-workspace-raspios_lite_arm64/${RASPIOS_LITE_ARM64_VERSION}.img.xz: image-raspios_lite_arm64/${RASPIOS_LITE_ARM64_VERSION}.img.xz
+workspace-raspios_lite_arm64/${RASPIOS_LITE_ARM64_VERSION}.img.xz: | image-raspios_lite_arm64/${RASPIOS_LITE_ARM64_VERSION}.img.xz
 	sudo bash ./build_dist raspios_lite_arm64
 	sudo xz workspace-raspios_lite_arm64/*.img
 	
 
-workspace-ubuntu_arm64/${UBUNTU_SERVER_ARM64_VERSION}.img.xz: image-ubuntu_arm64/${UBUNTU_SERVER_ARM64_VERSION}.img.xz
+workspace-ubuntu_arm64/${UBUNTU_SERVER_ARM64_VERSION}.img.xz: | image-ubuntu_arm64/${UBUNTU_SERVER_ARM64_VERSION}.img.xz
 	sudo bash ./build_dist ubuntu_arm64
 	sudo xz workspace-ubuntu_arm64/*.img
 
-build_all: workspace-ubuntu_arm64/${UBUNTU_SERVER_ARM64_VERSION}.img.xz workspace-raspios_lite_arm64/${RASPIOS_LITE_ARM64_VERSION}.img.xz workspace-raspios/${RASPIOS_LITE_ARMHF_VERSION}.img.xz
+ubuntu: workspace-ubuntu_arm64/${UBUNTU_SERVER_ARM64_VERSION}.img.xz
+
+arm64: workspace-raspios_lite_arm64/${RASPIOS_LITE_ARM64_VERSION}.img.xz
+
+armhf: workspace-raspios/${RASPIOS_LITE_ARMHF_VERSION}.img.xz
+
+build_all: | ubuntu arm64 armhf
 
 build_clean: clean_all build_all
-	rm image*/*.xz
+
+all: build_clean
 
 release:
 	release=$$(grep VERSION ../CHANGELOG.md | head -n 1 | cut -d '=' -f 2); \
@@ -62,5 +72,5 @@ release:
 	#new_version="$$major.$$minor.$$new_patch"; \
 	#sed -i '1s/^/VERSION='$$new_version'\n- [ ] \n/' ../CHANGELOG.md
 
-.PHONY: build_clean build_all ubuntu_clean arm64_clean armhf_clean release
+.PHONY: clean_all clean_images clean_workspaces build_clean build_all ubuntu_clean arm64_clean armhf_clean release arm64 ubuntu armhf all
 
