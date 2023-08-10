@@ -28,7 +28,7 @@ jobs:
     - name: Install Dependencies remove not needed directories
       run: |
         sudo apt-get update
-        sudo apt-get install --yes coreutils p7zip-full qemu-user-static
+        sudo apt-get install --yes coreutils p7zip-full qemu-user-static pv
         sudo rm -rf /usr/local/lib/android
         sudo rm -rf /opt/hostedtoolcache/CodeQL
         df -h
