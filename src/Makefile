@@ -2,7 +2,7 @@ MAKEFLAGS+="-j "
 
 RASPIOS_LITE_ARMHF_VERSION = 2023-05-03-raspios-bullseye-armhf-lite
 RASPIOS_LITE_ARM64_VERSION = 2023-05-03-raspios-bullseye-arm64-lite
-UBUNTU_SERVER_ARM64_VERSION = ubuntu-22.04.2-preinstalled-server-arm64+raspi
+UBUNTU_SERVER_ARM64_VERSION = ubuntu-22.04.3-preinstalled-server-arm64+raspi
 
 all: build_all
 
