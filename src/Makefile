@@ -35,28 +35,26 @@ clean_images:
 
 clean_workspaces: ubuntu_clean arm64_clean armhf_clean 
 
-
-clean_all: MAKEFLAGS += --jobs=1
 clean_all: clean_images clean_workspaces
 
 workspace-raspios/${RASPIOS_LITE_ARMHF_VERSION}.img: | image/${RASPIOS_LITE_ARMHF_VERSION}.img.xz
-	@sudo bash ./build_dist raspios
+	@sudo bash ./build_dist raspios | tee workspace-raspios/${RASPIOS_LITE_ARMHF_VERSION}.log
 
-workspace-raspios/${RASPIOS_LITE_ARMHF_VERSION}.img.xz: workspace-raspios/${RASPIOS_LITE_ARMHF_VERSION}.img
+workspace-raspios/${RASPIOS_LITE_ARMHF_VERSION}.img.xz: | workspace-raspios/${RASPIOS_LITE_ARMHF_VERSION}.img
 	@pv ./workspace-raspios/${RASPIOS_LITE_ARMHF_VERSION}.img | sudo xz > workspace-raspios/${RASPIOS_LITE_ARMHF_VERSION}.img.xz
 	@sudo rm ./workspace-raspios/${RASPIOS_LITE_ARMHF_VERSION}.img
 
 workspace-raspios_lite_arm64/${RASPIOS_LITE_ARM64_VERSION}.img: | image-raspios_lite_arm64/${RASPIOS_LITE_ARM64_VERSION}.img.xz
-	@sudo bash ./build_dist raspios_lite_arm64
+	@sudo bash ./build_dist raspios_lite_arm64 | tee workspace-raspios_lite_arm64/${RASPIOS_LITE_ARM64_VERSION}.log
 
-workspace-raspios_lite_arm64/${RASPIOS_LITE_ARM64_VERSION}.img.xz: workspace-raspios_lite_arm64/${RASPIOS_LITE_ARM64_VERSION}.img
+workspace-raspios_lite_arm64/${RASPIOS_LITE_ARM64_VERSION}.img.xz: | workspace-raspios_lite_arm64/${RASPIOS_LITE_ARM64_VERSION}.img
 	@pv ./workspace-raspios_lite_arm64/${RASPIOS_LITE_ARM64_VERSION}.img | sudo xz > workspace-raspios_lite_arm64/${RASPIOS_LITE_ARM64_VERSION}.img.xz
 	@sudo rm ./workspace-raspios_lite_arm64/${RASPIOS_LITE_ARM64_VERSION}.img
 	
 workspace-ubuntu_arm64/${UBUNTU_SERVER_ARM64_VERSION}.img: | image-ubuntu_arm64/${UBUNTU_SERVER_ARM64_VERSION}.img.xz
-	@sudo bash ./build_dist ubuntu_arm64
+	@sudo bash ./build_dist ubuntu_arm64 | tee workspace-ubuntu_arm64/${UBUNTU_SERVER_ARM64_VERSION}.log
 
-workspace-ubuntu_arm64/${UBUNTU_SERVER_ARM64_VERSION}.img.xz: workspace-ubuntu_arm64/${UBUNTU_SERVER_ARM64_VERSION}.img
+workspace-ubuntu_arm64/${UBUNTU_SERVER_ARM64_VERSION}.img.xz: | workspace-ubuntu_arm64/${UBUNTU_SERVER_ARM64_VERSION}.img
 	@pv ./workspace-ubuntu_arm64/${UBUNTU_SERVER_ARM64_VERSION}.img | sudo xz > workspace-ubuntu_arm64/${UBUNTU_SERVER_ARM64_VERSION}.img.xz
 	@sudo rm ./workspace-ubuntu_arm64/${UBUNTU_SERVER_ARM64_VERSION}.img
 
