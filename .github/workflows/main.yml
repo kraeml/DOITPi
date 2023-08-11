@@ -80,7 +80,7 @@ jobs:
         cd repository/src
         echo "Plattenplatz vor Build"
         df -h
-        time sudo make all
+        sudo make all
         echo "Plattenplatz nach Build"
         df -h
 
