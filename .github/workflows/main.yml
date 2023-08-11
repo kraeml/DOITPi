@@ -28,7 +28,7 @@ jobs:
     - name: Install Dependencies remove not needed directories
       run: |
         sudo apt-get update
-        sudo apt-get install --yes coreutils p7zip-full qemu-user-static pv
+        sudo apt-get install --yes coreutils p7zip-full qemu-user-static pv time
         sudo rm -rf /usr/local/lib/android
         sudo rm -rf /usr/local/node_modules
         sudo rm -rf /opt/hostedtoolcache/CodeQL
@@ -80,7 +80,7 @@ jobs:
         cd repository/src
         echo "Plattenplatz vor Build"
         df -h
-        sudo make all
+        time sudo make all
         echo "Plattenplatz nach Build"
         df -h
 
