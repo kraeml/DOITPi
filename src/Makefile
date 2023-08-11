@@ -1,4 +1,4 @@
-MAKEFLAGS+="-j "
+MAKEFLAGS+="-j 1"
 
 RASPIOS_LITE_ARMHF_VERSION = 2023-05-03-raspios-bullseye-armhf-lite
 RASPIOS_LITE_ARM64_VERSION = 2023-05-03-raspios-bullseye-arm64-lite
@@ -16,7 +16,7 @@ image-raspios_lite_arm64/${RASPIOS_LITE_ARM64_VERSION}.img.xz:
 
 image-ubuntu_arm64/${UBUNTU_SERVER_ARM64_VERSION}.img.xz:
 	@cd ./image-ubuntu_arm64 ; \
-	wget --continue --trust-server-names 'https://cdimage.ubuntu.com/releases/22.04/release/${UBUNTU_SERVER_ARM64_VERSION}.img.xz'
+	wget --continue --quiet --trust-server-names 'https://cdimage.ubuntu.com/releases/22.04/release/${UBUNTU_SERVER_ARM64_VERSION}.img.xz'
 
 armhf_clean:
 	@sudo rm ./workspace-raspios/*.xz 2>/dev/null || true
