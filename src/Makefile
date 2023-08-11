@@ -1,4 +1,4 @@
-MAKEFLAGS+="-j 1"
+MAKEFLAGS+="-j "
 
 RASPIOS_LITE_ARMHF_VERSION = 2023-05-03-raspios-bullseye-armhf-lite
 RASPIOS_LITE_ARM64_VERSION = 2023-05-03-raspios-bullseye-arm64-lite
