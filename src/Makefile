@@ -6,6 +6,16 @@ UBUNTU_SERVER_ARM64_VERSION = ubuntu-22.04.3-preinstalled-server-arm64+raspi
 
 all: build_all
 
+build_all: | ubuntu
+
+build_clean: clean_all build_all
+
+ubuntu: workspace-ubuntu_arm64/${UBUNTU_SERVER_ARM64_VERSION}.img.xz
+
+arm64: workspace-raspios_lite_arm64/${RASPIOS_LITE_ARM64_VERSION}.img.xz
+
+armhf: workspace-raspios/${RASPIOS_LITE_ARMHF_VERSION}.img.xz
+
 image/${RASPIOS_LITE_ARMHF_VERSION}.img.xz:
 	@cd ./image/ ; \
 	wget --continue --quiet --trust-server-names 'https://downloads.raspberrypi.org/raspios_lite_armhf_latest'
@@ -55,16 +65,6 @@ workspace-ubuntu_arm64/${UBUNTU_SERVER_ARM64_VERSION}.img: | image-ubuntu_arm64/
 workspace-ubuntu_arm64/${UBUNTU_SERVER_ARM64_VERSION}.img.xz: | workspace-ubuntu_arm64/${UBUNTU_SERVER_ARM64_VERSION}.img
 	@pv ./workspace-ubuntu_arm64/${UBUNTU_SERVER_ARM64_VERSION}.img | sudo xz > workspace-ubuntu_arm64/${UBUNTU_SERVER_ARM64_VERSION}.img.xz
 	@sudo rm ./workspace-ubuntu_arm64/${UBUNTU_SERVER_ARM64_VERSION}.img
-
-ubuntu: workspace-ubuntu_arm64/${UBUNTU_SERVER_ARM64_VERSION}.img.xz
-
-arm64: workspace-raspios_lite_arm64/${RASPIOS_LITE_ARM64_VERSION}.img.xz
-
-armhf: workspace-raspios/${RASPIOS_LITE_ARMHF_VERSION}.img.xz
-
-build_all: | ubuntu arm64 armhf
-
-build_clean: clean_all build_all
 
 release:
 	release=$$(grep VERSION ../CHANGELOG.md | head -n 1 | cut -d '=' -f 2); \
