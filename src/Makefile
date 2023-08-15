@@ -1,4 +1,4 @@
-MAKEFLAGS += "--jobs=3 --keep-going"
+#MAKEFLAGS += "--jobs=4 --keep-going"
 
 RASPIOS_LITE_ARMHF_VERSION = 2023-05-03-raspios-bullseye-armhf-lite
 IMAGE_ARMHF = image
@@ -21,7 +21,10 @@ WORKSPACE_UBUNTU_NAME = ${WORKSPACE_UBUNTU}/${UBUNTU_SERVER_ARM64_VERSION}
 
 all: build_all
 
-build_all: ubuntu arm64 armhf
+custompios_pre:
+	@sed -i 's/sudo umount $m/sudo umount --lazy --force $m/g' ../../CustomPiOS/src/common.sh
+
+build_all: | custompios_pre armhf arm64
 
 build_clean: clean_all build_all
 
