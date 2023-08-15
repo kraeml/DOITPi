@@ -51,6 +51,10 @@ jobs:
         path: repository
         submodules: true
 
+    - name: Enforce and detach the filesystem from the filesystem hierarchy.
+      run: |
+        sed -i 's/sudo umount $m/sudo umount --lazy --force $m/g' ./CustomPiOS/src/common.sh
+
     - name: Update CustomPiOS Paths
       run: |
         cd repository/src
