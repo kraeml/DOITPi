@@ -1,4 +1,4 @@
-#MAKEFLAGS += "--jobs=4 --keep-going"
+MAKEFLAGS += "--jobs=$(shell nproc)"
 
 RASPIOS_LITE_ARMHF_VERSION = 2023-05-03-raspios-bullseye-armhf-lite
 IMAGE_ARMHF = image
@@ -12,12 +12,15 @@ IMAGE_NAME_ARM64 = ${IMAGE_ARM64}/${RASPIOS_LITE_ARM64_VERSION}
 WORKSPACE_ARM64 = workspace-raspios_lite_arm64
 WORKSPACE_ARM64_NAME = ${WORKSPACE_ARM64}/${RASPIOS_LITE_ARM64_VERSION}
 
-
-UBUNTU_SERVER_ARM64_VERSION = ubuntu-22.04.3-preinstalled-server-arm64+raspi
+UBUNTU_RELEASE = 22.04
+UBUNTU_SERVER_ARM64_VERSION = ubuntu-${UBUNTU_RELEASE}.3-preinstalled-server-arm64+raspi
 IMAGE_UBUNTU = image-ubuntu_arm64
 IMAGE_NAME_UBUNTU = ${IMAGE_UBUNTU}/${UBUNTU_SERVER_ARM64_VERSION}
 WORKSPACE_UBUNTU = workspace-ubuntu_arm64
 WORKSPACE_UBUNTU_NAME = ${WORKSPACE_UBUNTU}/${UBUNTU_SERVER_ARM64_VERSION}
+
+.PHONY: clean_all clean_images clean_workspaces build_clean build_all ubuntu_clean arm64_clean armhf_clean release arm64 ubuntu armhf all
+.SECONDARY: ${IMAGE_NAME_ARMHF}.img.xz ${IMAGE_NAME_ARM64}.img.xz ${IMAGE_NAME_UBUNTU}.img.xz ${WORKSPACE_ARMHF_NAME}.img ${WORKSPACE_ARM64_NAME}.img ${WORKSPACE_UBUNTU_NAME}.img
 
 all: build_all
 
@@ -47,8 +50,8 @@ ${IMAGE_NAME_ARM64}.img.xz:
 	wget --continue --quiet --trust-server-names 'https://downloads.raspberrypi.org/raspios_lite_arm64_latest'
 
 ${IMAGE_NAME_UBUNTU}.img.xz:
-	@cd ./image-ubuntu_arm64 ; \
-	wget --continue --quiet --trust-server-names 'https://cdimage.ubuntu.com/releases/22.04/release/${UBUNTU_SERVER_ARM64_VERSION}.img.xz'
+	@cd ./${IMAGE_UBUNTU} ; \
+	wget --continue --quiet --trust-server-names 'https://cdimage.ubuntu.com/releases/${UBUNTU_RELEASE}/release/${UBUNTU_SERVER_ARM64_VERSION}.img.xz'
 
 armhf_clean:
 	@sudo rm ./${WORKSPACE_ARMHF}/*.xz 2>/dev/null || true
@@ -106,6 +109,3 @@ release:
 	#new_patch=$$(echo "$$patch + 1" | bc); \
 	#new_version="$$major.$$minor.$$new_patch"; \
 	#sed -i '1s/^/VERSION='$$new_version'\n- [ ] \n/' ../CHANGELOG.md
-
-.PHONY: clean_all clean_images clean_workspaces build_clean build_all ubuntu_clean arm64_clean armhf_clean release arm64 ubuntu armhf all
-
