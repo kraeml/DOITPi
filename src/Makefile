@@ -1,19 +1,103 @@
-build:
-	sudo rm workspace-raspios/*.xz || true
-	sudo bash ./build_dist raspios
-	sudo xz workspace-raspios/*.img
+MAKEFLAGS += "--jobs=$(shell nproc)"
 
-build_arm64:
-	sudo rm workspace-raspios_lite_arm64/*.xz || true
-	sudo bash ./build_dist raspios_lite_arm64
-	sudo xz workspace-raspios_lite_arm64/*.img
+RASPIOS_LITE_ARMHF_VERSION = 2023-05-03-raspios-bullseye-armhf-lite
+IMAGE_ARMHF = image
+IMAGE_NAME_ARMHF = ${IMAGE_ARMHF}/${RASPIOS_LITE_ARMHF_VERSION}
+WORKSPACE_ARMHF = workspace-raspios
+WORKSPACE_ARMHF_NAME = ${WORKSPACE_ARMHF}/${RASPIOS_LITE_ARMHF_VERSION}
 
-build_ubuntu:
-	sudo rm workspace-ubuntu_arm64/*.xz || true
-	sudo bash ./build_dist ubuntu_arm64
-	sudo xz workspace-ubuntu_arm64/*.img
+RASPIOS_LITE_ARM64_VERSION = 2023-05-03-raspios-bullseye-arm64-lite
+IMAGE_ARM64 = image-raspios_lite_arm64
+IMAGE_NAME_ARM64 = ${IMAGE_ARM64}/${RASPIOS_LITE_ARM64_VERSION}
+WORKSPACE_ARM64 = workspace-raspios_lite_arm64
+WORKSPACE_ARM64_NAME = ${WORKSPACE_ARM64}/${RASPIOS_LITE_ARM64_VERSION}
 
-build_all: build_ubuntu build_arm64 build
+UBUNTU_RELEASE = 22.04
+UBUNTU_SERVER_ARM64_VERSION = ubuntu-${UBUNTU_RELEASE}.3-preinstalled-server-arm64+raspi
+IMAGE_UBUNTU = image-ubuntu_arm64
+IMAGE_NAME_UBUNTU = ${IMAGE_UBUNTU}/${UBUNTU_SERVER_ARM64_VERSION}
+WORKSPACE_UBUNTU = workspace-ubuntu_arm64
+WORKSPACE_UBUNTU_NAME = ${WORKSPACE_UBUNTU}/${UBUNTU_SERVER_ARM64_VERSION}
+
+.PHONY: clean_all clean_images clean_workspaces build_clean build_all ubuntu_clean arm64_clean armhf_clean release arm64 ubuntu armhf all
+.SECONDARY: ${IMAGE_NAME_ARMHF}.img.xz ${IMAGE_NAME_ARM64}.img.xz ${IMAGE_NAME_UBUNTU}.img.xz ${WORKSPACE_ARMHF_NAME}.img ${WORKSPACE_ARM64_NAME}.img ${WORKSPACE_UBUNTU_NAME}.img
+
+all: build_all
+
+custompios_pre:
+	@sed -i 's/sudo umount $m/sudo umount --lazy --force $m/g' ../../CustomPiOS/src/common.sh
+
+build_all: | custompios_pre armhf arm64
+	@sync
+	@sleep 10
+	$(MAKE) ubuntu
+
+
+build_clean: clean_all build_all
+
+armhf: | ${WORKSPACE_ARMHF_NAME}.img.xz
+
+arm64: | ${WORKSPACE_ARM64_NAME}.img.xz
+
+ubuntu: | ${WORKSPACE_UBUNTU_NAME}.img.xz
+
+${IMAGE_NAME_ARMHF}.img.xz:
+	@cd ./${IMAGE_ARMHF}/ ; \
+	wget --continue --quiet --trust-server-names 'https://downloads.raspberrypi.org/raspios_lite_armhf_latest'
+
+${IMAGE_NAME_ARM64}.img.xz:
+	@cd ./${IMAGE_ARM64}/ ; \
+	wget --continue --quiet --trust-server-names 'https://downloads.raspberrypi.org/raspios_lite_arm64_latest'
+
+${IMAGE_NAME_UBUNTU}.img.xz:
+	@cd ./${IMAGE_UBUNTU} ; \
+	wget --continue --quiet --trust-server-names 'https://cdimage.ubuntu.com/releases/${UBUNTU_RELEASE}/release/${UBUNTU_SERVER_ARM64_VERSION}.img.xz'
+
+armhf_clean:
+	@sudo rm ./${WORKSPACE_ARMHF}/*.xz 2>/dev/null || true
+	@sudo rm ./${WORKSPACE_ARMHF}/*.img 2>/dev/null || true
+
+arm64_clean:
+	@sudo rm ./${WORKSPACE_ARM64}/*.xz 2>/dev/null || true
+	@sudo rm ./${WORKSPACE_ARM64}/*.img 2>/dev/null || true
+
+ubuntu_clean:
+	@sudo rm ./${WORKSPACE_UBUNTU}/*.xz 2>/dev/null || true
+	@sudo rm ./${WORKSPACE_UBUNTU}/*.img 2>/dev/null || true
+
+clean_images:
+	@rm ./image*/*.xz 2>/dev/null || true
+
+clean_workspaces: | ubuntu_clean arm64_clean armhf_clean 
+
+clean_all: clean_images clean_workspaces
+
+${WORKSPACE_ARMHF_NAME}.img: | ${IMAGE_NAME_ARMHF}.img.xz
+	@sudo bash ./build_dist raspios
+	@sync
+
+${WORKSPACE_ARMHF_NAME}.img.xz: | ${WORKSPACE_ARMHF_NAME}.img
+	@pv ./${WORKSPACE_ARMHF_NAME}.img | sudo xz > ${WORKSPACE_ARMHF_NAME}.img.xz
+	@sync
+	@sudo rm ./${WORKSPACE_ARMHF_NAME}.img
+
+${WORKSPACE_ARM64_NAME}.img: | ${IMAGE_NAME_ARM64}.img.xz
+	@sudo bash ./build_dist raspios_lite_arm64
+	@sync
+
+${WORKSPACE_ARM64_NAME}.img.xz: | ${WORKSPACE_ARM64_NAME}.img
+	@pv ./${WORKSPACE_ARM64_NAME}.img | sudo xz > ${WORKSPACE_ARM64_NAME}.img.xz
+	@sync
+	@sudo rm ./${WORKSPACE_ARM64_NAME}.img
+	
+${WORKSPACE_UBUNTU_NAME}.img: | ${IMAGE_NAME_UBUNTU}.img.xz
+	@sudo bash ./build_dist ubuntu_arm64
+	@sync
+
+${WORKSPACE_UBUNTU_NAME}.img.xz: | ${WORKSPACE_UBUNTU_NAME}.img
+	@pv ./${WORKSPACE_UBUNTU_NAME}.img | sudo xz > ${WORKSPACE_UBUNTU_NAME}.img.xz
+	@sync
+	@sudo rm ./${WORKSPACE_UBUNTU_NAME}.img
 
 release:
 	release=$$(grep VERSION ../CHANGELOG.md | head -n 1 | cut -d '=' -f 2); \
@@ -25,4 +109,3 @@ release:
 	#new_patch=$$(echo "$$patch + 1" | bc); \
 	#new_version="$$major.$$minor.$$new_patch"; \
 	#sed -i '1s/^/VERSION='$$new_version'\n- [ ] \n/' ../CHANGELOG.md
-

@@ -2,6 +2,8 @@ VERSION=0.4.5
 
 - [x] Coderserver Version v4.16.0
 - [x] Ubuntu
+- [x] Workflow mit Artifakten
+- [x] Mit Release
 
 VERSION=0.4.4
 

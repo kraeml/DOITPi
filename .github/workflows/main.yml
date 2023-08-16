@@ -28,9 +28,15 @@ jobs:
     - name: Install Dependencies remove not needed directories
       run: |
         sudo apt-get update
-        sudo apt-get install --yes coreutils p7zip-full qemu-user-static
+        sudo apt-get install --yes coreutils p7zip-full qemu-user-static pv time
         sudo rm -rf /usr/local/lib/android
+        sudo rm -rf /usr/local/node_modules
         sudo rm -rf /opt/hostedtoolcache/CodeQL
+        sudo rm -rf /opt/hostedtoolcache/go
+        sudo rm -rf /opt/hsotedtoolcache/Python /usr/local/.ghcup /usr/local/share/chromium
+        sudo docker image rm node:18 node:14 node:16 buildpack-deps:bullseye buildpack-deps:buster
+        sudo docker system prune --force
+        sudo docker volume prune --force
         df -h
 
     - name: Checkout CustomPiOS
@@ -44,6 +50,10 @@ jobs:
       with:
         path: repository
         submodules: true
+
+    - name: Enforce and detach the filesystem from the filesystem hierarchy.
+      run: |
+        sed -i 's/sudo umount $m/sudo umount --lazy --force $m/g' ./CustomPiOS/src/common.sh
 
     - name: Update CustomPiOS Paths
       run: |
@@ -68,25 +78,16 @@ jobs:
         cat $GITHUB_OUTPUT
       id: release_name
 
-    - name: Download Ubuntu Image
-      run: |
-        cd repository/src/image-ubuntu_arm64
-        wget --continue --quiet --trust-server-names 'https://cdimage.ubuntu.com/releases/22.04/release/ubuntu-22.04.2-preinstalled-server-arm64+raspi.img.xz'
-
-    - name: Build ubuntu Image
+    - name: Build Images
       run: |
         sudo modprobe loop
         cd repository/src
         echo "Plattenplatz vor Build"
         df -h
-        make build_ubuntu
+        time sudo make all
         echo "Plattenplatz nach Build"
         df -h
 
-    - name: Remove Ubuntu Image
-      run: |
-        cd repository/src/image-ubuntu_arm64
-        rm *
 
     - name: Create ubuntu_arm64 image
       id: get_ubuntu_arm64_info
@@ -106,26 +107,6 @@ jobs:
         path: ${{ steps.get_ubuntu_arm64_info.outputs.image }}
         name: ${{ steps.get_ubuntu_arm64_info.outputs.image }}
 
-    - name: Download Raspbian arm64 Image
-      run: |
-        cd repository/src/image-raspios_lite_arm64
-        wget --continue --quiet  --trust-server-names 'https://downloads.raspberrypi.org/raspios_lite_arm64_latest'
-
-    - name: Build arm64 Image
-      run: |
-        sudo modprobe loop
-        cd repository/src
-        echo "Plattenplatz vor Build"
-        df -h
-        make build_arm64
-        echo "Plattenplatz nach Build"
-        df -h
-
-    - name: Remove Raspbian arm64 Image
-      run: |
-        cd repository/src/image-raspios_lite_arm64
-        rm *
-
     - name: Create arm64 image
       id: get_arm64_info
       run: |
@@ -143,26 +124,6 @@ jobs:
       with:
         path: ${{ steps.get_arm64_info.outputs.image }}
         name: ${{ steps.get_arm64_info.outputs.image }}
-
-    - name: Download Raspbian Image
-      run: |
-        cd repository/src/image
-        wget --continue --quiet  --trust-server-names 'https://downloads.raspberrypi.org/raspios_lite_armhf_latest'
-    
-    - name: Build armhf Image
-      run: |
-        sudo modprobe loop
-        cd repository/src
-        echo "Plattenplatz vor Build"
-        df -h
-        make build
-        echo "Plattenplatz nach Build"
-        df -h
-
-    - name: Remove Raspbian Image
-      run: |
-        cd repository/src/image
-        rm *
 
     - name: Create armhf image
       id: get_armhf_info
