@@ -25,6 +25,10 @@ custompios_pre:
 	@sed -i 's/sudo umount $m/sudo umount --lazy --force $m/g' ../../CustomPiOS/src/common.sh
 
 build_all: | custompios_pre armhf arm64
+	@sync
+	@sleep 10
+	$(MAKE) ubuntu
+
 
 build_clean: clean_all build_all
 
