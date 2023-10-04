@@ -5,6 +5,9 @@ VERSION=0.4.6
    - [ ] Codeserver 
 - [ ] Software-Pakete unter Ubuntu
    - [ ] pigpio und pigpiod
+- [ ] autohotspot einrichten
+   - [x] Auto-Hotspot  
+      Dies ist ein Modul, das Ihre Himbeere zu einem WLAN-Hotspot macht, wenn sich das WLAN nicht mit einem Netzwerk verbindet. Wenn ein Ethernet-Kabel angeschlossen ist, leitet es die Verbindung weiter. Ursprünglich auf dieser Anleitung. Muss in einem disable-servicesModulblock.
    
 VERSION=0.4.5
 
