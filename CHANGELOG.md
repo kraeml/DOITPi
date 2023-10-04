@@ -1,3 +1,11 @@
+VERSION=0.4.6
+
+- [x] Codeserver Version v4.16.1
+- [ ] Ubuntu user id 1000 Default user 1001 ändern für
+   - [ ] Codeserver 
+- [ ] Software-Pakete unter Ubuntu
+   - [ ] pigpio und pigpiod
+   
 VERSION=0.4.5
 
 - [x] Coderserver Version v4.16.0

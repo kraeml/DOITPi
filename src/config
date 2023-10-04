@@ -29,6 +29,6 @@ export PKGUPGRADE_USE_PREINSTALLER=n # y/n
 export PKGUPGRADE_PRE_INSTALL_PKGS=""
 
 # ToDo Cockpit-install mit festem pi-USER
-export MODULES="base(network,mybase,autohotspot,pythongpio,platformio,docker,devops,homeautomation,pkgupgrade)"
+export MODULES="base(network,mybase,disable-services(autohotspot),pythongpio,platformio,docker,devops,homeautomation,pkgupgrade)"
 
 export DOCKER_COMPOSE=no

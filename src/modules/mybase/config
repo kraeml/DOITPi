@@ -3,7 +3,7 @@ MYBASE_PKGS="screen tree git vim nmap build-essential rclone\
                 ssh-import-id dphys-swapfile etckeeper avahi-utils \
                 git-flow python3-venv golang"
                 
-MYBASE_CODESERVER_VERSION="4.16.0"
+MYBASE_CODESERVER_VERSION="4.16.1"
 MYBASE_CODESERVER_ARCH=${BASE_ARCH}
 [ ${BASE_ARCH} = "armv7l" ] && MYBASE_CODESERVER_ARCH=armhf
 [ ${BASE_ARCH} = "aarch64" ] && MYBASE_CODESERVER_ARCH=arm64
