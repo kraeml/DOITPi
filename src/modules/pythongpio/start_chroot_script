@@ -30,7 +30,7 @@ echo "echo "From here the PYTHONGPIO-Module starts""
 echo "$PYTHONGPIO_VAR"
 echo "$PYTHONGPIO_PKGS"
 
-apt_update_skip//github.com/GrazerComputerClub/Blockly-gPIo.git
+apt_update_skip
 check_install_pkgs ${PYTHONGPIO_PKGS}
 
 # ToDo Bootwait für ubuntu arm64
