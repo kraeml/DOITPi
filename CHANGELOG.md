@@ -1,6 +1,6 @@
 VERSION=0.4.6
 
-- [x] Codeserver Version v4.16.1
+- [ ] Codeserver Version v4.17.1
 - [ ] Ubuntu user id 1000 Default user 1001 ändern für
    - [ ] Codeserver 
 - [ ] Software-Pakete unter Ubuntu
@@ -8,6 +8,8 @@ VERSION=0.4.6
 - [ ] autohotspot einrichten
    - [x] Auto-Hotspot  
       Dies ist ein Modul, das Ihre Himbeere zu einem WLAN-Hotspot macht, wenn sich das WLAN nicht mit einem Netzwerk verbindet. Wenn ein Ethernet-Kabel angeschlossen ist, leitet es die Verbindung weiter. Ursprünglich auf dieser Anleitung. Muss in einem disable-servicesModulblock.
+
+   - [ ] Auto-Hotspot für ubuntu nicht möglich da kein /etc/network/interfaces
    
 VERSION=0.4.5
 

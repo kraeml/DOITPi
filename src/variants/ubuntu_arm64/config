@@ -5,6 +5,7 @@ export BASE_ARCH=aarch64
 
 #export MODULES="base(network,disable-services(docker, ubuntudocker), usage-statistics)"
 # ToDo Changes im src/config wegen auto-hotspot überschreiben. Automatisierung notwendig
+# export MODULES="base(network,mybase,disable-services(auto-hotspot),pythongpio,platformio,docker,devops,homeautomation,pkgupgrade)"
 export MODULES="base(network,mybase,pythongpio,platformio,docker,devops,homeautomation,pkgupgrade)"
 
 # if set will enlarge root parition prior to build by provided size in MB
