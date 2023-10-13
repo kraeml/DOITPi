@@ -1,3 +1,14 @@
+VERSION=0.4.6
+
+- [x] Prometheus 2.47.1
+- [x] Grafana 10.1.5
+- [x] RaspianOs bookworm
+- [x] Codeserver Version v4.17.1
+- [x] autohotspot einrichten
+   - [x] Auto-Hotspot  
+      Dies ist ein Modul, das Ihre Himbeere zu einem WLAN-Hotspot macht, wenn sich das WLAN nicht mit einem Netzwerk verbindet. Wenn ein Ethernet-Kabel angeschlossen ist, leitet es die Verbindung weiter. Ursprünglich auf dieser Anleitung. Muss in einem disable-servicesModulblock.
+
+   
 VERSION=0.4.5
 
 - [x] Coderserver Version v4.16.0
