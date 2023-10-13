@@ -1,5 +1,7 @@
 VERSION=0.4.6
 
+- [x] Prometheus 2.47.1
+- [x] Grafana 10.1.5
 - [x] RaspianOs bookworm
 - [x] Codeserver Version v4.17.1
 - [x] autohotspot einrichten
