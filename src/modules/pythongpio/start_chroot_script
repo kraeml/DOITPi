@@ -33,7 +33,7 @@ echo "$PYTHONGPIO_PKGS"
 apt_update_skip
 check_install_pkgs ${PYTHONGPIO_PKGS}
 
-# ToDo Bootwait für ubuntu arm64
+echo 'Activate i2c'
 if [ ${BASE_DISTRO} != "ubuntu" ]
 then
   sed -i -E 's;^#(dtparam=i2c_arm=on);\1;g' /boot/config.txt
@@ -41,7 +41,7 @@ then
 fi
 usermod -aG bluetooth ${BASE_USER}
 
-# ToDo Bootwait für ubuntu arm64
+echo 'Activate spi'
 if [ ${BASE_DISTRO} != "ubuntu" ]
 then
   for i in "do_i2c" "do_spi" "do_serial"
@@ -57,7 +57,7 @@ popd
 su - -c "cd /home/${BASE_USER}/bin && virtualenv -p python3 jupyter-venv" "${BASE_USER}"
 su - -c "source /home/${BASE_USER}/bin/jupyter-venv/bin/activate && pip install -U pip wheel && pip install -U jupyterlab notebook qtconsole ipywidgets" "${BASE_USER}"
 
-# Unpack root at the end, so files are modified before
+echo 'Unpack root at the end, so files are modified before'
 if [ -d /filesystem/root ]
 then
   unpack /filesystem/root /

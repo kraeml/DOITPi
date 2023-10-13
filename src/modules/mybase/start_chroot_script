@@ -39,6 +39,7 @@ then
     apt-get remove cryptsetup
 fi
 
+echo 'Install doitpi test environment'
 pushd  /home/${BASE_USER}/workspace
   gitclone MYBASE_DOITPI_TEST_REPO
   chown -R "${BASE_USER}": ./doitpi-test
@@ -56,9 +57,10 @@ locale-gen
 
 echo 'Install Codeserver'
 TEMP_DEB="$(mktemp)" && wget --quiet --output-document="$TEMP_DEB" \
-                    ${MYBASE_CODESERVER_URL} && sudo dpkg --install "$TEMP_DEB"
+                    ${MYBASE_CODESERVER_URL} && dpkg --install "$TEMP_DEB"
 rm -f "$TEMP_DEB"
 
+echo 'Configure dhclient'
 if [ -f /etc/dhcp/dhclient.conf ]
 then
     echo 'Do not try too long to reach the DHCPD server (blocks booting)'
@@ -67,13 +69,19 @@ then
     # Reduce this time to 20 sec.
     sed -i "s/#retry 60;/retry 20;/g" /etc/dhcp/dhclient.conf
     echo "Disable wait for network"
-    # ToDo Bootwait für ubuntu arm64
-    if [ ${BASE_DISTRO} != "ubuntu" ]
+    echo "In bookworm not working"
+    if false
     then
-        set_config_var do_boot_wait 1
-        raspi-config nonint do_boot_wait 1
+        # ToDo Bootwait für ubuntu arm64
+        if [ ${BASE_DISTRO} != "ubuntu" ]
+        then
+            set_config_var do_boot_wait 1
+            raspi-config nonint do_boot_wait 1
+        fi
     fi
 fi
+
+echo 'Setup gpu memory'
 # ToDo Ubuntu nicht machen?
 echo "gpu_mem=16M" >> /boot/config.txt
 # Unpack root at the end, so files are modified before

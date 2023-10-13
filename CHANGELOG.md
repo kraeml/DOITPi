@@ -1,6 +1,6 @@
 VERSION=0.4.6
 
-- [ ] Codeserver Version v4.17.1
+- [x] Codeserver Version v4.17.1
 - [ ] Ubuntu user id 1000 Default user 1001 ändern für
    - [ ] Codeserver 
 - [ ] Software-Pakete unter Ubuntu
