@@ -69,9 +69,10 @@ then
     # Reduce this time to 20 sec.
     sed -i "s/#retry 60;/retry 20;/g" /etc/dhcp/dhclient.conf
     echo "Disable wait for network"
-    echo "In bookworm not working"
-    if false
+    if grep bookworm /etc/os-release
     then
+        echo "Bootwait not working in bookworm"
+    else
         # ToDo Bootwait für ubuntu arm64
         if [ ${BASE_DISTRO} != "ubuntu" ]
         then

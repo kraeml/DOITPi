@@ -1,6 +1,12 @@
 export DIST_NAME=DOITPi
 export DIST_VERSION=v0.4.5
 
+# Raspios 2023-05-03 bullseye
+export RASPIOS_DATE="2023-10-10"
+export RASPIOS_NAME="bookworm"
+export UBUNTU_RELEASE="22.04"
+export UBUNUT_PATCHLEVEL="3"
+
 # rpi-imager json generator settings
 export RPI_IMAGER_NAME="${DIST_NAME}"
 export RPI_IMAGER_DESCRIPTION="A raspberrypi distro for DevOps and IoT built with CustomPiOS"
