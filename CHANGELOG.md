@@ -1,3 +1,7 @@
+Version=0.4.6-1
+- [x] Grafana für arm64 10.1.5
+- [x] Grafana für armhf 10.1.2
+
 VERSION=0.4.6
 
 - [x] Prometheus 2.47.1
