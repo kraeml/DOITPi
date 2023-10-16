@@ -12,10 +12,14 @@ DEVOPS_ARCH_GRAFANA=${BASE_ARCH}
 [ ${BASE_ARCH} = "aarch64" ] && DEVOPS_ARCH_GRAFANA=arm64
 
 DEVOPS_GRAFANA_VERSION="10.1.5"
+# Grafana nur bis 10.1.2 für armhf
+[ ${BASE_ARCH} = "armv7l" ] && DEVOPS_GRAFANA_VERSION="10.1.2"
+
 DEVOPS_GRAFANA="grafana-enterprise_${DEVOPS_GRAFANA_VERSION}_${DEVOPS_ARCH_GRAFANA}"
 
 DEVOPS_PKGS="screen tmux tree ansible yamllint \
                 expect git vim nmap tree net-tools \
                 lxc lxc-templates unzip zip build-essential \
                 ssh-import-id cmake\
-                python3-testinfra adduser libfontconfig1"
+                python3-testinfra \
+                adduser libfontconfig1 musl"
