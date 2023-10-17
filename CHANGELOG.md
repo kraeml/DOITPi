@@ -1,3 +1,7 @@
+VERSION=0.4.7
+
+- [ ] Grafana für armhf und arm64 unterschiedlich, hotfix build ging nicht
+
 Version=0.4.6-1
 - [x] Grafana für arm64 10.1.5
 - [x] Grafana für armhf 10.1.2
