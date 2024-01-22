@@ -1,5 +1,5 @@
 MAKEFLAGS += "--jobs=$(shell nproc)"
-RASPIOS_DATE ?= 2023-10-10
+RASPIOS_DATE ?= 2023-12-11
 RASPIOS_NAME ?= bookworm
 
 RASPIOS_LITE_ARMHF_VERSION = ${RASPIOS_DATE}-raspios-${RASPIOS_NAME}-armhf-lite
@@ -85,7 +85,7 @@ ${WORKSPACE_ARMHF_NAME}.img.xz: | ${WORKSPACE_ARMHF_NAME}.img
 	@sudo rm ./${WORKSPACE_ARMHF_NAME}.img
 
 ${WORKSPACE_ARM64_NAME}.img: | ${IMAGE_NAME_ARM64}.img.xz
-	@sudo bash ./build_dist raspios_lite_arm64
+	@sudo bash -x ./build_dist raspios_lite_arm64
 	@sync
 
 ${WORKSPACE_ARM64_NAME}.img.xz: | ${WORKSPACE_ARM64_NAME}.img
