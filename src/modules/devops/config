@@ -1,5 +1,9 @@
 DEVOPS_VAR="DevOps Variable"
 
+DEVOPS_ARCH_DOCKER=${BASE_ARCH}
+[ ${BASE_ARCH} = "armv7l" ] && DEVOPS_ARCH_DOCKER=armv7
+[ ${BASE_ARCH} = "aarch64" ] && DEVOPS_ARCH_DOCKER=arm64
+
 DEVOPS_ARCH_PROMETHEUS=${BASE_ARCH}
 [ ${BASE_ARCH} = "armv7l" ] && DEVOPS_ARCH_PROMETHEUS=armv7
 [ ${BASE_ARCH} = "aarch64" ] && DEVOPS_ARCH_PROMETHEUS=arm64
@@ -22,4 +26,5 @@ DEVOPS_PKGS="screen tmux tree ansible yamllint \
                 lxc lxc-templates unzip zip build-essential \
                 ssh-import-id cmake\
                 python3-testinfra \
-                adduser libfontconfig1 musl"
+                adduser libfontconfig1 musl \
+                docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin"
