@@ -1,14 +1,33 @@
 # DOITPi
 
-**D**ev  
-**O**ps  
+**D**ev**O**ps  
 **I**o**T**  
-Raspberry**Pi**
+**Pi** - RaspberryPi
+
+Zugriff über Browser oder SSH.
+
+| DevOps | IoT | Pi |
+|--------|-----|----|
+| - Kollaboration| - vernetzte Geräte | - Betriebssystem |
+| - Automatisierung | - Smart Home | - Netzwerk |
+| - Kontinuierliche Bereitstellung (CD/CI) | - Daten sammeln auswerten | - Headless Server |
+| - Überwachung und Feedback | - Dashboard | - Backup |
+| - Skalierbarkeit | - Automatisierung | - Power Supply |
+
 
 [DOITPi][doitpi] ist eine DevOps-IoT-Toolsammlung auf Basis von Raspberry Pi OS Lite. Gebaut wird DOITPi mit Hilfe von [CustomPiOS][custompios].
 
-* [Codeserver][codeserver]  
-    Führt VS Code auf dem Raspberry aus. Editiert wird über den Browser.
+## Themen
+
+* Systemadministration
+
+* Netzwerk
+
+* Elektrotechnik
+
+* Programmierung (Microcntroller)
+
+## DevOps
 
 * [Ansible][ansible]  
     Ansible konfiguriert Systeme, stellt Software bereit. Somit sind fortschrittliche IT-Aufgaben, wie kontinuierliche Bereitstellungen oder rollierende Updates, ohne Ausfallzeiten möglich.
@@ -16,45 +35,97 @@ Raspberry**Pi**
 * [testinfra][testinfra]  
     Mit Testinfra werden Unit-Tests in Python geschrieben, um den aktuellen Zustand eines Server zu testen, die mit Management-Tools wie Salt, Ansible, Puppet, Chef usw. konfiguriert wurden.
 
+* [Codeserver][codeserver]  
+    Führt VS Code auf dem Raspberry aus. Editiert wird über den Browser.
+
 * LXC
 
 * Docker
 
-    * [IOTstack][iotstack]  
-        IOTstack erstellt docker-compose Dateien, zur einfachen Erstellung und Wartung von IoT-Stacks auf dem Raspberry Pi.  
-        Folgendes kann u.U. eingerichtet werden:
+* Git
 
-        * [Node-Red][nodered]  
-            Node-RED ist ein Programmierwerkzeug, mit dem sich Hardwaregeräte, APIs und Online-Dienste auf neue und interessante Weise miteinander verbinden lassen.
-        
-        * [Heimdall][heimdall]  
-            Heimdall Application Dashboard ist ein Dashboard für Webanwendungen. Es es nicht auf Anwendungen beschränkt, es können auch Weblinks zu allem hinzugefügt werden.
-        
-        * [Eclipse Mosquitto][mosquitto]  
-            Eclipse Mosquitto ist ein quelloffener Message Broker, der die MQTT-Protokollversionen 5.0, 3.1.1 und 3.1 implementiert. Mosquitto ist leichtgewichtig und eignet sich für den Einsatz auf allen Geräten, von stromsparenden Einplatinencomputern bis hin zu kompletten Servern.   
+* Low Code
 
+* Cockpit
 
-        * Monitoring mit Telegraf, InfluxDB und Grafana
+* GitOps
 
-        * [ESP Home][esphome]  
-            ESPHome ist ein System, mit dem ESP8266/ESP32 durch einfache, aber leistungsfähige Konfigurationsdateien (YAML) steuern und über Home Automation Systeme fernsteuern können.
-
-        * Und vieles mehr
-
+* Proxmox
 
 * [Cockpit][cockpit]  
     Cockpit ist eine webbasierte grafische Oberfläche für Server.
 
-* [autohotspot][autohotspot]  
-    Das Skript richtet automatisch einen Hotspot ein, wenn kein WLAN gefunden wird.
+## IoT
+
+* [IOTstack][iotstack]  
+        IOTstack erstellt docker-compose Dateien, zur einfachen Erstellung und Wartung von IoT-Stacks auf dem Raspberry Pi.  
+        Folgendes kann u.U. eingerichtet werden:
+
+* [Node-Red][nodered]  
+    Node-RED ist ein Programmierwerkzeug, mit dem sich Hardwaregeräte, APIs und Online-Dienste auf neue und interessante Weise miteinander verbinden lassen.
+
+* [Heimdall][heimdall]  
+    Heimdall Application Dashboard ist ein Dashboard für Webanwendungen. Es es nicht auf Anwendungen beschränkt, es können auch Weblinks zu allem hinzugefügt werden.
+
+* [Eclipse Mosquitto][mosquitto]  
+    Eclipse Mosquitto ist ein quelloffener Message Broker, der die MQTT-Protokollversionen 5.0, 3.1.1 und 3.1 implementiert. Mosquitto ist leichtgewichtig und eignet sich für den Einsatz auf allen Geräten, von stromsparenden Einplatinencomputern bis hin zu kompletten Servern.   
+
+* Monitoring Dashboard
+    * Telegraf
+    * InfluxDB und 
+    * Grafana
+    * Prometheus
+
+* Vernetzte Geräte nit Platform.io
+
+    * Arduino
+    * ESP
+    * PI2040
+
+* [ESP Home][esphome]  
+    ESPHome ist ein System, mit dem ESP8266/ESP32 durch einfache, aber leistungsfähige Konfigurationsdateien (YAML) steuern und über Home Automation Systeme fernsteuern können.
+
+Weitere Projekte die auf DoItPi aufbauen:
+
+* Fischertechnik
+    * frduino
+    * ftswarm
+    * TX-PI
+
+* Solar für maker
+    * libre.solar
+    * MPPT
+    * STM32
+
+## Raspberry Pi
+
+* Linux
+
+* Netzwerke
+    * LAN
+    * WLAN
+    * Hotspot
+    * (P2P) VPN
+    * Reverse Proxy
+    * Letsencrypt
+
+* Headless
+    * SSH
+    * Webdienste
+
+* Backup
+
+* Power Supply
+    * USB-C Power Delivery
+    * Powerbank
+    * USV
 
 * PiGPIO Dienste
     * pigpiod
     * Setup i2c and other
     * [Blockly-gPIo][blocklypi]
 
-* MCU Development
-    * platformio
+## Programmiersprachen/DSL
 
 * Python
 
@@ -63,16 +134,27 @@ Raspberry**Pi**
 
     * virtualenv
 
+* Bash Skripte
+
+* YAML
+
 * Golang
 
-* Prometheus und Grafana
-    Diese werden nicht als Dienst eingerichtet.
+* Ruby/inspec.io
+
+* JavaScript/node-red
 
 * ...
 
-Unter [DOITPI Releas latest][doitpi-release] findet man das neuste Image.
+## LowCode
 
-Wegen Abhängigkeiten von `docker` kann z.Zt. nur eine `arm64` Version erstellt werden.
+* Blockly/Scratch
+
+* node-red
+
+* YAML
+
+Unter [DOITPI Releas latest][doitpi-release] findet man das neuste Image.
 
 
 [doitpi]: https://github.com/kraeml/doitpi
@@ -162,5 +244,3 @@ Um eine Variante auf der Maschine zu bauen, führen Sie einfach aus:
 cd src/vagrant
 run_vagrant_build.sh [Variante]
 ```
-
-

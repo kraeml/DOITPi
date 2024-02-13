@@ -38,6 +38,12 @@ build_all: | custompios_pre armhf arm64
 
 build_clean: clean_all build_all
 
+armhf_image: | ${WORKSPACE_ARMHF_NAME}.img
+
+arm64_image: | ${WORKSPACE_ARM64_NAME}.img
+
+ubuntu_image: | ${WORKSPACE_UBUNTU_NAME}.img
+
 armhf: | ${WORKSPACE_ARMHF_NAME}.img.xz
 
 arm64: | ${WORKSPACE_ARM64_NAME}.img.xz

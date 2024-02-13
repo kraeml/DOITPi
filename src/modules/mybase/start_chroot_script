@@ -33,7 +33,6 @@ echo "$MYBASE_PKGS"
 apt_update_skip
 check_install_pkgs ${MYBASE_PKGS}
 
-# ToDo Bootwait für ubuntu arm64
 if [ ${BASE_DISTRO} != "ubuntu" ]
 then
     apt-get remove cryptsetup
@@ -44,7 +43,7 @@ pushd  /home/${BASE_USER}/workspace
   gitclone MYBASE_DOITPI_ANSIBLE_REPO
   chown -R "${BASE_USER}": ./doitpi-ansible
   cd ./doitpi-ansible
-  LC_ALL=C.UTF-8 ansible-playbook --user ${BASE_USER} --tags ${MYBASE_DOITPI_ANSIBLE_REPO_TAGS} --limit lokal main.yaml
+  LC_ALL=C.UTF-8 ansible-playbook --extra-vars ansible_user_id=${BASE_USER} --tags ${MYBASE_DOITPI_ANSIBLE_REPO_TAGS} --limit lokal main.yaml
   cd -
   gitclone MYBASE_DOITPI_TEST_REPO
   chown -R "${BASE_USER}": ./doitpi-test
@@ -52,19 +51,6 @@ pushd  /home/${BASE_USER}/workspace
 popd
 
 echo 'Die locale werden mit ansible installiert'
-# sed -i -E 's;^#\s(de_DE.UTF-8.*);\1;g' /etc/locale.gen
-# sed -i -E 's;^#\s(en_US.UTF-8.*);\1;g' /etc/locale.gen
-# sed -i -E 's;^#\s(nl_NL.UTF-8.*);\1;g' /etc/locale.gen
-# sed -i -E 's;^#\s(fr_FR.UTF-8.*);\1;g' /etc/locale.gen
-# locale-gen
-
-# Geht nicht in chroot
-#localectl set-locale LANG=de_DE.UTF-8
-
-echo 'Install Codeserver'
-TEMP_DEB="$(mktemp)" && wget --quiet --output-document="$TEMP_DEB" \
-                    ${MYBASE_CODESERVER_URL} && dpkg --install "$TEMP_DEB"
-rm -f "$TEMP_DEB"
 
 echo 'Configure dhclient'
 if [ -f /etc/dhcp/dhclient.conf ]
@@ -74,18 +60,6 @@ then
     # By default, the client retries to contact the DHCP server after five min.
     # Reduce this time to 20 sec.
     sed -i "s/#retry 60;/retry 20;/g" /etc/dhcp/dhclient.conf
-    echo "Disable wait for network"
-    if grep bookworm /etc/os-release
-    then
-        echo "Bootwait not working in bookworm"
-    else
-        # ToDo Bootwait für ubuntu arm64
-        if [ ${BASE_DISTRO} != "ubuntu" ]
-        then
-            set_config_var do_boot_wait 1
-            raspi-config nonint do_boot_wait 1
-        fi
-    fi
 fi
 
 echo 'Setup gpu memory'
@@ -99,5 +73,5 @@ if [ -d /filesystem/root ]
 then
     unpack /filesystem/root /
 fi
-systemctl enable codeserver.service
+# systemctl enable codeserver.service
 systemctl enable firstboot.service
