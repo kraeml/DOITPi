@@ -1,5 +1,5 @@
 MAKEFLAGS += "--jobs=$(shell nproc)"
-RASPIOS_DATE ?= 2023-10-10
+RASPIOS_DATE ?= 2023-12-11
 RASPIOS_NAME ?= bookworm
 
 RASPIOS_LITE_ARMHF_VERSION = ${RASPIOS_DATE}-raspios-${RASPIOS_NAME}-armhf-lite
@@ -37,6 +37,12 @@ build_all: | custompios_pre armhf arm64
 
 
 build_clean: clean_all build_all
+
+armhf_image: | ${WORKSPACE_ARMHF_NAME}.img
+
+arm64_image: | ${WORKSPACE_ARM64_NAME}.img
+
+ubuntu_image: | ${WORKSPACE_UBUNTU_NAME}.img
 
 armhf: | ${WORKSPACE_ARMHF_NAME}.img.xz
 

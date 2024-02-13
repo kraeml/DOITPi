@@ -44,7 +44,7 @@ usermod -aG bluetooth ${BASE_USER}
 echo 'Activate spi'
 if [ ${BASE_DISTRO} != "ubuntu" ]
 then
-  for i in "do_i2c" "do_spi" "do_serial"
+  for i in "do_i2c" "do_spi"
   do
     raspi-config nonint $i 0
   done

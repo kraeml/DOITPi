@@ -2,7 +2,7 @@ export DIST_NAME=DOITPi
 export DIST_VERSION=v0.4.7
 
 # Raspios 2023-05-03 bullseye
-export RASPIOS_DATE="2023-10-10"
+export RASPIOS_DATE="2023-12-11"
 export RASPIOS_NAME="bookworm"
 export UBUNTU_RELEASE="22.04"
 export UBUNUT_PATCHLEVEL="3"
@@ -35,6 +35,6 @@ export PKGUPGRADE_USE_PREINSTALLER=n # y/n
 export PKGUPGRADE_PRE_INSTALL_PKGS=""
 
 # ToDo Cockpit-install mit festem pi-USER
-export MODULES="base(network,mybase,disable-services(auto-hotspot),pythongpio,platformio,docker,devops,homeautomation,pkgupgrade)"
+export MODULES="base(network,mybase,pythongpio,platformio,devops,homeautomation,pkgupgrade)"
 
 export DOCKER_COMPOSE=no
