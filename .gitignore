@@ -5,3 +5,4 @@ custompios_path
 .vagrant
 src/config.*
 *.swp
+tmp/
