@@ -38,6 +38,8 @@ Zugriff über Browser oder SSH.
 * [Codeserver][codeserver]  
     Führt VS Code auf dem Raspberry aus. Editiert wird über den Browser.
 
+* [Etckeeper][etckeeper]
+
 * LXC
 
 * Docker
@@ -172,6 +174,7 @@ Unter [DOITPI Releas latest][doitpi-release] findet man das neuste Image.
 [mosquitto]: https://mosquitto.org/
 [esphome]: https://esphome.io/
 [jupyterlab]: http://jupyter.org/
+[Etckeeper]: https://manpages.debian.org/bullseye/etckeeper/etckeeper.8.en.html
 
 ## Mitentwickeln?
 

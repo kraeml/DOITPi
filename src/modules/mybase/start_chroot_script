@@ -43,7 +43,7 @@ pushd  /home/${BASE_USER}/workspace
   gitclone MYBASE_DOITPI_ANSIBLE_REPO
   chown -R "${BASE_USER}": ./doitpi-ansible
   cd ./doitpi-ansible
-  LC_ALL=C.UTF-8 ansible-playbook --extra-vars ansible_user_id=${BASE_USER} --tags ${MYBASE_DOITPI_ANSIBLE_REPO_TAGS} --limit lokal main.yaml
+  LC_ALL=C.UTF-8 ansible-playbook --extra-vars ansible_user_id=${BASE_USER} --extra-vars ansible_user_dir=/home/${BASE_USER} --tags ${MYBASE_DOITPI_ANSIBLE_REPO_TAGS} --limit lokal main.yaml
   cd -
   gitclone MYBASE_DOITPI_TEST_REPO
   chown -R "${BASE_USER}": ./doitpi-test
