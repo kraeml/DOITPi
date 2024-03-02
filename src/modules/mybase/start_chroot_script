@@ -39,17 +39,27 @@ then
 fi
 
 echo 'Install doitpi ansibele and test environment'
-pushd  /home/${BASE_USER}/workspace
+BASE_USER_HOME=/home/${BASE_USER}
+BASE_USER_WORKSPACE=${BASE_USER_HOME}/workspace
+
+cd ${BASE_USER_WORKSPACE}
   gitclone MYBASE_DOITPI_ANSIBLE_REPO
   chown -R "${BASE_USER}": ./doitpi-ansible
   cd ./doitpi-ansible
-  LC_ALL=C.UTF-8 ansible-playbook --extra-vars ansible_user_id=${BASE_USER} --tags ${MYBASE_DOITPI_ANSIBLE_REPO_TAGS} --limit lokal main.yaml
-  cd -
+  LC_ALL=C.UTF-8 ansible-playbook --extra-vars "ansible_user_id=${BASE_USER} ansible_user_dir=/home/${BASE_USER}" --tags ${MYBASE_DOITPI_ANSIBLE_REPO_TAGS} --limit lokal main.yaml
+
+cd ${BASE_USER_WORKSPACE}
   gitclone MYBASE_DOITPI_TEST_REPO
   chown -R "${BASE_USER}": ./doitpi-test
-  su -c "cd ./doitpi-test; python3 -m venv .venv; source .venv/bin/activate && pip install -r requirements.txt" "${BASE_USER}"
-popd
+  cd ./doitpi-test
+  su -c "python3 -m venv .venv; source .venv/bin/activate && pip install -r requirements.txt" "${BASE_USER}"
+  su -c "source .venv/bin/activate && pytest test_chroot.py" "${BASE_USER}"
 
+cd ${BASE_USER_WORKSPACE}
+  cd ./doitpi-ansible
+  LC_ALL=C.UTF-8 ansible-playbook --extra-vars "ansible_user_id=${BASE_USER} ansible_user_dir=/home/${BASE_USER}" --limit lokal pyenv.yaml
+
+chown -R ${BASE_USER}: ${BASE_USER_HOME}
 echo 'Die locale werden mit ansible installiert'
 
 echo 'Configure dhclient'
