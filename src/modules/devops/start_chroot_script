@@ -27,7 +27,7 @@ then
 fi
 
 echo "From here the DEVOPS-Module starts"
-echo "$DEVOPS_VAR"
+echo "$DEVOPS_VAR auf ${BASE_DISTRO}/${BASE_ARCH}"
 echo "$DEVOPS_PKGS"
 
 echo "Add Docker's official GPG key"

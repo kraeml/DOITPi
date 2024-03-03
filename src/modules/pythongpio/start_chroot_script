@@ -27,7 +27,7 @@ then
 fi
 
 echo "echo "From here the PYTHONGPIO-Module starts""
-echo "$PYTHONGPIO_VAR"
+echo "$PYTHONGPIO_VAR auf ${BASE_DISTRO}/${BASE_ARCH}"
 echo "$PYTHONGPIO_PKGS"
 
 apt_update_skip

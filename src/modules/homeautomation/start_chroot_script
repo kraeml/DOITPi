@@ -27,7 +27,7 @@ then
 fi
 
 echo "From here the Homeautomation-Module starts"
-echo "$HOMEAUTOMATION_VAR"
+echo "$HOMEAUTOMATION_VAR auf ${BASE_DISTRO}/${BASE_ARCH}"
 echo "$HOMEAUTOMATION_PKGS"
 
 apt_update_skip
