@@ -27,11 +27,30 @@ then
 fi
 
 echo "From here the DEVOPS-Module starts"
-echo "$DEVOPS_VAR"
+echo "$DEVOPS_VAR auf ${BASE_DISTRO}/${BASE_ARCH}"
 echo "$DEVOPS_PKGS"
+
+echo "Add Docker's official GPG key"
+apt-get update
+apt-get install ca-certificates curl
+install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/${BASE_DISTRO}/gpg -o /etc/apt/keyrings/docker.asc
+chmod a+r /etc/apt/keyrings/docker.asc
+
+echo "Add the repository to Apt sources"
+ARCH=debian
+if [ $(. /etc/os-release && echo "$ID") == "ubuntu" ]
+then
+    ARCH=ubuntu
+fi
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/${ARCH} $(. /etc/os-release && echo "$VERSION_CODENAME") stable" > /etc/apt/sources.list.d/docker.list
+apt-get update
+
 
 apt_update_skip
 check_install_pkgs ${DEVOPS_PKGS}
+
+usermod -aG docker ${BASE_USER}
 
 if [ -f /usr/local/bin/docker-compose -a ! -f /usr/bin/docker-compose ]
 then
@@ -43,6 +62,8 @@ if [ -d /filesystem/root ]
 then
     unpack /filesystem/root /
 fi
+
+LC_ALL=C.UTF-8 ansible --inventory localhost, --connection local --module-name ping localhost
 
 echo "Installing prometheus"
 

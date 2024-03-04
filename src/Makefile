@@ -1,5 +1,5 @@
 MAKEFLAGS += "--jobs=$(shell nproc)"
-RASPIOS_DATE ?= 2023-10-10
+RASPIOS_DATE ?= 2023-12-11
 RASPIOS_NAME ?= bookworm
 
 RASPIOS_LITE_ARMHF_VERSION = ${RASPIOS_DATE}-raspios-${RASPIOS_NAME}-armhf-lite
@@ -15,9 +15,10 @@ WORKSPACE_ARM64 = workspace-raspios_lite_arm64
 WORKSPACE_ARM64_NAME = ${WORKSPACE_ARM64}/${RASPIOS_LITE_ARM64_VERSION}
 
 UBUNTU_RELEASE ?= 22.04
-UBUNUT_PATCHLEVEL ?= 3
+UBUNUT_PATCHLEVEL ?= 4
 UBUNTU_SERVER_ARM64_VERSION = ubuntu-${UBUNTU_RELEASE}.${UBUNUT_PATCHLEVEL}-preinstalled-server-arm64+raspi
 IMAGE_UBUNTU = image-ubuntu_arm64
+
 IMAGE_NAME_UBUNTU = ${IMAGE_UBUNTU}/${UBUNTU_SERVER_ARM64_VERSION}
 WORKSPACE_UBUNTU = workspace-ubuntu_arm64
 WORKSPACE_UBUNTU_NAME = ${WORKSPACE_UBUNTU}/${UBUNTU_SERVER_ARM64_VERSION}
@@ -37,6 +38,12 @@ build_all: | custompios_pre armhf arm64
 
 
 build_clean: clean_all build_all
+
+armhf_image: | ${WORKSPACE_ARMHF_NAME}.img
+
+arm64_image: | ${WORKSPACE_ARM64_NAME}.img
+
+ubuntu_image: | ${WORKSPACE_UBUNTU_NAME}.img
 
 armhf: | ${WORKSPACE_ARMHF_NAME}.img.xz
 

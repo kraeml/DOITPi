@@ -1,14 +1,17 @@
 MYBASE_VAR="MyBase Variable"
-MYBASE_PKGS="screen tree git vim nmap build-essential rclone\
-                ssh-import-id dphys-swapfile etckeeper avahi-utils \
-                git-flow python3-venv golang"
+MYBASE_PKGS="ansible git"
                 
-MYBASE_CODESERVER_VERSION="4.17.1"
-MYBASE_CODESERVER_ARCH=${BASE_ARCH}
-[ ${BASE_ARCH} = "armv7l" ] && MYBASE_CODESERVER_ARCH=armhf
-[ ${BASE_ARCH} = "aarch64" ] && MYBASE_CODESERVER_ARCH=arm64
-MYBASE_CODESERVER_URL="https://github.com/coder/code-server/releases/download/v${MYBASE_CODESERVER_VERSION}/code-server_${MYBASE_CODESERVER_VERSION}_${MYBASE_CODESERVER_ARCH}.deb"
+# MYBASE_CODESERVER_VERSION="4.20.0"
+# MYBASE_CODESERVER_ARCH=${BASE_ARCH}
+# [ ${BASE_ARCH} = "armv7l" ] && MYBASE_CODESERVER_ARCH=armhf
+# [ ${BASE_ARCH} = "aarch64" ] && MYBASE_CODESERVER_ARCH=arm64
+# MYBASE_CODESERVER_URL="https://github.com/coder/code-server/releases/download/v${MYBASE_CODESERVER_VERSION}/code-server_${MYBASE_CODESERVER_VERSION}_${MYBASE_CODESERVER_ARCH}.deb"
 
 MYBASE_DOITPI_TEST_REPO_SHIP="https://github.com/kraeml/doitpi-test.git"
 MYBASE_DOITPI_TEST_REPO_BUILD=
 MYBASE_DOITPI_TEST_REPO_BRANCH=main
+
+MYBASE_DOITPI_ANSIBLE_REPO_SHIP="https://codeberg.org/kraeml/doitpi-ansible.git"
+MYBASE_DOITPI_ANSIBLE_REPO_BUILD=
+MYBASE_DOITPI_ANSIBLE_REPO_BRANCH=master
+MYBASE_DOITPI_ANSIBLE_REPO_TAGS="mybase"

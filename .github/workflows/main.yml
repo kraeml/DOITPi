@@ -34,19 +34,18 @@ jobs:
         sudo rm -rf /opt/hostedtoolcache/CodeQL
         sudo rm -rf /opt/hostedtoolcache/go
         sudo rm -rf /opt/hsotedtoolcache/Python /usr/local/.ghcup /usr/local/share/chromium
-        sudo docker image rm node:18 node:14 node:16 buildpack-deps:bullseye buildpack-deps:buster
         sudo docker system prune --force
         sudo docker volume prune --force
         df -h
 
     - name: Checkout CustomPiOS
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         repository: 'guysoft/CustomPiOS'
         path: CustomPiOS
 
     - name: Checkout Project Repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         path: repository
         submodules: true
@@ -100,7 +99,7 @@ jobs:
         df -h
 
     - name: Uploading arm64 ubuntu image as artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       env:
         GITHUB_TOKEN: ${{ github.token }}
       with:
@@ -118,7 +117,7 @@ jobs:
         df -h
 
     - name: Uploading arm64 image as artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       env:
         GITHUB_TOKEN: ${{ github.token }}
       with:
@@ -136,7 +135,7 @@ jobs:
         df -h
 
     - name: Uploading armhf image as artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       env:
         GITHUB_TOKEN: ${{ github.token }}
       with:
