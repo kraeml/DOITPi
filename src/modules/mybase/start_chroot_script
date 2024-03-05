@@ -38,29 +38,29 @@ then
     apt-get remove cryptsetup
 fi
 
-echo 'Install doitpi ansibele and test environment'
+echo 'Install doitpi ansible and test environment'
 BASE_USER_HOME=/home/${BASE_USER}
 BASE_USER_WORKSPACE=${BASE_USER_HOME}/workspace
+# Für ansible-playbook default locale vorgeben
+export LC_ALL=C.UTF-8
 
 cd ${BASE_USER_WORKSPACE}
   gitclone MYBASE_DOITPI_ANSIBLE_REPO
-  chown -R "${BASE_USER}": ./doitpi-ansible
+  chown --recursive "${BASE_USER}": ${BASE_USER_HOME}
   cd ./doitpi-ansible
-  LC_ALL=C.UTF-8 ansible-playbook --extra-vars "ansible_user_id=${BASE_USER} ansible_user_dir=/home/${BASE_USER}" --tags ${MYBASE_DOITPI_ANSIBLE_REPO_TAGS} --limit lokal main.yaml
+  # HOME für pyenv Rolle setzen
+  HOME=${BASE_USER_HOME} ansible-playbook --extra-vars "ansible_user_id=${BASE_USER} ansible_user_dir=${BASE_USER_HOME}" --tags ${MYBASE_DOITPI_ANSIBLE_REPO_TAGS} --limit lokal main.yaml
+
+chown --recursive ${BASE_USER}: ${BASE_USER_HOME}
 
 cd ${BASE_USER_WORKSPACE}
   gitclone MYBASE_DOITPI_TEST_REPO
-  chown -R "${BASE_USER}": ./doitpi-test
+  chown --recursive "${BASE_USER}": ./doitpi-test
   cd ./doitpi-test
   su -c "python3 -m venv .venv; source .venv/bin/activate && pip install -r requirements.txt" "${BASE_USER}"
   su -c "source .venv/bin/activate && pytest test_chroot.py" "${BASE_USER}"
 
-cd ${BASE_USER_WORKSPACE}
-  cd ./doitpi-ansible
-  LC_ALL=C.UTF-8 ansible-playbook --extra-vars "ansible_user_id=${BASE_USER} ansible_user_dir=/home/${BASE_USER}" --limit lokal pyenv.yaml
-
-chown -R ${BASE_USER}: ${BASE_USER_HOME}
-echo 'Die locale werden mit ansible installiert'
+chown --recursive ${BASE_USER}: ${BASE_USER_HOME}
 
 echo 'Configure dhclient'
 if [ -f /etc/dhcp/dhclient.conf ]
