@@ -1,3 +1,8 @@
+VERSION=0.4.9
+
+   - [x] Pyenv für Standarduser
+   - [x] Testinfra tests über doitpi-test
+
 VERSION=0.4.8
 
 - mybase mit ansible
