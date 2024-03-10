@@ -44,3 +44,7 @@ systemctl disable firstboot.service
 
 rm -rf /etc/systemd/system/firstboot.service
 rm -f /firstboot.sh
+
+sleep 20
+
+reboot
