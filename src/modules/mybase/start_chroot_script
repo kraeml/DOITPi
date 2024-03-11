@@ -86,4 +86,4 @@ then
     unpack /filesystem/root /
 fi
 # systemctl enable codeserver.service
-systemctl enable firstboot.service
+systemctl enable doitpi_firstboot.service

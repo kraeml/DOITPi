@@ -39,11 +39,11 @@ fi
 
 localectl set-locale LANG=de_DE.UTF-8
 
-# Löschen von firstboot
-systemctl disable firstboot.service
+# Löschen von doitpi_firstboot
+systemctl disable doitpi_firstboot.service
 
-rm -rf /etc/systemd/system/firstboot.service
-rm -f /firstboot.sh
+rm -rf /etc/systemd/system/doitpi_firstboot.service
+rm -f /doitpi_firstboot.sh
 
 sleep 20
 
