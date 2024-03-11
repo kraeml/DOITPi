@@ -57,10 +57,9 @@ cd ${BASE_USER_WORKSPACE}
   gitclone MYBASE_DOITPI_TEST_REPO
   chown --recursive "${BASE_USER}": ./doitpi-test
   cd ./doitpi-test
-  su -c "direnv allow ." "${BASE_USER}"
-  su -c "direnv exec pip install -r requirements.txt" "${BASE_USER}"
-  #su -c "python3 -m venv .venv; source .venv/bin/activate && pip install -r requirements.txt" "${BASE_USER}"
-  su -c "direnv exec pytest test_chroot.py" "${BASE_USER}"
+  su --command "direnv allow ." "${BASE_USER}"
+  su --command "direnv exec ${BASE_USER_WORKSPACE}/doitpi-test pip install -r requirements.txt" "${BASE_USER}"
+  su --command "direnv exec ${BASE_USER_WORKSPACE}/doitpi-test pytest ${BASE_USER_WORKSPACE}/doitpi-test/test_chroot.py" "${BASE_USER}"
 
 
 chown --recursive ${BASE_USER}: ${BASE_USER_HOME}
