@@ -84,6 +84,7 @@ clean_all: clean_images clean_workspaces
 
 ${WORKSPACE_ARMHF_NAME}.img: | ${IMAGE_NAME_ARMHF}.img.xz
 	@sudo bash ./build_dist raspios
+	@echo Build raspios_armhf finished
 	@sync
 
 ${WORKSPACE_ARMHF_NAME}.img.xz: | ${WORKSPACE_ARMHF_NAME}.img
@@ -93,6 +94,7 @@ ${WORKSPACE_ARMHF_NAME}.img.xz: | ${WORKSPACE_ARMHF_NAME}.img
 
 ${WORKSPACE_ARM64_NAME}.img: | ${IMAGE_NAME_ARM64}.img.xz
 	@sudo bash ./build_dist raspios_lite_arm64
+	@echo Build raspios_lite_arm64 finished
 	@sync
 
 ${WORKSPACE_ARM64_NAME}.img.xz: | ${WORKSPACE_ARM64_NAME}.img
@@ -102,6 +104,7 @@ ${WORKSPACE_ARM64_NAME}.img.xz: | ${WORKSPACE_ARM64_NAME}.img
 	
 ${WORKSPACE_UBUNTU_NAME}.img: | ${IMAGE_NAME_UBUNTU}.img.xz
 	@sudo bash ./build_dist ubuntu_arm64
+	@echo Build ubuntu_arm64 finished
 	@sync
 
 ${WORKSPACE_UBUNTU_NAME}.img.xz: | ${WORKSPACE_UBUNTU_NAME}.img
