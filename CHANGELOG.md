@@ -1,3 +1,9 @@
+VERSION=0.4.10
+
+   - [x] IoTstack im Benutzerverzeichnis
+   - [x] Direnv für borgbackup und doitpi-test
+   - [x] Direnv für Baseuser
+
 VERSION=0.4.9
 
    - [x] Pyenv für Standarduser

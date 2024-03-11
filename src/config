@@ -1,11 +1,11 @@
 export DIST_NAME=DOITPi
-export DIST_VERSION=v0.4.9
+export DIST_VERSION=v0.4.10
 
 # Raspios 2023-05-03 bullseye
 export RASPIOS_DATE="2023-12-11"
 export RASPIOS_NAME="bookworm"
 export UBUNTU_RELEASE="22.04"
-export UBUNUT_PATCHLEVEL="3"
+export UBUNUT_PATCHLEVEL="4"
 
 # rpi-imager json generator settings
 export RPI_IMAGER_NAME="${DIST_NAME}"
