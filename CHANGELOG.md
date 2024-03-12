@@ -1,5 +1,6 @@
 VERSION=0.4.11
 
+   - [x] neue softprops/action-gh-release eingefügt
 
 
 VERSION=0.4.10
