@@ -31,10 +31,10 @@ all: build_all
 custompios_pre:
 	@sed -i 's/sudo umount $m/sudo umount --lazy --force $m/g' ../../CustomPiOS/src/common.sh
 
-build_all: | custompios_pre armhf arm64
+build_all: | custompios_pre armhf_image arm64_image
 	@sync
 	@sleep 10
-	$(MAKE) ubuntu
+	$(MAKE) ubuntu_image
 
 
 build_clean: clean_all build_all

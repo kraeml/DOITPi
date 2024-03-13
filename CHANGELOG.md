@@ -1,3 +1,10 @@
+VERSION=0.4.11
+
+   - [x] neue softprops/action-gh-release eingefügt
+   - [x] Build ohne xz Kompremierung
+   - [x] IOTstack mit volumes Verzeichnis
+
+
 VERSION=0.4.10
 
    - [x] IoTstack im Benutzerverzeichnis
