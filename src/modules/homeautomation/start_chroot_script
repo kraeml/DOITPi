@@ -40,6 +40,7 @@ popd
 pushd /home/${BASE_USER}
   gitclone HOMEAUTOMATION_IOTSTACK_REPO
 popd
+mkdir /home/${BASE_USER}/IOTstack/volumes
 
 # Unpack root at the end, so files are modified before
 if [ -d /filesystem/root ]
