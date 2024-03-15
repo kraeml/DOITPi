@@ -1,3 +1,9 @@
+VERSION=0.4.12
+
+   - [x] Mit xz wegen Image Größe
+   - [ ] neue Raspain Version
+
+
 VERSION=0.4.11
 
    - [x] neue softprops/action-gh-release eingefügt
