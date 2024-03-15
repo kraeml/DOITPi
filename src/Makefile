@@ -1,5 +1,6 @@
 MAKEFLAGS += "--jobs=$(shell nproc)"
 RASPIOS_DATE ?= 2024-03-12
+RASPIOS_DATE_URL ?= 2024-03-13
 RASPIOS_NAME ?= bookworm
 
 RASPIOS_LITE_ARMHF_VERSION = ${RASPIOS_DATE}-raspios-${RASPIOS_NAME}-armhf-lite
@@ -53,11 +54,11 @@ ubuntu: | ${WORKSPACE_UBUNTU_NAME}.img.xz
 
 ${IMAGE_NAME_ARMHF}.img.xz:
 	@cd ./${IMAGE_ARMHF}/ ; \
-	wget --continue --quiet --trust-server-names 'https://downloads.raspberrypi.org/raspios_lite_armhf/images/raspios_lite_armhf-${RASPIOS_DATE}/${RASPIOS_DATE}-raspios-${RASPIOS_NAME}-armhf-lite.img.xz'
+	wget --continue --quiet --trust-server-names 'https://downloads.raspberrypi.org/raspios_lite_armhf/images/raspios_lite_armhf-${RASPIOS_DATE_URL/${RASPIOS_DATE}-raspios-${RASPIOS_NAME}-armhf-lite.img.xz'
 
 ${IMAGE_NAME_ARM64}.img.xz:
 	@cd ./${IMAGE_ARM64}/ ; \
-	wget --continue --quiet --trust-server-names 'https://downloads.raspberrypi.org/raspios_lite_arm64/images/raspios_lite_arm64-${RASPIOS_DATE}/${RASPIOS_DATE}-raspios-${RASPIOS_NAME}-arm64-lite.img.xz'
+	wget --continue --quiet --trust-server-names 'https://downloads.raspberrypi.org/raspios_lite_arm64/images/raspios_lite_arm64-${RASPIOS_DATE_URL}/${RASPIOS_DATE}-raspios-${RASPIOS_NAME}-arm64-lite.img.xz'
 
 ${IMAGE_NAME_UBUNTU}.img.xz:
 	@cd ./${IMAGE_UBUNTU} ; \
