@@ -92,7 +92,7 @@ ${WORKSPACE_ARMHF_NAME}.img: | ${IMAGE_NAME_ARMHF}.img.xz
 	@sync
 
 ${WORKSPACE_ARMHF_NAME}.img.xz: | ${WORKSPACE_ARMHF_NAME}.img
-	@pv ./${WORKSPACE_ARMHF_NAME}.img | sudo xz > ${WORKSPACE_ARMHF_NAME}.img.xz
+	@pv --progress ./${WORKSPACE_ARMHF_NAME}.img | sudo xz --extreme --threads=0 | sudo tee ${WORKSPACE_ARMHF_NAME}.img.xz >/dev/null
 	@sync
 	@sudo rm ./${WORKSPACE_ARMHF_NAME}.img
 
@@ -102,7 +102,7 @@ ${WORKSPACE_ARM64_NAME}.img: | ${IMAGE_NAME_ARM64}.img.xz
 	@sync
 
 ${WORKSPACE_ARM64_NAME}.img.xz: | ${WORKSPACE_ARM64_NAME}.img
-	@pv ./${WORKSPACE_ARM64_NAME}.img | sudo xz > ${WORKSPACE_ARM64_NAME}.img.xz
+	@pv --progress ./${WORKSPACE_ARM64_NAME}.img | sudo xz --extreme --threads=0 | sudo tee ${WORKSPACE_ARM64_NAME}.img.xz >/dev/null
 	@sync
 	@sudo rm ./${WORKSPACE_ARM64_NAME}.img
 	
@@ -112,7 +112,7 @@ ${WORKSPACE_UBUNTU_NAME}.img: | ${IMAGE_NAME_UBUNTU}.img.xz
 	@sync
 
 ${WORKSPACE_UBUNTU_NAME}.img.xz: | ${WORKSPACE_UBUNTU_NAME}.img
-	@pv ./${WORKSPACE_UBUNTU_NAME}.img | sudo xz > ${WORKSPACE_UBUNTU_NAME}.img.xz
+	@pv --progress ./${WORKSPACE_UBUNTU_NAME}.img | sudo xz --extreme --threads=0 | sudo tee ${WORKSPACE_UBUNTU_NAME}.img.xz >/dev/null
 	@sync
 	@sudo rm ./${WORKSPACE_UBUNTU_NAME}.img
 
