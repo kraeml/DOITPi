@@ -1,7 +1,4 @@
-VERSION=0.4.12
-
-
-VERSION=0.4.12
+VERSION=0.4.12.1
 
    - [x] Mit xz wegen Image Größe
    - [x] neue Raspain Version
