@@ -1,5 +1,6 @@
 MAKEFLAGS += "--jobs=$(shell nproc)"
-RASPIOS_DATE ?= 2023-12-11
+RASPIOS_DATE ?= 2024-03-12
+RASPIOS_DATE_URL ?= 2024-03-13
 RASPIOS_NAME ?= bookworm
 
 RASPIOS_LITE_ARMHF_VERSION = ${RASPIOS_DATE}-raspios-${RASPIOS_NAME}-armhf-lite
@@ -52,14 +53,17 @@ arm64: | ${WORKSPACE_ARM64_NAME}.img.xz
 ubuntu: | ${WORKSPACE_UBUNTU_NAME}.img.xz
 
 ${IMAGE_NAME_ARMHF}.img.xz:
+	@echo wget --continue --quiet --trust-server-names 'https://downloads.raspberrypi.org/raspios_lite_armhf/images/raspios_lite_armhf-${RASPIOS_DATE_URL}/${RASPIOS_DATE}-raspios-${RASPIOS_NAME}-armhf-lite.img.xz' 
 	@cd ./${IMAGE_ARMHF}/ ; \
-	wget --continue --quiet --trust-server-names 'https://downloads.raspberrypi.org/raspios_lite_armhf/images/raspios_lite_armhf-${RASPIOS_DATE}/${RASPIOS_DATE}-raspios-${RASPIOS_NAME}-armhf-lite.img.xz'
+	wget --continue --quiet --trust-server-names 'https://downloads.raspberrypi.org/raspios_lite_armhf/images/raspios_lite_armhf-${RASPIOS_DATE_URL}/${RASPIOS_DATE}-raspios-${RASPIOS_NAME}-armhf-lite.img.xz'
 
 ${IMAGE_NAME_ARM64}.img.xz:
+	@echo wget --continue --quiet --trust-server-names 'https://downloads.raspberrypi.org/raspios_lite_arm64/images/raspios_lite_arm64-${RASPIOS_DATE_URL}/${RASPIOS_DATE}-raspios-${RASPIOS_NAME}-arm64-lite.img.xz'
 	@cd ./${IMAGE_ARM64}/ ; \
-	wget --continue --quiet --trust-server-names 'https://downloads.raspberrypi.org/raspios_lite_arm64/images/raspios_lite_arm64-${RASPIOS_DATE}/${RASPIOS_DATE}-raspios-${RASPIOS_NAME}-arm64-lite.img.xz'
+	wget --continue --quiet --trust-server-names 'https://downloads.raspberrypi.org/raspios_lite_arm64/images/raspios_lite_arm64-${RASPIOS_DATE_URL}/${RASPIOS_DATE}-raspios-${RASPIOS_NAME}-arm64-lite.img.xz'
 
 ${IMAGE_NAME_UBUNTU}.img.xz:
+	@echo wget --continue --quiet --trust-server-names 'https://cdimage.ubuntu.com/releases/${UBUNTU_RELEASE}/release/${UBUNTU_SERVER_ARM64_VERSION}.img.xz'
 	@cd ./${IMAGE_UBUNTU} ; \
 	wget --continue --quiet --trust-server-names 'https://cdimage.ubuntu.com/releases/${UBUNTU_RELEASE}/release/${UBUNTU_SERVER_ARM64_VERSION}.img.xz'
 
