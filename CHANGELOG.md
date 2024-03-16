@@ -1,5 +1,6 @@
 VERSION=0.4.13
-
+   - [x] Prometheus 2.50.1
+   - [x] Grafana 10.4.0
 
 
 VERSION=0.4.12.1

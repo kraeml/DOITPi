@@ -63,8 +63,6 @@ then
     unpack /filesystem/root /
 fi
 
-LC_ALL=C.UTF-8 ansible --inventory localhost, --connection local --module-name ping localhost
-
 echo "Installing prometheus"
 
 wget --quiet https://github.com/prometheus/prometheus/releases/download/v${DEVOPS_PROMETHEUS_VERSION}/${DEVOPS_PROMETHEUS}.tar.gz
