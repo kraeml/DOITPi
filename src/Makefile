@@ -118,6 +118,9 @@ ${WORKSPACE_UBUNTU_NAME}.img.xz: | ${WORKSPACE_UBUNTU_NAME}.img
 
 lokal: arm64_clean arm64_image
 
+git_status:
+	if git status --porcelain | grep .; then exit 1; fi
+
 release: lokal
 	release=$$(grep VERSION ../CHANGELOG.md | head -n 1 | cut -d '=' -f 2); \
 	git flow release start v$${release}; \
