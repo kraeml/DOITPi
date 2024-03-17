@@ -24,7 +24,7 @@ IMAGE_NAME_UBUNTU = ${IMAGE_UBUNTU}/${UBUNTU_SERVER_ARM64_VERSION}
 WORKSPACE_UBUNTU = workspace-ubuntu_arm64
 WORKSPACE_UBUNTU_NAME = ${WORKSPACE_UBUNTU}/${UBUNTU_SERVER_ARM64_VERSION}
 
-.PHONY: clean_all clean_images clean_workspaces build_clean build_all ubuntu_clean arm64_clean armhf_clean release arm64 ubuntu armhf all lokal
+.PHONY: git_status clean_all clean_images clean_workspaces build_clean build_all ubuntu_clean arm64_clean armhf_clean release arm64 ubuntu armhf all lokal
 .SECONDARY: ${IMAGE_NAME_ARMHF}.img.xz ${IMAGE_NAME_ARM64}.img.xz ${IMAGE_NAME_UBUNTU}.img.xz ${WORKSPACE_ARMHF_NAME}.img ${WORKSPACE_ARM64_NAME}.img ${WORKSPACE_UBUNTU_NAME}.img
 
 all: build_all
