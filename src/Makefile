@@ -121,7 +121,7 @@ lokal: arm64_clean arm64_image
 git_status:
 	if git status --porcelain | grep .; then exit 1; fi
 
-release: lokal
+release: git_status lokal
 	release=$$(grep VERSION ../CHANGELOG.md | head -n 1 | cut -d '=' -f 2); \
 	git flow release start v$${release}; \
 	#sed -i 's@DIST_VERSION=v.*@DIST_VERSION=v'$${release}'@g' config; \
