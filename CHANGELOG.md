@@ -1,3 +1,7 @@
+VERSION=0.4.10
+   - [ ] Ubunut 24.04
+   - [ ] Raspberry OS 2024-03-15
+
 VERSION=0.4.9
 
    - [x] Pyenv für Standarduser
