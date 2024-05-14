@@ -26,7 +26,6 @@ VERSION=0.4.10
    - [x] Direnv für borgbackup und doitpi-test
    - [x] Direnv für Baseuser
 
->>>>>>> 6e3858935bf1313acadc170609d9ac4bf3e71ab2
 VERSION=0.4.9
 
    - [x] Pyenv für Standarduser
