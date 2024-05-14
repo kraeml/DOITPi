@@ -1,7 +1,32 @@
-VERSION=0.4.10
+VERSION=0.4.14
    - [ ] Ubunut 24.04
    - [ ] Raspberry OS 2024-03-15
 
+VERSION=0.4.13
+   - [x] Prometheus 2.50.1
+   - [x] Grafana 10.4.0
+   - [x] firstboot Skript ruft ansible-playbook auf
+
+
+VERSION=0.4.12.1
+
+   - [x] Mit xz wegen Image Größe
+   - [x] neue Raspain Version
+
+VERSION=0.4.11
+
+   - [x] neue softprops/action-gh-release eingefügt
+   - [x] Build ohne xz Kompremierung
+   - [x] IOTstack mit volumes Verzeichnis
+
+
+VERSION=0.4.10
+
+   - [x] IoTstack im Benutzerverzeichnis
+   - [x] Direnv für borgbackup und doitpi-test
+   - [x] Direnv für Baseuser
+
+>>>>>>> 6e3858935bf1313acadc170609d9ac4bf3e71ab2
 VERSION=0.4.9
 
    - [x] Pyenv für Standarduser

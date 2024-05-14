@@ -1,5 +1,6 @@
 MAKEFLAGS += "--jobs=$(shell nproc)"
 RASPIOS_DATE ?= 2024-03-15
+RASPIOS_DATE_URL ?= 2024-03-15
 RASPIOS_NAME ?= bookworm
 
 RASPIOS_LITE_ARMHF_VERSION = ${RASPIOS_DATE}-raspios-${RASPIOS_NAME}-armhf-lite
@@ -24,7 +25,7 @@ IMAGE_NAME_UBUNTU = ${IMAGE_UBUNTU}/${UBUNTU_SERVER_ARM64_VERSION}
 WORKSPACE_UBUNTU = workspace-ubuntu_arm64
 WORKSPACE_UBUNTU_NAME = ${WORKSPACE_UBUNTU}/${UBUNTU_SERVER_ARM64_VERSION}
 
-.PHONY: clean_all clean_images clean_workspaces build_clean build_all ubuntu_clean arm64_clean armhf_clean release arm64 ubuntu armhf all
+.PHONY: git_status clean_all clean_images clean_workspaces build_clean build_all ubuntu_clean arm64_clean armhf_clean release arm64 ubuntu armhf all lokal
 .SECONDARY: ${IMAGE_NAME_ARMHF}.img.xz ${IMAGE_NAME_ARM64}.img.xz ${IMAGE_NAME_UBUNTU}.img.xz ${WORKSPACE_ARMHF_NAME}.img ${WORKSPACE_ARM64_NAME}.img ${WORKSPACE_UBUNTU_NAME}.img
 
 all: build_all
@@ -53,14 +54,17 @@ arm64: | ${WORKSPACE_ARM64_NAME}.img.xz
 ubuntu: | ${WORKSPACE_UBUNTU_NAME}.img.xz
 
 ${IMAGE_NAME_ARMHF}.img.xz:
+	@echo wget --continue --quiet --trust-server-names 'https://downloads.raspberrypi.org/raspios_lite_armhf/images/raspios_lite_armhf-${RASPIOS_DATE_URL}/${RASPIOS_DATE}-raspios-${RASPIOS_NAME}-armhf-lite.img.xz' 
 	@cd ./${IMAGE_ARMHF}/ ; \
-	wget --continue --quiet --trust-server-names 'https://downloads.raspberrypi.org/raspios_lite_armhf/images/raspios_lite_armhf-${RASPIOS_DATE}/${RASPIOS_DATE}-raspios-${RASPIOS_NAME}-armhf-lite.img.xz'
+	wget --continue --quiet --trust-server-names 'https://downloads.raspberrypi.org/raspios_lite_armhf/images/raspios_lite_armhf-${RASPIOS_DATE_URL}/${RASPIOS_DATE}-raspios-${RASPIOS_NAME}-armhf-lite.img.xz'
 
 ${IMAGE_NAME_ARM64}.img.xz:
+	@echo wget --continue --quiet --trust-server-names 'https://downloads.raspberrypi.org/raspios_lite_arm64/images/raspios_lite_arm64-${RASPIOS_DATE_URL}/${RASPIOS_DATE}-raspios-${RASPIOS_NAME}-arm64-lite.img.xz'
 	@cd ./${IMAGE_ARM64}/ ; \
-	wget --continue --quiet --trust-server-names 'https://downloads.raspberrypi.org/raspios_lite_arm64/images/raspios_lite_arm64-${RASPIOS_DATE}/${RASPIOS_DATE}-raspios-${RASPIOS_NAME}-arm64-lite.img.xz'
+	wget --continue --quiet --trust-server-names 'https://downloads.raspberrypi.org/raspios_lite_arm64/images/raspios_lite_arm64-${RASPIOS_DATE_URL}/${RASPIOS_DATE}-raspios-${RASPIOS_NAME}-arm64-lite.img.xz'
 
 ${IMAGE_NAME_UBUNTU}.img.xz:
+	@echo wget --continue --quiet --trust-server-names 'https://cdimage.ubuntu.com/releases/${UBUNTU_RELEASE}/release/${UBUNTU_SERVER_ARM64_VERSION}.img.xz'
 	@cd ./${IMAGE_UBUNTU} ; \
 	wget --continue --quiet --trust-server-names 'https://cdimage.ubuntu.com/releases/${UBUNTU_RELEASE}/release/${UBUNTU_SERVER_ARM64_VERSION}.img.xz'
 
@@ -85,32 +89,40 @@ clean_all: clean_images clean_workspaces
 
 ${WORKSPACE_ARMHF_NAME}.img: | ${IMAGE_NAME_ARMHF}.img.xz
 	@sudo bash ./build_dist raspios
+	@echo Build raspios_armhf finished
 	@sync
 
 ${WORKSPACE_ARMHF_NAME}.img.xz: | ${WORKSPACE_ARMHF_NAME}.img
-	@pv ./${WORKSPACE_ARMHF_NAME}.img | sudo xz > ${WORKSPACE_ARMHF_NAME}.img.xz
+	@pv --progress ./${WORKSPACE_ARMHF_NAME}.img | sudo xz --extreme --threads=0 | sudo tee ${WORKSPACE_ARMHF_NAME}.img.xz >/dev/null
 	@sync
 	@sudo rm ./${WORKSPACE_ARMHF_NAME}.img
 
 ${WORKSPACE_ARM64_NAME}.img: | ${IMAGE_NAME_ARM64}.img.xz
 	@sudo bash ./build_dist raspios_lite_arm64
+	@echo Build raspios_lite_arm64 finished
 	@sync
 
 ${WORKSPACE_ARM64_NAME}.img.xz: | ${WORKSPACE_ARM64_NAME}.img
-	@pv ./${WORKSPACE_ARM64_NAME}.img | sudo xz > ${WORKSPACE_ARM64_NAME}.img.xz
+	@pv --progress ./${WORKSPACE_ARM64_NAME}.img | sudo xz --extreme --threads=0 | sudo tee ${WORKSPACE_ARM64_NAME}.img.xz >/dev/null
 	@sync
 	@sudo rm ./${WORKSPACE_ARM64_NAME}.img
 	
 ${WORKSPACE_UBUNTU_NAME}.img: | ${IMAGE_NAME_UBUNTU}.img.xz
 	@sudo bash ./build_dist ubuntu_arm64
+	@echo Build ubuntu_arm64 finished
 	@sync
 
 ${WORKSPACE_UBUNTU_NAME}.img.xz: | ${WORKSPACE_UBUNTU_NAME}.img
-	@pv ./${WORKSPACE_UBUNTU_NAME}.img | sudo xz > ${WORKSPACE_UBUNTU_NAME}.img.xz
+	@pv --progress ./${WORKSPACE_UBUNTU_NAME}.img | sudo xz --extreme --threads=0 | sudo tee ${WORKSPACE_UBUNTU_NAME}.img.xz >/dev/null
 	@sync
 	@sudo rm ./${WORKSPACE_UBUNTU_NAME}.img
 
-release:
+lokal: arm64_clean arm64_image
+
+git_status:
+	if git status --porcelain | grep .; then exit 1; fi
+
+release: git_status lokal
 	release=$$(grep VERSION ../CHANGELOG.md | head -n 1 | cut -d '=' -f 2); \
 	git flow release start v$${release}; \
 	#sed -i 's@DIST_VERSION=v.*@DIST_VERSION=v'$${release}'@g' config; \

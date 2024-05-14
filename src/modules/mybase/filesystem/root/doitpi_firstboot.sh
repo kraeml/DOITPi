@@ -38,9 +38,21 @@ then
 fi
 
 localectl set-locale LANG=de_DE.UTF-8
+export USER_HOME=$(getent passwd 1000 | cut --delimiter=: --fields=6)
+if [ -d ${USER_HOME}/workspace/doitpi-ansible ]
+then
+  cd ${USER_HOME}/workspace/doitpi-ansible/
+  # Run Playbook allways true
+  ansible-playbook --limit $(hostname) --tags firstrun --skip-tags mybase main.yaml || true
+  cd -
+fi
 
-# Löschen von firstboot
-systemctl disable firstboot.service
+# Löschen von doitpi_firstboot
+systemctl disable doitpi_firstboot.service
 
-rm -rf /etc/systemd/system/firstboot.service
-rm -f /firstboot.sh
+rm -rf /etc/systemd/system/doitpi_firstboot.service
+rm -f /doitpi_firstboot.sh
+
+sleep 20
+
+reboot

@@ -37,9 +37,10 @@ pushd  /home/${BASE_USER}/workspace
   gitclone HOMEAUTOMATION_HOMEAUTOMATION_REPO
   gitclone HOMEAUTOMATION_GETTINGSTARTETESP_REPO
 popd
-pushd /home/${BASE_USER}/containers
+pushd /home/${BASE_USER}
   gitclone HOMEAUTOMATION_IOTSTACK_REPO
 popd
+mkdir /home/${BASE_USER}/IOTstack/volumes
 
 # Unpack root at the end, so files are modified before
 if [ -d /filesystem/root ]
