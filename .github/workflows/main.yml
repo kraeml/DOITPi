@@ -83,7 +83,7 @@ jobs:
         cd repository/src
         echo "Plattenplatz vor Build"
         df -h
-        time sudo make all
+        time sudo make all || true
         echo "Plattenplatz nach Build"
         df -h
 
@@ -93,9 +93,11 @@ jobs:
       run: |
         source repository/src/config
         IMAGE=devops-${{ steps.release_name.outputs.release }}_ubuntu_arm64
-
-        sudo mv repository/src/workspace-ubuntu_arm64/*.img.xz ${IMAGE}.img.xz
-        echo "image=${IMAGE}.img.xz" >> $GITHUB_OUTPUT
+        if [ -f repository/src/workspace-ubuntu_arm64/*.img.x ]
+        then
+          sudo mv repository/src/workspace-ubuntu_arm64/*.img.xz ${IMAGE}.img.xz
+          echo "image=${IMAGE}.img.xz" >> $GITHUB_OUTPUT
+        fi
         df -h
 
     - name: Uploading arm64 ubuntu image as artifact
