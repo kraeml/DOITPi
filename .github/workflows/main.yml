@@ -148,6 +148,24 @@ jobs:
     - name: Create Release
       uses: softprops/action-gh-release@v2
       if: startsWith(github.ref, 'refs/tags/')
+      if: ${{ ! steps.get_ubuntu_arm64_info.outputs.image }}
+      id: create_release
+      with:
+        draft: false
+        prerelease: ${{ steps.release_name.outputs.prerelease == 'true' }}
+        name: Release ${{ steps.release_name.outputs.release }}
+        #tag_name: ${{ github.ref }}
+        body_path: repository/CHANGELOG.md
+        files: |
+          ${{ steps.get_armhf_info.outputs.image }}
+          ${{ steps.get_arm64_info.outputs.image }}
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+
+    - name: Create Release
+      uses: softprops/action-gh-release@v2
+      if: startsWith(github.ref, 'refs/tags/')
+      if: ${{ steps.get_ubuntu_arm64_info.outputs.image }}
       id: create_release
       with:
         draft: false
