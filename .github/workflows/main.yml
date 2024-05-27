@@ -97,6 +97,8 @@ jobs:
         then
           sudo mv repository/src/workspace-ubuntu_arm64/*.img.xz ${IMAGE}.img.xz
           echo "image=${IMAGE}.img.xz" >> $GITHUB_OUTPUT
+        else
+          echo " " >> $GITHUB_OUTPUT
         fi
         df -h
 
