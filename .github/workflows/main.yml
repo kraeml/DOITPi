@@ -97,14 +97,12 @@ jobs:
         then
           sudo mv repository/src/workspace-ubuntu_arm64/*.img.xz ${IMAGE}.img.xz
           echo "image=${IMAGE}.img.xz" >> $GITHUB_OUTPUT
-        else
-          echo "" >> $GITHUB_OUTPUT
         fi
         df -h
 
     - name: Uploading arm64 ubuntu image as artifact
       uses: actions/upload-artifact@v4
-      if: steps.get_ubuntu_arm64_info.outputs.image != ""
+      if: steps.get_ubuntu_arm64_info.outputs.image
       env:
         GITHUB_TOKEN: ${{ github.token }}
       with:
