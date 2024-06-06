@@ -158,6 +158,6 @@ jobs:
         files: |
           ${{ steps.get_armhf_info.outputs.image }}
           ${{ steps.get_arm64_info.outputs.image }}
-        #${{ steps.get_ubuntu_arm64_info.outputs.image }}
+          ${{ steps.get_ubuntu_arm64_info.outputs.image || ''}}
       env:
         GITHUB_TOKEN: ${{ github.token }}
