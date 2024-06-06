@@ -1,6 +1,8 @@
 MAKEFLAGS += "--jobs=$(shell nproc)"
+
 RASPIOS_DATE ?= 2024-03-15
 RASPIOS_DATE_URL ?= 2024-03-15
+
 RASPIOS_NAME ?= bookworm
 
 RASPIOS_LITE_ARMHF_VERSION = ${RASPIOS_DATE}-raspios-${RASPIOS_NAME}-armhf-lite
