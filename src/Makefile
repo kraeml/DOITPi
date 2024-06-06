@@ -25,15 +25,17 @@ IMAGE_NAME_UBUNTU = ${IMAGE_UBUNTU}/${UBUNTU_SERVER_ARM64_VERSION}
 WORKSPACE_UBUNTU = workspace-ubuntu_arm64
 WORKSPACE_UBUNTU_NAME = ${WORKSPACE_UBUNTU}/${UBUNTU_SERVER_ARM64_VERSION}
 
-.PHONY: git_status clean_all clean_images clean_workspaces build_clean build_all ubuntu_clean arm64_clean armhf_clean release arm64 ubuntu armhf all lokal
+.PHONY: git_status clean_all clean_images clean_workspaces build_clean ubuntu_clean arm64_clean armhf_clean release all lokal custompios_pre
 .SECONDARY: ${IMAGE_NAME_ARMHF}.img.xz ${IMAGE_NAME_ARM64}.img.xz ${IMAGE_NAME_UBUNTU}.img.xz ${WORKSPACE_ARMHF_NAME}.img ${WORKSPACE_ARM64_NAME}.img ${WORKSPACE_UBUNTU_NAME}.img
 
-all: custompios_pre armhf arm64
+all: armhf arm64
 
 custompios_pre:
-	@sed -i 's/sudo umount $m/sudo umount --lazy --force $m/g' ../../CustomPiOS/src/common.sh
+	@if ! grep -q "lazy" ../../CustomPiOS/src/common.sh; then \
+	sed -i 's/sudo umount $m/sudo umount --lazy --force $m/g' ../../CustomPiOS/src/common.sh; \
+	fi;
 
-build_all: | custompios_pre armhf arm64
+build_all: custompios_pre all
 	@sync
 	@sleep 10
 	$(MAKE) ubuntu
@@ -119,11 +121,22 @@ ${WORKSPACE_UBUNTU_NAME}.img.xz: | ${WORKSPACE_UBUNTU_NAME}.img
 
 lokal: arm64_clean arm64_image
 
+# Es wird geprüft, ob Änderungen im Git-Repository gibt und ob die Versionsnummern in der config Datei und im CHANGELOG.md Dokument übereinstimmen.
+# Wenn entweder eine Änderung gefunden wird oder die Versionen nicht übereinstimmen, wird das Skript mit einem entsprechenden Fehlerstatus beendet.
 git_status:
-	if git status --porcelain | grep .; then exit 1; fi
+	@if git status --porcelain | grep .; \
+		then \
+		echo Git-Repository enthält Änderungen; \
+		exit 1; \
+	fi
+	@if [ ! $$(grep DIST_VERSION config | cut -d 'v' -f 2) = $$(grep VERSION ../CHANGELOG.md | head -n 1 | cut -d '=' -f 2) ]; \
+		then \
+		echo Versionsnummern stimmen nicht überein; \
+		exit 2; \
+	fi
 
-release: git_status lokal
-	release=$$(grep VERSION ../CHANGELOG.md | head -n 1 | cut -d '=' -f 2); \
+release: git_status 
+	@release=$$(grep VERSION ../CHANGELOG.md | head -n 1 | cut -d '=' -f 2); \
 	git flow release start v$${release}; \
 	#sed -i 's@DIST_VERSION=v.*@DIST_VERSION=v'$${release}'@g' config; \
 	#major=$$(echo "$${release}" | awk -F"." '{print $$1}'); \

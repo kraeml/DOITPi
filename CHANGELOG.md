@@ -1,8 +1,8 @@
 VERSION=0.4.14
    - [ ] Ubunut 24.04
    - [x] Raspberry OS 2024-03-15
-   - [] Prometheus 2.52.0
-   - [] Grafana 10.4.3
+   - [x] Prometheus 2.45.5 LTS
+   - [x] Grafana 10.4.3
 
 VERSION=0.4.13
    - [x] Prometheus 2.50.1
