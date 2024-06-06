@@ -1,2 +1,2 @@
-PLATFORMIO_VAR="DevOps Variable"
+PLATFORMIO_VAR="Platform.io Variable"
 PLATFORMIO_PKGS="python3-venv"
