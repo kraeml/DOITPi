@@ -1,4 +1,5 @@
 VERSION=0.4.15
+   - [x] Ubuntu 24.04
 
 VERSION=0.4.14
    - [ ] Ubunut 24.04
