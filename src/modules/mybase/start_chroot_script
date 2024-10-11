@@ -28,11 +28,23 @@ then
     unpack /filesystem/boot /boot
 fi
 
+if [ "${BASE_DISTRO}" == "ubuntu" ]
+then
+    if [ -d /filesystem/root/etc/needrestart ]
+    then
+        unpack /filesystem/root/etc/needrestart /etc/needrestart
+        unpack /filesystem/root/etc/apt/sources.list.d /etc/apt/sources.list.d
+
+        add-apt-repository --yes --update ppa:ansible/ansible
+    fi
+fi
+
 echo "From here the MYBASE-Module starts at $(date)"
 echo "$MYBASE_VAR auf ${BASE_DISTRO}/${BASE_ARCH}"
 echo "$MYBASE_PKGS"
 
 apt_update_skip
+#apt-get update --allow-releaseinfo-change
 check_install_pkgs ${MYBASE_PKGS}
 
 if [ ${BASE_DISTRO} != "ubuntu" ]
