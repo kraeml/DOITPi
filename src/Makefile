@@ -1,7 +1,8 @@
 MAKEFLAGS += "--jobs=$(shell nproc)"
 
-RASPIOS_DATE ?= 2024-03-15
-RASPIOS_DATE_URL ?= 2024-03-15
+# https://downloads.raspberrypi.com/raspios_lite_arm64/images/
+RASPIOS_DATE ?= 2024-07-04
+RASPIOS_DATE_URL ?= 2024-07-04
 
 RASPIOS_NAME ?= bookworm
 
@@ -30,7 +31,7 @@ WORKSPACE_UBUNTU_NAME = ${WORKSPACE_UBUNTU}/${UBUNTU_SERVER_ARM64_VERSION}
 .PHONY: git_status clean_all clean_images clean_workspaces build_clean ubuntu_clean arm64_clean armhf_clean release all lokal custompios_pre
 .SECONDARY: ${IMAGE_NAME_ARMHF}.img.xz ${IMAGE_NAME_ARM64}.img.xz ${IMAGE_NAME_UBUNTU}.img.xz ${WORKSPACE_ARMHF_NAME}.img ${WORKSPACE_ARM64_NAME}.img ${WORKSPACE_UBUNTU_NAME}.img
 
-all: armhf arm64
+all: | ubuntu armhf arm64
 
 custompios_pre:
 	@if ! grep -q "lazy" ../../CustomPiOS/src/common.sh; then \
