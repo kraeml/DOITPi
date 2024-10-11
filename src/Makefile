@@ -20,7 +20,8 @@ WORKSPACE_ARM64_NAME = ${WORKSPACE_ARM64}/${RASPIOS_LITE_ARM64_VERSION}
 
 UBUNTU_RELEASE ?= 24.04
 # Setze auf .4 bei Patchlevel 4 der Punkt ist WICHTIG
-UBUNUT_PATCHLEVEL = 
+# https://cdimage.ubuntu.com/releases/24.04/release/ubuntu-24.04.1-preinstalled-server-arm64+raspi.img.xz
+UBUNUT_PATCHLEVEL = .1
 UBUNTU_SERVER_ARM64_VERSION = ubuntu-${UBUNTU_RELEASE}${UBUNUT_PATCHLEVEL}-preinstalled-server-arm64+raspi
 IMAGE_UBUNTU = image-ubuntu_arm64
 
