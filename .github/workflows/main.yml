@@ -83,7 +83,7 @@ jobs:
         cd repository/src
         echo "Plattenplatz vor Build"
         df -h
-        time sudo make all
+        time sudo make arm64 armhf
         echo "Plattenplatz nach Build"
         df -h
 
