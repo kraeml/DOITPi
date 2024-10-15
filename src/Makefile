@@ -1,8 +1,9 @@
 MAKEFLAGS += "--jobs=$(shell nproc)"
 
+# https://downloads.raspberrypi.com/raspios_lite_arm64/images/
+RASPIOS_DATE ?= 2024-07-04
+RASPIOS_DATE_URL ?= 2024-07-04
 
-RASPIOS_DATE ?= 2024-03-15
-RASPIOS_DATE_URL ?= 2024-03-15
 RASPIOS_NAME ?= bookworm
 
 RASPIOS_LITE_ARMHF_VERSION = ${RASPIOS_DATE}-raspios-${RASPIOS_NAME}-armhf-lite
@@ -19,7 +20,8 @@ WORKSPACE_ARM64_NAME = ${WORKSPACE_ARM64}/${RASPIOS_LITE_ARM64_VERSION}
 
 UBUNTU_RELEASE ?= 24.04
 # Setze auf .4 bei Patchlevel 4 der Punkt ist WICHTIG
-UBUNUT_PATCHLEVEL = 
+# https://cdimage.ubuntu.com/releases/24.04/release/ubuntu-24.04.1-preinstalled-server-arm64+raspi.img.xz
+UBUNUT_PATCHLEVEL = .1
 UBUNTU_SERVER_ARM64_VERSION = ubuntu-${UBUNTU_RELEASE}${UBUNUT_PATCHLEVEL}-preinstalled-server-arm64+raspi
 IMAGE_UBUNTU = image-ubuntu_arm64
 
@@ -30,7 +32,7 @@ WORKSPACE_UBUNTU_NAME = ${WORKSPACE_UBUNTU}/${UBUNTU_SERVER_ARM64_VERSION}
 .PHONY: git_status clean_all clean_images clean_workspaces build_clean ubuntu_clean arm64_clean armhf_clean release all lokal custompios_pre
 .SECONDARY: ${IMAGE_NAME_ARMHF}.img.xz ${IMAGE_NAME_ARM64}.img.xz ${IMAGE_NAME_UBUNTU}.img.xz ${WORKSPACE_ARMHF_NAME}.img ${WORKSPACE_ARM64_NAME}.img ${WORKSPACE_UBUNTU_NAME}.img
 
-all: armhf arm64
+all: | armhf arm64
 
 custompios_pre:
 	@if ! grep -q "lazy" ../../CustomPiOS/src/common.sh; then \
