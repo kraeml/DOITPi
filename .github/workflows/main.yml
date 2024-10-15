@@ -53,6 +53,8 @@ jobs:
     - name: Enforce and detach the filesystem from the filesystem hierarchy.
       run: |
         sed -i 's/sudo umount $m/sudo umount --lazy --force $m/g' ./CustomPiOS/src/common.sh
+        sed -i 's/dhcpcd5/# dhcpcd5/g' ./CustomPiOS/src/modules/base/start_chroot_script
+        sed -i 's/^systemctl enable dhcpcd.service/# systemctl enable dhcpcd.service/g' ./CustomPiOS/src/modules/base/start_chroot_script
 
     - name: Update CustomPiOS Paths
       run: |
@@ -83,7 +85,7 @@ jobs:
         cd repository/src
         echo "Plattenplatz vor Build"
         df -h
-        time sudo make all
+        time sudo make ubuntu
         echo "Plattenplatz nach Build"
         df -h
 
