@@ -29,6 +29,7 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get install --yes coreutils p7zip-full qemu-user-static pv time
+        sudo python3 -m pip install gitpython
         sudo rm -rf /usr/local/lib/android
         sudo rm -rf /usr/local/node_modules
         sudo rm -rf /opt/hostedtoolcache/CodeQL
