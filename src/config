@@ -2,7 +2,7 @@ export DIST_NAME=DOITPi
 export DIST_VERSION=v0.4.15
 
 # Raspios 2023-05-03 bullseye
-export RASPIOS_DATE="2024-03-15"
+export RASPIOS_DATE="2025-05-13"
 export RASPIOS_NAME="bookworm"
 export UBUNTU_RELEASE="22.04"
 export UBUNUT_PATCHLEVEL="4"

@@ -1,8 +1,8 @@
 MAKEFLAGS += "--jobs=$(shell nproc)"
 
 # https://downloads.raspberrypi.com/raspios_lite_arm64/images/
-RASPIOS_DATE ?= 2024-07-04
-RASPIOS_DATE_URL ?= 2024-07-04
+RASPIOS_DATE ?= 2025-05-13
+RASPIOS_DATE_URL ?= 2025-05-13
 
 RASPIOS_NAME ?= bookworm
 
