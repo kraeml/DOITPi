@@ -4,6 +4,8 @@
 **I**o**T**  
 **Pi** - RaspberryPi
 
+DOITPi ist ein Open-Source-Projekt, das eine Sammlung von DevOps- und IoT-Werkzeugen speziell für Raspberry Pi OS Lite bereitstellt. Das Projekt bietet ein vorgefertigtes Image, das die Installation und Einrichtung der Tools automatisiert und damit die Nutzung insbesondere in Bildungseinrichtungen erleichtert. Ziel von DOITPi ist es, eine praxisnahe und schnell einsatzfähige Plattform für Entwickler und Lernende zu schaffen, die DevOps-Praktiken und IoT-Anwendungen auf dem Raspberry Pi realisieren möchten.
+
 Zugriff über Browser oder SSH.
 
 | DevOps | IoT | Pi |
