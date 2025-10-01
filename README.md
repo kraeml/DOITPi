@@ -1,16 +1,19 @@
-# **DOITPi**
+# DOITPi
+
 **D**ev**O**ps **I**o**T** **Pi** – Raspberry Pi
 
-DOITPi ist ein **Open-Source-Projekt**, das eine Sammlung von **DevOps- und IoT-Tools** speziell für **Raspberry Pi OS Lite** bereitstellt. Das Projekt bietet ein **vorgefertigtes Image**, das die Installation und Einrichtung der Tools automatisiert – ideal für **Bildungseinrichtungen, Entwickler:innen und Lernende**, die DevOps-Praktiken und IoT-Anwendungen auf dem Raspberry Pi umsetzen möchten.
+DOITPi ist ein **Open-Source-Projekt**, das eine Sammlung von **DevOps- und IoT-Tools** auf **Raspberry Pi OS Lite** bereitstellt. Das Projekt bietet ein **vorgefertigtes Image**, das die Installation und Einrichtung der Tools automatisiert. Es richtet sich an  **Bildungseinrichtungen, Entwickler:innen und Lernende**, die DevOps-Praktiken und IoT-Anwendungen auf dem Raspberry Pi umsetzen möchten.
 
-🔹 **Zugang:** Browser oder SSH
+🔹 **Zugang:** Browser oder SSH (Headless)
+
 🔹 **Ziel:** Eine **praxisnahe, schnell einsatzbereite Plattform** für DevOps und IoT.
 
 DOITPi basiert auf **[CustomPiOS](https://github.com/guysoft/CustomPiOS)** und wird kontinuierlich weiterentwickelt.
 
 ---
 
-## **Themenbereiche**
+## Themenbereiche
+
 DOITPi deckt folgende Themen ab:
 
 | **Systemadministration** | **Netzwerk** | **Elektrotechnik** | **Programmierung** |
@@ -20,10 +23,9 @@ DOITPi deckt folgende Themen ab:
 
 ---
 
-## **DevOps-Tools**
+## DevOps-Tools
+
 DOITPi integriert folgende DevOps-Lösungen:
-
-
 
 | Tool               | Beschreibung                                                                                     |
 |--------------------|-------------------------------------------------------------------------------------------------|
@@ -37,27 +39,25 @@ DOITPi integriert folgende DevOps-Lösungen:
 
 ---
 
-## **IoT-Tools**
+## IoT-Tools
+
 DOITPi unterstützt IoT-Projekte mit folgenden Komponenten:
 
-
-
 | Tool                     | Beschreibung                                                                                     |
-|--------------------------|-------------------------------------------------------------------------------------------------|
+|--------------------------|--------------------------------------------------------------------------------------------------|
 | **[IOTstack](https://sensorsiot.github.io/IOTstack/)** | Docker-Compose-Templates für IoT-Stacks (z. B. MQTT, Datenbanken).                              |
-| **[Node-RED](https://nodered.org/)** | Low-Code-Tool zur Verbindung von Hardware, APIs und Dienste.                                    |
-| **[Heimdall](https://heimdall.site/)** | Dashboard für Webanwendungen und Links.                                                          |
-| **[Mosquitto](https://mosquitto.org/)** | MQTT-Broker (v5.0, v3.1.1) für leichte IoT-Kommunikation.                                        |
+| **[Node-RED](https://nodered.org/)** | Low-Code-Tool zur Verbindung von Hardware, APIs und Dienste.                        |
+| **[Heimdall](https://heimdall.site/)** | Dashboard für Webanwendungen und Links.                                           |
+| **[Mosquitto](https://mosquitto.org/)** | MQTT-Broker (v5.0, v3.1.1) für leichte IoT-Kommunikation.                        |
 | **Monitoring**           | Telegraf, InfluxDB, Grafana, Prometheus für Echtzeitdaten.                                      |
 | **PlatformIO**           | Unterstützung für Arduino, ESP32, RP2040.                                                       |
-| **[ESPHome](https://esphome.io/)** | YAML-basierte Steuerung von ESP8266/ESP32-Geräten.                                              |
+| **[ESPHome](https://esphome.io/)** | YAML-basierte Steuerung von ESP8266/ESP32-Geräten.                                    |
 
 ---
 
-## **Raspberry Pi-Features**
+## Raspberry Pi-Features
+
 DOITPi optimiert den Raspberry Pi für folgende Anwendungen:
-
-
 
 | Bereich          | Tools/Technologien                                                                              |
 |------------------|-------------------------------------------------------------------------------------------------|
@@ -69,7 +69,8 @@ DOITPi optimiert den Raspberry Pi für folgende Anwendungen:
 
 ---
 
-## **Programmiersprachen & DSLs**
+## Programmiersprachen & DSLs
+
 DOITPi unterstützt folgende Sprachen und Domänenspezifische Sprachen (DSLs):
 
 - **Python** ([JupyterLab](http://jupyter.org/), virtualenv)
@@ -79,7 +80,8 @@ DOITPi unterstützt folgende Sprachen und Domänenspezifische Sprachen (DSLs):
 
 ---
 
-## **Low-Code-Tools**
+## Low-Code-Tools
+
 Für schnelle Prototypen und Bildungskontexte:
 
 - **Blockly/Scratch** (visuelle Programmierung)
@@ -88,27 +90,35 @@ Für schnelle Prototypen und Bildungskontexte:
 
 ---
 
-## **Mitentwickeln?**
+## Mitentwickeln?
+
 ✅ **Ja!** DOITPi ist ein **Community-Projekt** – Beiträge sind willkommen!
 
-### **Anforderungen**
+### Anforderungen
+
 - `qemu-arm-static`
 - [CustomPiOS](https://github.com/guysoft/CustomPiOS)
 - Raspbian-Image (heruntergeladen)
 - Root-Rechte für `chroot`
 - Bash, Git, Sudo
 
-### **Build-Anleitung (Debian/Ubuntu/Raspbian)**
+### Build-Anleitung (Debian/Ubuntu/Raspbian)
+
 1. Abhängigkeiten installieren:
+
    ```bash
    sudo apt-get install gawk util-linux qemu-user-static git p7zip-full python3 coreutils
    ```
+
 2. Repositories klonen:
+
    ```bash
    git clone https://github.com/guysoft/CustomPiOS.git
    git clone https://github.com/kraeml/DOITPi.git
    ```
+
 3. Image herunterladen und bauen:
+
    ```bash
    cd DOITPi/src/image
    wget -c --trust-server-names 'https://downloads.raspberrypi.org/raspios_lite_armhf_latest'
@@ -120,27 +130,36 @@ Für schnelle Prototypen und Bildungskontexte:
    sudo make build_arm64
    ```
 
-### **Build mit Vagrant**
+### Build mit Vagrant
+
 Für automatisierte Builds in einer VM:
+
 1. Vagrant + VirtualBox installieren:
+
    ```bash
    sudo apt-get install vagrant nfs-kernel-server virtualbox
    sudo vagrant plugin install vagrant-nfs_guest
    sudo modprobe nfs
    ```
+
 2. DOITPi-Vagrant-Konfiguration nutzen:
+
    ```bash
    cd DOITPi/src/vagrant
    sudo vagrant up
    ./run_vagrant_build.sh
    ```
+
 3. **Optionale Varianten:**
+
    ```bash
    ./run_vagrant_build.sh [VARIANTE]
    ```
 
 ---
+
 **📥 [Aktuelles Image herunterladen](https://github.com/kraeml/DOITPi/releases/latest)**
 
 ---
+
 **Fragen oder Ideen?** Öffne ein Issue auf [GitHub](https://github.com/kraeml/doitpi) oder trage direkt bei!
