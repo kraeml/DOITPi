@@ -1,0 +1,1258 @@
+Distro path: /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src
+CustomPiOS path: /home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src
+================================================================
+++++ realpath -s /home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src/build
++++ dirname /home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src/build
+++ BUILD_SCRIPT_PATH=/home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src
++++ mktemp
+++ export EXTRA_BOARD_CONFIG=/tmp/tmp.gAxdEB1MII
+++ EXTRA_BOARD_CONFIG=/tmp/tmp.gAxdEB1MII
+++ /home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src/custompios_core/generate_board_config.py /tmp/tmp.gAxdEB1MII
+++ echo 'Temp source file: /tmp/tmp.gAxdEB1MII'
+Temp source file: /tmp/tmp.gAxdEB1MII
+++ source /home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src/common.sh
+++ install_cleanup_trap
+++ set -e
+++ trap cleanup SIGINT SIGTERM
+++++ realpath -s /home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src/build
++++ dirname /home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src/build
+++ CUSTOM_OS_PATH=/home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src
+++ source /home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src/config raspios_lite_arm64 /tmp/tmp.gAxdEB1MII raspios_lite_arm64
++++++ realpath -s /home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src/config
+++++ dirname /home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src/config
++++ CONFIG_DIR=/home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src
++++ source /home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src/common.sh
++++ WORKSPACE_POSTFIX=
++++ export BUILD_VARIANT=
++++ BUILD_VARIANT=
++++ BUILD_VARIANT=raspios_lite_arm64
++++ : raspios_lite_arm64
++++ EXTRA_BAORD_CONFIG=/tmp/tmp.gAxdEB1MII
++++ export BUILD_FLAVOR=
++++ BUILD_FLAVOR=
++++ : default
++++ echo -e '--> Building VARIANT raspios_lite_arm64, FLAVOR default'
+--> Building VARIANT raspios_lite_arm64, FLAVOR default
++++ '[' -f /home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src/config.local ']'
++++ source /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/config
+++++ export DIST_NAME=DOITPi
+++++ DIST_NAME=DOITPi
+++++ export DIST_VERSION=v0.4.15
+++++ DIST_VERSION=v0.4.15
+++++ export RASPIOS_DATE=2025-05-13
+++++ RASPIOS_DATE=2025-05-13
+++++ export RASPIOS_NAME=bookworm
+++++ RASPIOS_NAME=bookworm
+++++ export UBUNTU_RELEASE=22.04
+++++ UBUNTU_RELEASE=22.04
+++++ export UBUNUT_PATCHLEVEL=4
+++++ UBUNUT_PATCHLEVEL=4
+++++ export RPI_IMAGER_NAME=DOITPi
+++++ RPI_IMAGER_NAME=DOITPi
+++++ export 'RPI_IMAGER_DESCRIPTION=A raspberrypi distro for DevOps and IoT built with CustomPiOS'
+++++ RPI_IMAGER_DESCRIPTION='A raspberrypi distro for DevOps and IoT built with CustomPiOS'
+++++ export RPI_IMAGER_WEBSITE=https://github.com/guysoft/CustomPiOS
+++++ RPI_IMAGER_WEBSITE=https://github.com/guysoft/CustomPiOS
+++++ export RPI_IMAGER_ICON=https://raw.githubusercontent.com/guysoft/CustomPiOS/devel/media/rpi-imager-CustomPiOS.png
+++++ RPI_IMAGER_ICON=https://raw.githubusercontent.com/guysoft/CustomPiOS/devel/media/rpi-imager-CustomPiOS.png
+++++ export BASE_IMAGE_ENLARGEROOT=6000
+++++ BASE_IMAGE_ENLARGEROOT=6000
+++++ export BASE_IGNORE_VARIANT_NAME=no
+++++ BASE_IGNORE_VARIANT_NAME=no
+++++ export BASE_DISTRO=raspbian
+++++ BASE_DISTRO=raspbian
+++++ export BASE_RELEASE_IMG_NAME=DOITPi
+++++ BASE_RELEASE_IMG_NAME=DOITPi
+++++ export AUTO_HOTSPOT_NAME=doitpi
+++++ AUTO_HOTSPOT_NAME=doitpi
+++++ export AUTO_HOTSPOT_PASSWORD=raspberry
+++++ AUTO_HOTSPOT_PASSWORD=raspberry
+++++ export AUTO_HOTSPOT_CHANNEL=6
+++++ AUTO_HOTSPOT_CHANNEL=6
+++++ export DOCKER_ADD_USER_TO_GROUP=yes
+++++ DOCKER_ADD_USER_TO_GROUP=yes
+++++ export DOCKER_COMPOSE=yes
+++++ DOCKER_COMPOSE=yes
+++++ export DOCKER_COMPOSE_BOOT=no
+++++ DOCKER_COMPOSE_BOOT=no
+++++ export DOCKER_COMPOSE_BOOT_PATH=default
+++++ DOCKER_COMPOSE_BOOT_PATH=default
+++++ export PKGUPGRADE_DISTUPGRADE=y
+++++ PKGUPGRADE_DISTUPGRADE=y
+++++ export PKGUPGRADE_DISTUPGRADE_METHOD=full-upgrade
+++++ PKGUPGRADE_DISTUPGRADE_METHOD=full-upgrade
+++++ export PKGUPGRADE_USE_PREINSTALLER=n
+++++ PKGUPGRADE_USE_PREINSTALLER=n
+++++ export PKGUPGRADE_PRE_INSTALL_PKGS=
+++++ PKGUPGRADE_PRE_INSTALL_PKGS=
+++++ export 'MODULES=base(network,mybase,pythongpio,platformio,devops,homeautomation,pkgupgrade)'
+++++ MODULES='base(network,mybase,pythongpio,platformio,devops,homeautomation,pkgupgrade)'
+++++ export DOCKER_COMPOSE=no
+++++ DOCKER_COMPOSE=no
++++ '[' raspios_lite_arm64 '!=' default ']'
++++ WORKSPACE_POSTFIX=-raspios_lite_arm64
++++ '[' -d /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/variants/raspios_lite_arm64 ']'
++++ '[' -d /home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src/variants/raspios_lite_arm64 ']'
++++ export VARIANT_BASE=/home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src/variants/raspios_lite_arm64
++++ VARIANT_BASE=/home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src/variants/raspios_lite_arm64
++++ '[' default = '' ']'
++++ '[' default = default ']'
++++ VARIANT_CONFIG=/home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src/variants/raspios_lite_arm64/config
++++ FLAVOR_CONFIG=
++++ '[' -n '' ']'
++++ echo Import the variant config if we have one
+Import the variant config if we have one
++++ '[' -n /home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src/variants/raspios_lite_arm64/config ']'
++++ '[' -f /home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src/variants/raspios_lite_arm64/config ']'
++++ echo 'Sourcing variant config /home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src/variants/raspios_lite_arm64/config...'
+Sourcing variant config /home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src/variants/raspios_lite_arm64/config...
++++ set -a
++++ source /home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src/variants/raspios_lite_arm64/config
+++++ BASE_ARCH=arm64
+++++ BASE_IMAGE_PATH=/home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/image-raspios_lite_arm64
++++++ ls -t '/home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/image-raspios_lite_arm64/*-raspbian-*-arm64-*.zip' '/home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/image-raspios_lite_arm64/*-raspios-*-arm64-*.zip'
++++++ head -n 1
+ls: Zugriff auf '/home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/image-raspios_lite_arm64/*-raspbian-*-arm64-*.zip' nicht möglich: Datei oder Verzeichnis nicht gefunden
+ls: Zugriff auf '/home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/image-raspios_lite_arm64/*-raspios-*-arm64-*.zip' nicht möglich: Datei oder Verzeichnis nicht gefunden
+++++ BASE_ZIP_IMG=
+++++ BASE_IGNORE_VARIANT_NAME=yes
++++ set +a
++++ '[' -n '' ']'
++++ '[' -f /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/config.local ']'
++++ TMP='base,network,mybase,pythongpio,platformio,devops,homeautomation,pkgupgrade)'
++++ TMP='base,network,mybase,pythongpio,platformio,devops,homeautomation,pkgupgrade)'
++++ MODULES_LIST=base,network,mybase,pythongpio,platformio,devops,homeautomation,pkgupgrade,
++++ '[' -n '' ']'
++++ BASE_WORKSPACE=/home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64
++++ '[' -n '' ']'
++++ BASE_MOUNT_PATH=/home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/mount
++++ '[' -f /tmp/tmp.gAxdEB1MII ']'
++++ source /tmp/tmp.gAxdEB1MII
+++++ export BASE_ARCH=armhf
+++++ BASE_ARCH=armhf
++++ export REMOTE_AND_META_CONFIG=/home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/remote_and_meta_config
++++ REMOTE_AND_META_CONFIG=/home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/remote_and_meta_config
++++ '[' -f /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/remote_and_meta_config ']'
++++ source /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/remote_and_meta_config
++++ load_module_config base,network,mybase,pythongpio,platformio,devops,homeautomation,pkgupgrade,
++++ MODULES_AFTER=base,network,mybase,pythongpio,platformio,devops,homeautomation,pkgupgrade,
+++++ echo base,network,mybase,pythongpio,platformio,devops,homeautomation,pkgupgrade,
+++++ tr , '\n'
++++ for module in $(echo "${MODULES_AFTER}" | tr "," "\n")
++++ '[' -d /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/modules/base ']'
++++ '[' -d /home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src/modules/base ']'
++++ export MODULE_PATH=/home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src/modules/base
++++ MODULE_PATH=/home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src/modules/base
++++ echo 'loading base config at /home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src/modules/base/config'
+loading base config at /home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src/modules/base/config
++++ '[' -f /home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src/modules/base/config ']'
++++ source /home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src/modules/base/config
+++++ BASE_VERSION=2.0.0
+++++ '[' -n '' ']'
+++++ BASE_PRESCRIPT=
+++++ '[' -n '' ']'
+++++ BASE_POSTSCRIPT=
+++++ '[' -n '' ']'
+++++ BASE_BOARD=raspberrypiarmhf
+++++ '[' -n '' ']'
+++++ BASE_OS=debian_bookworm
+++++ echo 'GOT BASE BOARD raspberrypiarmhf'
+GOT BASE BOARD raspberrypiarmhf
+++++ '[' raspberrypiarmhf == raspberrypiarmhf ']'
+++++ '[' -n /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/image-raspios_lite_arm64 ']'
+++++ '[' -n '' ']'
+++++ BASE_IMAGE_RASPBIAN=yes
+++++ '[' -n raspbian ']'
+++++ '[' raspbian = ubuntu ']'
+++++ '[' raspbian == raspios64 ']'
+++++ '[' -n '' ']'
++++++ head -n 1
++++++ ls -t '/home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/image-raspios_lite_arm64/*-raspbian*.zip' '/home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/image-raspios_lite_arm64/*-raspbian*.7z' '/home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/image-raspios_lite_arm64/*-raspbian*.xz' '/home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/image-raspios_lite_arm64/*-raspios*.zip' '/home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/image-raspios_lite_arm64/*-raspios*.7z' /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/image-raspios_lite_arm64/2025-05-13-raspios-bookworm-arm64-lite.img.xz
+ls: Zugriff auf '/home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/image-raspios_lite_arm64/*-raspbian*.zip' nicht möglich: Datei oder Verzeichnis nicht gefunden
+ls: Zugriff auf '/home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/image-raspios_lite_arm64/*-raspbian*.7z' nicht möglich: Datei oder Verzeichnis nicht gefunden
+ls: Zugriff auf '/home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/image-raspios_lite_arm64/*-raspbian*.xz' nicht möglich: Datei oder Verzeichnis nicht gefunden
+ls: Zugriff auf '/home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/image-raspios_lite_arm64/*-raspios*.zip' nicht möglich: Datei oder Verzeichnis nicht gefunden
+ls: Zugriff auf '/home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/image-raspios_lite_arm64/*-raspios*.7z' nicht möglich: Datei oder Verzeichnis nicht gefunden
+++++ BASE_ZIP_IMG=/home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/image-raspios_lite_arm64/2025-05-13-raspios-bookworm-arm64-lite.img.xz
+++++ '[' -n '' ']'
+++++ BASE_USER=pi
+++++ '[' -n '' ']'
+++++ BASE_ADD_USER=yes
+++++ '[' -n '' ']'
+++++ BASE_USER_PASSWORD=raspberry
+++++ '[' -n '' ']'
+++++ BASE_RELEASE_COMPRESS=yes
+++++ '[' -n DOITPi ']'
+++++ '[' -n '' ']'
+++++ BASE_RELEASE_ZIP_NAME=default
+++++ '[' -n /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64 ']'
+++++ '[' -n /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/mount ']'
+++++ '[' -n '' ']'
+++++ BASE_BOOT_MOUNT_PATH=boot/firmware
+++++ '[' -n '' ']'
+++++ BASE_ROOT_PARTITION=2
+++++ '[' -n 6000 ']'
+++++ '[' -n '' ']'
+++++ BASE_IMAGE_RESIZEROOT=200
+++++ '[' -n '' ']'
+++++ BASE_APT_CACHE=/home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/aptcache
+++++ '[' -n '' ']'
+++++ BASE_APT_PROXY=
+++++ '[' -n '' ']'
+++++ BASE_APT_MIRROR=
+++++ '[' -n '' ']'
+++++ BASE_PYPI_INDEX=
+++++ '[' -n '' ']'
+++++ BASE_OVERRIDE_HOSTNAME=doitpi
+++++ '[' -n '' ']'
+++++ BASE_USE_ALT_DNS=
+++++ '[' -n '' ']'
+++++ BASE_BUILD_REPO_MIRROR=
+++++ '[' -n '' ']'
+++++ BASE_SSH_ENABLE=yes
+++++ '[' -n '' ']'
++++++ git -C /home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src rev-parse HEAD
+++++ BASE_COMMIT=0f05cdaa6197ab0437fd286abc94b00e1899ac69
+++++ '[' -n '' ']'
+++++ BASE_CONFIG_MEMSPLIT=default
+++++ '[' -n '' ']'
+++++ BASE_CONFIG_TIMEZONE=default
+++++ '[' -n '' ']'
+++++ BASE_CONFIG_LOCALE=default
+++++ '[' -n '' ']'
+++++ BASE_CONFIG_KEYBOARD=default
+++++ '[' -n armhf ']'
+++++ '[' -n yes ']'
+++++ '[' -n '' ']'
+++++ BASE_ENABLE_UART=no
+++++ : yes
++++ echo ================================================================
+================================================================
++++ echo 'Using the following config:'
+Using the following config:
++++ module_up=BASE
++++ module_up=BASE_
++++ IFS=
++++ read -r var
+++++ compgen -A variable BASE_
++++ export BASE_ADD_USER
++++ echo BASE_ADD_USER
+BASE_ADD_USER
++++ IFS=
++++ read -r var
++++ export BASE_APT_CACHE
++++ echo BASE_APT_CACHE
+BASE_APT_CACHE
++++ IFS=
++++ read -r var
++++ export BASE_APT_CLEAN
++++ echo BASE_APT_CLEAN
+BASE_APT_CLEAN
++++ IFS=
++++ read -r var
++++ export BASE_APT_MIRROR
++++ echo BASE_APT_MIRROR
+BASE_APT_MIRROR
++++ IFS=
++++ read -r var
++++ export BASE_APT_PROXY
++++ echo BASE_APT_PROXY
+BASE_APT_PROXY
++++ IFS=
++++ read -r var
++++ export BASE_ARCH
++++ echo BASE_ARCH
+BASE_ARCH
++++ IFS=
++++ read -r var
++++ export BASE_BOARD
++++ echo BASE_BOARD
+BASE_BOARD
++++ IFS=
++++ read -r var
++++ export BASE_BOOT_MOUNT_PATH
++++ echo BASE_BOOT_MOUNT_PATH
+BASE_BOOT_MOUNT_PATH
++++ IFS=
++++ read -r var
++++ export BASE_BUILD_REPO_MIRROR
++++ echo BASE_BUILD_REPO_MIRROR
+BASE_BUILD_REPO_MIRROR
++++ IFS=
++++ read -r var
++++ export BASE_COMMIT
++++ echo BASE_COMMIT
+BASE_COMMIT
++++ IFS=
++++ read -r var
++++ export BASE_CONFIG_KEYBOARD
++++ echo BASE_CONFIG_KEYBOARD
+BASE_CONFIG_KEYBOARD
++++ IFS=
++++ read -r var
++++ export BASE_CONFIG_LOCALE
++++ echo BASE_CONFIG_LOCALE
+BASE_CONFIG_LOCALE
++++ IFS=
++++ read -r var
++++ export BASE_CONFIG_MEMSPLIT
++++ echo BASE_CONFIG_MEMSPLIT
+BASE_CONFIG_MEMSPLIT
++++ IFS=
++++ read -r var
++++ export BASE_CONFIG_TIMEZONE
++++ echo BASE_CONFIG_TIMEZONE
+BASE_CONFIG_TIMEZONE
++++ IFS=
++++ read -r var
++++ export BASE_DISTRO
++++ echo BASE_DISTRO
+BASE_DISTRO
++++ IFS=
++++ read -r var
++++ export BASE_ENABLE_UART
++++ echo BASE_ENABLE_UART
+BASE_ENABLE_UART
++++ IFS=
++++ read -r var
++++ export BASE_IGNORE_VARIANT_NAME
++++ echo BASE_IGNORE_VARIANT_NAME
+BASE_IGNORE_VARIANT_NAME
++++ IFS=
++++ read -r var
++++ export BASE_IMAGE_ENLARGEROOT
++++ echo BASE_IMAGE_ENLARGEROOT
+BASE_IMAGE_ENLARGEROOT
++++ IFS=
++++ read -r var
++++ export BASE_IMAGE_PATH
++++ echo BASE_IMAGE_PATH
+BASE_IMAGE_PATH
++++ IFS=
++++ read -r var
++++ export BASE_IMAGE_RASPBIAN
++++ echo BASE_IMAGE_RASPBIAN
+BASE_IMAGE_RASPBIAN
++++ IFS=
++++ read -r var
++++ export BASE_IMAGE_RESIZEROOT
++++ echo BASE_IMAGE_RESIZEROOT
+BASE_IMAGE_RESIZEROOT
++++ IFS=
++++ read -r var
++++ export BASE_MOUNT_PATH
++++ echo BASE_MOUNT_PATH
+BASE_MOUNT_PATH
++++ IFS=
++++ read -r var
++++ export BASE_OS
++++ echo BASE_OS
+BASE_OS
++++ IFS=
++++ read -r var
++++ export BASE_OVERRIDE_HOSTNAME
++++ echo BASE_OVERRIDE_HOSTNAME
+BASE_OVERRIDE_HOSTNAME
++++ IFS=
++++ read -r var
++++ export BASE_POSTSCRIPT
++++ echo BASE_POSTSCRIPT
+BASE_POSTSCRIPT
++++ IFS=
++++ read -r var
++++ export BASE_PRESCRIPT
++++ echo BASE_PRESCRIPT
+BASE_PRESCRIPT
++++ IFS=
++++ read -r var
++++ export BASE_PYPI_INDEX
++++ echo BASE_PYPI_INDEX
+BASE_PYPI_INDEX
++++ IFS=
++++ read -r var
++++ export BASE_RELEASE_COMPRESS
++++ echo BASE_RELEASE_COMPRESS
+BASE_RELEASE_COMPRESS
++++ IFS=
++++ read -r var
++++ export BASE_RELEASE_IMG_NAME
++++ echo BASE_RELEASE_IMG_NAME
+BASE_RELEASE_IMG_NAME
++++ IFS=
++++ read -r var
++++ export BASE_RELEASE_ZIP_NAME
++++ echo BASE_RELEASE_ZIP_NAME
+BASE_RELEASE_ZIP_NAME
++++ IFS=
++++ read -r var
++++ export BASE_ROOT_PARTITION
++++ echo BASE_ROOT_PARTITION
+BASE_ROOT_PARTITION
++++ IFS=
++++ read -r var
++++ export BASE_SSH_ENABLE
++++ echo BASE_SSH_ENABLE
+BASE_SSH_ENABLE
++++ IFS=
++++ read -r var
++++ export BASE_USER
++++ echo BASE_USER
+BASE_USER
++++ IFS=
++++ read -r var
++++ export BASE_USER_PASSWORD
++++ echo BASE_USER_PASSWORD
+BASE_USER_PASSWORD
++++ IFS=
++++ read -r var
++++ export BASE_USE_ALT_DNS
++++ echo BASE_USE_ALT_DNS
+BASE_USE_ALT_DNS
++++ IFS=
++++ read -r var
++++ export BASE_VERSION
++++ echo BASE_VERSION
+BASE_VERSION
++++ IFS=
++++ read -r var
++++ export BASE_WORKSPACE
++++ echo BASE_WORKSPACE
+BASE_WORKSPACE
++++ IFS=
++++ read -r var
++++ export BASE_ZIP_IMG
++++ echo BASE_ZIP_IMG
+BASE_ZIP_IMG
++++ IFS=
++++ read -r var
++++ echo ================================================================
+================================================================
++++ for module in $(echo "${MODULES_AFTER}" | tr "," "\n")
++++ '[' -d /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/modules/network ']'
++++ '[' -d /home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src/modules/network ']'
++++ export MODULE_PATH=/home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src/modules/network
++++ MODULE_PATH=/home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src/modules/network
++++ echo 'loading network config at /home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src/modules/network/config'
+loading network config at /home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src/modules/network/config
++++ '[' -f /home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src/modules/network/config ']'
++++ source /home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src/modules/network/config
+++++ '[' -n '' ']'
+++++ NETWORK_DISABLE_PWRSAVE=yes
+++++ '[' -n '' ']'
+++++ NETWORK_PWRSAVE_TYPE=udev
+++++ '[' -n '' ']'
+++++ NETWORK_WPA_SUPPLICANT=no
+++++ '[' -n '' ']'
+++++ NETWORK_NETWORK_MANAGER=yes
++++ echo ================================================================
+================================================================
++++ echo 'Using the following config:'
+Using the following config:
++++ module_up=NETWORK
++++ module_up=NETWORK_
++++ IFS=
++++ read -r var
+++++ compgen -A variable NETWORK_
++++ export NETWORK_DISABLE_PWRSAVE
++++ echo NETWORK_DISABLE_PWRSAVE
+NETWORK_DISABLE_PWRSAVE
++++ IFS=
++++ read -r var
++++ export NETWORK_NETWORK_MANAGER
++++ echo NETWORK_NETWORK_MANAGER
+NETWORK_NETWORK_MANAGER
++++ IFS=
++++ read -r var
++++ export NETWORK_PWRSAVE_TYPE
++++ echo NETWORK_PWRSAVE_TYPE
+NETWORK_PWRSAVE_TYPE
++++ IFS=
++++ read -r var
++++ export NETWORK_WPA_SUPPLICANT
++++ echo NETWORK_WPA_SUPPLICANT
+NETWORK_WPA_SUPPLICANT
++++ IFS=
++++ read -r var
++++ echo ================================================================
+================================================================
++++ for module in $(echo "${MODULES_AFTER}" | tr "," "\n")
++++ '[' -d /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/modules/mybase ']'
++++ export MODULE_PATH=/home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/modules/mybase
++++ MODULE_PATH=/home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/modules/mybase
++++ echo 'loading mybase config at /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/modules/mybase/config'
+loading mybase config at /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/modules/mybase/config
++++ '[' -f /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/modules/mybase/config ']'
++++ source /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/modules/mybase/config
+++++ MYBASE_VAR='MyBase Variable'
+++++ MYBASE_PKGS='ansible git'
+++++ MYBASE_DOITPI_TEST_REPO_SHIP=https://github.com/kraeml/doitpi-test.git
+++++ MYBASE_DOITPI_TEST_REPO_BUILD=
+++++ MYBASE_DOITPI_TEST_REPO_BRANCH=main
+++++ MYBASE_DOITPI_ANSIBLE_REPO_SHIP=https://codeberg.org/kraeml/doitpi-ansible.git
+++++ MYBASE_DOITPI_ANSIBLE_REPO_BUILD=
+++++ MYBASE_DOITPI_ANSIBLE_REPO_BRANCH=master
+++++ MYBASE_DOITPI_ANSIBLE_REPO_TAGS=mybase
++++ echo ================================================================
+================================================================
++++ echo 'Using the following config:'
+Using the following config:
++++ module_up=MYBASE
++++ module_up=MYBASE_
++++ IFS=
++++ read -r var
+++++ compgen -A variable MYBASE_
++++ export MYBASE_DOITPI_ANSIBLE_REPO_BRANCH
++++ echo MYBASE_DOITPI_ANSIBLE_REPO_BRANCH
+MYBASE_DOITPI_ANSIBLE_REPO_BRANCH
++++ IFS=
++++ read -r var
++++ export MYBASE_DOITPI_ANSIBLE_REPO_BUILD
++++ echo MYBASE_DOITPI_ANSIBLE_REPO_BUILD
+MYBASE_DOITPI_ANSIBLE_REPO_BUILD
++++ IFS=
++++ read -r var
++++ export MYBASE_DOITPI_ANSIBLE_REPO_SHIP
++++ echo MYBASE_DOITPI_ANSIBLE_REPO_SHIP
+MYBASE_DOITPI_ANSIBLE_REPO_SHIP
++++ IFS=
++++ read -r var
++++ export MYBASE_DOITPI_ANSIBLE_REPO_TAGS
++++ echo MYBASE_DOITPI_ANSIBLE_REPO_TAGS
+MYBASE_DOITPI_ANSIBLE_REPO_TAGS
++++ IFS=
++++ read -r var
++++ export MYBASE_DOITPI_TEST_REPO_BRANCH
++++ echo MYBASE_DOITPI_TEST_REPO_BRANCH
+MYBASE_DOITPI_TEST_REPO_BRANCH
++++ IFS=
++++ read -r var
++++ export MYBASE_DOITPI_TEST_REPO_BUILD
++++ echo MYBASE_DOITPI_TEST_REPO_BUILD
+MYBASE_DOITPI_TEST_REPO_BUILD
++++ IFS=
++++ read -r var
++++ export MYBASE_DOITPI_TEST_REPO_SHIP
++++ echo MYBASE_DOITPI_TEST_REPO_SHIP
+MYBASE_DOITPI_TEST_REPO_SHIP
++++ IFS=
++++ read -r var
++++ export MYBASE_PKGS
++++ echo MYBASE_PKGS
+MYBASE_PKGS
++++ IFS=
++++ read -r var
++++ export MYBASE_VAR
++++ echo MYBASE_VAR
+MYBASE_VAR
++++ IFS=
++++ read -r var
++++ echo ================================================================
+================================================================
++++ for module in $(echo "${MODULES_AFTER}" | tr "," "\n")
++++ '[' -d /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/modules/pythongpio ']'
++++ export MODULE_PATH=/home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/modules/pythongpio
++++ MODULE_PATH=/home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/modules/pythongpio
++++ echo 'loading pythongpio config at /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/modules/pythongpio/config'
+loading pythongpio config at /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/modules/pythongpio/config
++++ '[' -f /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/modules/pythongpio/config ']'
++++ source /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/modules/pythongpio/config
+++++ PYTHONGPIO_VAR='Python and GPIO Variable'
+++++ PYTHONGPIO_PKGS='python3-pip python3-venv i2c-tools python3-smbus                 git virtualenv bluetooth pi-bluetooth bluez'
+++++ '[' raspbian '!=' ubuntu ']'
+++++ PYTHONGPIO_PKGS='python3-pip python3-venv i2c-tools python3-smbus                 git virtualenv bluetooth pi-bluetooth bluez pigpio python3-pigpio pigpiod'
+++++ PYTHONGPIO_GPIOBLOCKLY_REPO_SHIP=https://github.com/GrazerComputerClub/Blockly-gPIo.git
+++++ PYTHONGPIO_GPIOBLOCKLY_REPO_BUILD=
+++++ PYTHONGPIO_GPIOBLOCKLY_REPO_BRANCH=master
++++ echo ================================================================
+================================================================
++++ echo 'Using the following config:'
+Using the following config:
++++ module_up=PYTHONGPIO
++++ module_up=PYTHONGPIO_
++++ IFS=
++++ read -r var
+++++ compgen -A variable PYTHONGPIO_
++++ export PYTHONGPIO_GPIOBLOCKLY_REPO_BRANCH
++++ echo PYTHONGPIO_GPIOBLOCKLY_REPO_BRANCH
+PYTHONGPIO_GPIOBLOCKLY_REPO_BRANCH
++++ IFS=
++++ read -r var
++++ export PYTHONGPIO_GPIOBLOCKLY_REPO_BUILD
++++ echo PYTHONGPIO_GPIOBLOCKLY_REPO_BUILD
+PYTHONGPIO_GPIOBLOCKLY_REPO_BUILD
++++ IFS=
++++ read -r var
++++ export PYTHONGPIO_GPIOBLOCKLY_REPO_SHIP
++++ echo PYTHONGPIO_GPIOBLOCKLY_REPO_SHIP
+PYTHONGPIO_GPIOBLOCKLY_REPO_SHIP
++++ IFS=
++++ read -r var
++++ export PYTHONGPIO_PKGS
++++ echo PYTHONGPIO_PKGS
+PYTHONGPIO_PKGS
++++ IFS=
++++ read -r var
++++ export PYTHONGPIO_VAR
++++ echo PYTHONGPIO_VAR
+PYTHONGPIO_VAR
++++ IFS=
++++ read -r var
++++ echo ================================================================
+================================================================
++++ for module in $(echo "${MODULES_AFTER}" | tr "," "\n")
++++ '[' -d /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/modules/platformio ']'
++++ export MODULE_PATH=/home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/modules/platformio
++++ MODULE_PATH=/home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/modules/platformio
++++ echo 'loading platformio config at /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/modules/platformio/config'
+loading platformio config at /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/modules/platformio/config
++++ '[' -f /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/modules/platformio/config ']'
++++ source /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/modules/platformio/config
+++++ PLATFORMIO_VAR='Platform.io Variable'
+++++ PLATFORMIO_PKGS=python3-venv
++++ echo ================================================================
+================================================================
++++ echo 'Using the following config:'
+Using the following config:
++++ module_up=PLATFORMIO
++++ module_up=PLATFORMIO_
++++ IFS=
++++ read -r var
+++++ compgen -A variable PLATFORMIO_
++++ export PLATFORMIO_PKGS
++++ echo PLATFORMIO_PKGS
+PLATFORMIO_PKGS
++++ IFS=
++++ read -r var
++++ export PLATFORMIO_VAR
++++ echo PLATFORMIO_VAR
+PLATFORMIO_VAR
++++ IFS=
++++ read -r var
++++ echo ================================================================
+================================================================
++++ for module in $(echo "${MODULES_AFTER}" | tr "," "\n")
++++ '[' -d /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/modules/devops ']'
++++ export MODULE_PATH=/home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/modules/devops
++++ MODULE_PATH=/home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/modules/devops
++++ echo 'loading devops config at /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/modules/devops/config'
+loading devops config at /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/modules/devops/config
++++ '[' -f /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/modules/devops/config ']'
++++ source /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/modules/devops/config
+++++ DEVOPS_VAR='DevOps Variable'
+++++ DEVOPS_ARCH_DOCKER=armhf
+++++ '[' armhf = armv7l ']'
+++++ '[' armhf = aarch64 ']'
+++++ DEVOPS_ARCH_PROMETHEUS=armhf
+++++ '[' armhf = armv7l ']'
+++++ '[' armhf = aarch64 ']'
+++++ DEVOPS_PROMETHEUS_VERSION=2.45.5
+++++ DEVOPS_PROMETHEUS=prometheus-2.45.5.linux-armhf
+++++ DEVOPS_ARCH_GRAFANA=armhf
+++++ '[' armhf = armv7l ']'
+++++ '[' armhf = aarch64 ']'
+++++ DEVOPS_GRAFANA_VERSION=10.4.3
+++++ '[' armhf = armv7l ']'
+++++ DEVOPS_GRAFANA=grafana-enterprise_10.4.3_armhf
+++++ DEVOPS_PKGS='screen tmux tree ansible yamllint                 expect git vim nmap tree net-tools                 lxc lxc-templates unzip zip build-essential                 ssh-import-id cmake                adduser libfontconfig1 musl                 docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin'
++++ echo ================================================================
+================================================================
++++ echo 'Using the following config:'
+Using the following config:
++++ module_up=DEVOPS
++++ module_up=DEVOPS_
++++ IFS=
++++ read -r var
+++++ compgen -A variable DEVOPS_
++++ export DEVOPS_ARCH_DOCKER
++++ echo DEVOPS_ARCH_DOCKER
+DEVOPS_ARCH_DOCKER
++++ IFS=
++++ read -r var
++++ export DEVOPS_ARCH_GRAFANA
++++ echo DEVOPS_ARCH_GRAFANA
+DEVOPS_ARCH_GRAFANA
++++ IFS=
++++ read -r var
++++ export DEVOPS_ARCH_PROMETHEUS
++++ echo DEVOPS_ARCH_PROMETHEUS
+DEVOPS_ARCH_PROMETHEUS
++++ IFS=
++++ read -r var
++++ export DEVOPS_GRAFANA
++++ echo DEVOPS_GRAFANA
+DEVOPS_GRAFANA
++++ IFS=
++++ read -r var
++++ export DEVOPS_GRAFANA_VERSION
++++ echo DEVOPS_GRAFANA_VERSION
+DEVOPS_GRAFANA_VERSION
++++ IFS=
++++ read -r var
++++ export DEVOPS_PKGS
++++ echo DEVOPS_PKGS
+DEVOPS_PKGS
++++ IFS=
++++ read -r var
++++ export DEVOPS_PROMETHEUS
++++ echo DEVOPS_PROMETHEUS
+DEVOPS_PROMETHEUS
++++ IFS=
++++ read -r var
++++ export DEVOPS_PROMETHEUS_VERSION
++++ echo DEVOPS_PROMETHEUS_VERSION
+DEVOPS_PROMETHEUS_VERSION
++++ IFS=
++++ read -r var
++++ export DEVOPS_VAR
++++ echo DEVOPS_VAR
+DEVOPS_VAR
++++ IFS=
++++ read -r var
++++ echo ================================================================
+================================================================
++++ for module in $(echo "${MODULES_AFTER}" | tr "," "\n")
++++ '[' -d /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/modules/homeautomation ']'
++++ export MODULE_PATH=/home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/modules/homeautomation
++++ MODULE_PATH=/home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/modules/homeautomation
++++ echo 'loading homeautomation config at /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/modules/homeautomation/config'
+loading homeautomation config at /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/modules/homeautomation/config
++++ '[' -f /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/modules/homeautomation/config ']'
++++ source /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/modules/homeautomation/config
+++++ HOMEAUTOMATION_VAR='Homeautomation Variable'
+++++ HOMEAUTOMATION_PKGS='git vim mosquitto-clients'
+++++ HOMEAUTOMATION_HOMEAUTOMATION_REPO_SHIP=https://github.com/koenvervloesem/raspberry-pi-home-automation.git
+++++ HOMEAUTOMATION_HOMEAUTOMATION_REPO_BUILD=
+++++ HOMEAUTOMATION_HOMEAUTOMATION_REPO_BRANCH=master
+++++ HOMEAUTOMATION_GETTINGSTARTETESP_REPO_SHIP=https://github.com/koenvervloesem/Getting-Started-with-ESPHome.git
+++++ HOMEAUTOMATION_GETTINGSTARTETESP_REPO_BUILD=
+++++ HOMEAUTOMATION_GETTINGSTARTETESP_REPO_BRANCH=main
+++++ HOMEAUTOMATION_IOTSTACK_REPO_SHIP=https://github.com/SensorsIot/IOTstack.git
+++++ HOMEAUTOMATION_IOTSTACK_REPO_BUILD=
+++++ HOMEAUTOMATION_IOTSTACK_REPO_BRANCH=master
++++ echo ================================================================
+================================================================
++++ echo 'Using the following config:'
+Using the following config:
++++ module_up=HOMEAUTOMATION
++++ module_up=HOMEAUTOMATION_
++++ IFS=
++++ read -r var
+++++ compgen -A variable HOMEAUTOMATION_
++++ export HOMEAUTOMATION_GETTINGSTARTETESP_REPO_BRANCH
++++ echo HOMEAUTOMATION_GETTINGSTARTETESP_REPO_BRANCH
+HOMEAUTOMATION_GETTINGSTARTETESP_REPO_BRANCH
++++ IFS=
++++ read -r var
++++ export HOMEAUTOMATION_GETTINGSTARTETESP_REPO_BUILD
++++ echo HOMEAUTOMATION_GETTINGSTARTETESP_REPO_BUILD
+HOMEAUTOMATION_GETTINGSTARTETESP_REPO_BUILD
++++ IFS=
++++ read -r var
++++ export HOMEAUTOMATION_GETTINGSTARTETESP_REPO_SHIP
++++ echo HOMEAUTOMATION_GETTINGSTARTETESP_REPO_SHIP
+HOMEAUTOMATION_GETTINGSTARTETESP_REPO_SHIP
++++ IFS=
++++ read -r var
++++ export HOMEAUTOMATION_HOMEAUTOMATION_REPO_BRANCH
++++ echo HOMEAUTOMATION_HOMEAUTOMATION_REPO_BRANCH
+HOMEAUTOMATION_HOMEAUTOMATION_REPO_BRANCH
++++ IFS=
++++ read -r var
++++ export HOMEAUTOMATION_HOMEAUTOMATION_REPO_BUILD
++++ echo HOMEAUTOMATION_HOMEAUTOMATION_REPO_BUILD
+HOMEAUTOMATION_HOMEAUTOMATION_REPO_BUILD
++++ IFS=
++++ read -r var
++++ export HOMEAUTOMATION_HOMEAUTOMATION_REPO_SHIP
++++ echo HOMEAUTOMATION_HOMEAUTOMATION_REPO_SHIP
+HOMEAUTOMATION_HOMEAUTOMATION_REPO_SHIP
++++ IFS=
++++ read -r var
++++ export HOMEAUTOMATION_IOTSTACK_REPO_BRANCH
++++ echo HOMEAUTOMATION_IOTSTACK_REPO_BRANCH
+HOMEAUTOMATION_IOTSTACK_REPO_BRANCH
++++ IFS=
++++ read -r var
++++ export HOMEAUTOMATION_IOTSTACK_REPO_BUILD
++++ echo HOMEAUTOMATION_IOTSTACK_REPO_BUILD
+HOMEAUTOMATION_IOTSTACK_REPO_BUILD
++++ IFS=
++++ read -r var
++++ export HOMEAUTOMATION_IOTSTACK_REPO_SHIP
++++ echo HOMEAUTOMATION_IOTSTACK_REPO_SHIP
+HOMEAUTOMATION_IOTSTACK_REPO_SHIP
++++ IFS=
++++ read -r var
++++ export HOMEAUTOMATION_PKGS
++++ echo HOMEAUTOMATION_PKGS
+HOMEAUTOMATION_PKGS
++++ IFS=
++++ read -r var
++++ export HOMEAUTOMATION_VAR
++++ echo HOMEAUTOMATION_VAR
+HOMEAUTOMATION_VAR
++++ IFS=
++++ read -r var
++++ echo ================================================================
+================================================================
++++ for module in $(echo "${MODULES_AFTER}" | tr "," "\n")
++++ '[' -d /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/modules/pkgupgrade ']'
++++ '[' -d /home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src/modules/pkgupgrade ']'
++++ export MODULE_PATH=/home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src/modules/pkgupgrade
++++ MODULE_PATH=/home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src/modules/pkgupgrade
++++ echo 'loading pkgupgrade config at /home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src/modules/pkgupgrade/config'
+loading pkgupgrade config at /home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src/modules/pkgupgrade/config
++++ '[' -f /home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src/modules/pkgupgrade/config ']'
++++ source /home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src/modules/pkgupgrade/config
+++++ '[' -n y ']'
+++++ '[' -n full-upgrade ']'
+++++ '[' -n n ']'
+++++ '[' -n '' ']'
+++++ PKGUPGRADE_PRE_INSTALL_PKGS=
+++++ '[' -n '' ']'
+++++ PKGUPGRADE_CLEANUP=y
++++ echo ================================================================
+================================================================
++++ echo 'Using the following config:'
+Using the following config:
++++ module_up=PKGUPGRADE
++++ module_up=PKGUPGRADE_
++++ IFS=
++++ read -r var
+++++ compgen -A variable PKGUPGRADE_
++++ export PKGUPGRADE_CLEANUP
++++ echo PKGUPGRADE_CLEANUP
+PKGUPGRADE_CLEANUP
++++ IFS=
++++ read -r var
++++ export PKGUPGRADE_DISTUPGRADE
++++ echo PKGUPGRADE_DISTUPGRADE
+PKGUPGRADE_DISTUPGRADE
++++ IFS=
++++ read -r var
++++ export PKGUPGRADE_DISTUPGRADE_METHOD
++++ echo PKGUPGRADE_DISTUPGRADE_METHOD
+PKGUPGRADE_DISTUPGRADE_METHOD
++++ IFS=
++++ read -r var
++++ export PKGUPGRADE_PRE_INSTALL_PKGS
++++ echo PKGUPGRADE_PRE_INSTALL_PKGS
+PKGUPGRADE_PRE_INSTALL_PKGS
++++ IFS=
++++ read -r var
++++ export PKGUPGRADE_USE_PREINSTALLER
++++ echo PKGUPGRADE_USE_PREINSTALLER
+PKGUPGRADE_USE_PREINSTALLER
++++ IFS=
++++ read -r var
++++ echo ================================================================
+================================================================
+++ /home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src/config_sanity
+++ '[' '' == yes ']'
+++ source /home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src/custompios raspios_lite_arm64
++++ set -e
++++ export LC_ALL=C
++++ LC_ALL=C
++++ source /home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src/common.sh
+++++ date
++++ echo_green -e '\nBUILD STARTED @ Tue Oct  7 10:49:39 CEST 2025!\n'
++++ echo -e -n '\e[92m'
+[92m+++ echo -e '\nBUILD' STARTED @ Tue Oct 7 10:49:39 CEST '2025!\n'
+
+BUILD STARTED @ Tue Oct 7 10:49:39 CEST 2025!
+
++++ echo -e -n '\e[0m'
+[0m+++ '[' -n 6000 ']'
++++ which sfdisk
++++ mkdir -p /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64
++++ mkdir -p /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/mount
++++ '[' -f /tmp/tmp.gAxdEB1MII ']'
++++ mv -v /tmp/tmp.gAxdEB1MII /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/extra_board_config
+copied '/tmp/tmp.gAxdEB1MII' -> '/home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/extra_board_config'
+removed '/tmp/tmp.gAxdEB1MII'
++++ rm -rf '/home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/*.tar.gz'
++++ install_cleanup_trap
++++ set -e
++++ trap cleanup SIGINT SIGTERM
++++ install_fail_on_error_trap
++++ set -e
++++ trap 'echo_red "build failed, unmounting image..." && cd $DIST_PATH && ( unmount_image $BASE_MOUNT_PATH force || true ) && echo_red -e "\nBUILD FAILED!\n"' ERR
++++ unmount_image /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/mount force
++++ mount_path=/home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/mount
++++ force=
++++ '[' 2 -gt 1 ']'
++++ force=force
++++ sync
++++ '[' -n force ']'
+++++ sudo lsof -t /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/mount
+++++ sudo mount
+++++ grep /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/mount
+++++ awk -F ' on ' '{print $2}'
+++++ awk '{print $1}'
+++++ sort -r
++++ pushd /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64
+/home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64 /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src
++++ '[' -e '*.img' ']'
++++ '[' '!' -f /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/image-raspios_lite_arm64/2025-05-13-raspios-bookworm-arm64-lite.img.xz ']'
++++ '[' /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/image-raspios_lite_arm64/2025-05-13-raspios-bookworm-arm64-lite.img.xz == '' ']'
++++ [[ /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/image-raspios_lite_arm64/2025-05-13-raspios-bookworm-arm64-lite.img.xz =~ \.img$ ]]
++++ 7za x -aoa /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/image-raspios_lite_arm64/2025-05-13-raspios-bookworm-arm64-lite.img.xz
+
+7-Zip (a) [64] 16.02 : Copyright (c) 1999-2016 Igor Pavlov : 2016-05-21
+p7zip Version 16.02 (locale=C,Utf16=off,HugeFiles=on,64 bits,8 CPUs Intel(R) Core(TM) i7-7700HQ CPU @ 2.80GHz (906E9),ASM,AES-NI)
+
+Scanning the drive for archives:
+1 file, 443120736 bytes (423 MiB)
+
+Extracting archive: /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/image-raspios_lite_arm64/2025-05-13-raspios-bookworm-arm64-lite.img.xz
+--
+Path = /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/image-raspios_lite_arm64/2025-05-13-raspios-bookworm-arm64-lite.img.xz
+Type = xz
+Physical Size = 443120736
+Method = LZMA2:26 CRC64
+Streams = 1
+Blocks = 14
+
+Everything is Ok
+
+Size:       2759852032
+Compressed: 443120736
+++++ ls
+++++ grep '.img$\|.raw$'
+++++ head -n 1
++++ BASE_IMG_PATH=2025-05-13-raspios-bookworm-arm64-lite.img
++++ '[' '!' -f 2025-05-13-raspios-bookworm-arm64-lite.img ']'
+++++ basename 2025-05-13-raspios-bookworm-arm64-lite.img
++++ export CUSTOM_PI_OS_BUILDBASE=2025-05-13-raspios-bookworm-arm64-lite.img
++++ CUSTOM_PI_OS_BUILDBASE=2025-05-13-raspios-bookworm-arm64-lite.img
++++ '[' -n 6000 ']'
++++ enlarge_ext 2025-05-13-raspios-bookworm-arm64-lite.img 2 6000
++++ image=2025-05-13-raspios-bookworm-arm64-lite.img
++++ partition=2
++++ size=6000
++++ echo_green 'Adding 6000 MB to partition 2 of 2025-05-13-raspios-bookworm-arm64-lite.img'
++++ echo -e -n '\e[92m'
+[92m+++ echo Adding 6000 MB to partition 2 of 2025-05-13-raspios-bookworm-arm64-lite.img
+Adding 6000 MB to partition 2 of 2025-05-13-raspios-bookworm-arm64-lite.img
++++ echo -e -n '\e[0m'
+[0m++++ sfdisk --json 2025-05-13-raspios-bookworm-arm64-lite.img
+++++ jq '.partitiontable.partitions[] | select(.node ==  "2025-05-13-raspios-bookworm-arm64-lite.img2").start'
++++ start=1064960
++++ offset=545259520
++++ dd if=/dev/zero bs=1M count=6000
+6000+0 records in
+6000+0 records out
+6291456000 bytes (6.3 GB, 5.9 GiB) copied, 28.9496 s, 217 MB/s
++++ fdisk 2025-05-13-raspios-bookworm-arm64-lite.img
+
+Welcome to fdisk (util-linux 2.34).
+Changes will remain in memory only, until you decide to write them.
+Be careful before using the write command.
+
+
+Command (m for help): Disk 2025-05-13-raspios-bookworm-arm64-lite.img: 8.44 GiB, 9051308032 bytes, 17678336 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: dos
+Disk identifier: 0xd9c86127
+
+Device                                      Boot   Start     End Sectors  Size Id Type
+2025-05-13-raspios-bookworm-arm64-lite.img1        16384 1064959 1048576  512M  c W95 FAT32 (LBA)
+2025-05-13-raspios-bookworm-arm64-lite.img2      1064960 5390335 4325376  2.1G 83 Linux
+
+Command (m for help): Partition number (1,2, default 2): 
+Partition 2 has been deleted.
+
+Command (m for help): Partition type
+   p   primary (1 primary, 0 extended, 3 free)
+   e   extended (container for logical partitions)
+Select (default p): Partition number (2-4, default 2): First sector (2048-17678335, default 2048): Last sector, +/-sectors or +/-size{K,M,G,T,P} (1064960-17678335, default 17678335): 
+Created a new partition 2 of type 'Linux' and of size 7.9 GiB.
+Partition #2 contains a ext4 signature.
+
+Command (m for help): 
+Disk 2025-05-13-raspios-bookworm-arm64-lite.img: 8.44 GiB, 9051308032 bytes, 17678336 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: dos
+Disk identifier: 0xd9c86127
+
+Device                                      Boot   Start      End  Sectors  Size Id Type
+2025-05-13-raspios-bookworm-arm64-lite.img1        16384  1064959  1048576  512M  c W95 FAT32 (LBA)
+2025-05-13-raspios-bookworm-arm64-lite.img2      1064960 17678335 16613376  7.9G 83 Linux
+
+Command (m for help): The partition table has been altered.
+Syncing disks.
+
++++ detach_all_loopback 2025-05-13-raspios-bookworm-arm64-lite.img
++++ image_name=2025-05-13-raspios-bookworm-arm64-lite.img
+++++ losetup
+++++ grep 2025-05-13-raspios-bookworm-arm64-lite.img
+++++ awk '{ print $1 }'
++++ test_for_image 2025-05-13-raspios-bookworm-arm64-lite.img
++++ '[' '!' -f 2025-05-13-raspios-bookworm-arm64-lite.img ']'
+++++ losetup -f --show -o 545259520 2025-05-13-raspios-bookworm-arm64-lite.img
++++ LODEV=/dev/loop13
++++ trap 'losetup -d $LODEV' EXIT
++++ file -Ls /dev/loop13
++++ grep -qi ext
++++ e2fsck -fy /dev/loop13
+e2fsck 1.45.5 (07-Jan-2020)
+Pass 1: Checking inodes, blocks, and sizes
+Pass 2: Checking directory structure
+Pass 3: Checking directory connectivity
+Pass 4: Checking reference counts
+Pass 5: Checking group summary information
+rootfs: 61598/135184 files (0.2% non-contiguous), 422901/540672 blocks
++++ resize2fs -p /dev/loop13
+resize2fs 1.45.5 (07-Jan-2020)
+Resizing the filesystem on /dev/loop13 to 2076672 (4k) blocks.
+The filesystem on /dev/loop13 is now 2076672 (4k) blocks long.
+
++++ losetup -d /dev/loop13
++++ trap - EXIT
++++ echo_green 'Resized partition 2 of 2025-05-13-raspios-bookworm-arm64-lite.img to +6000 MB'
++++ echo -e -n '\e[92m'
+[92m+++ echo Resized partition 2 of 2025-05-13-raspios-bookworm-arm64-lite.img to +6000 MB
+Resized partition 2 of 2025-05-13-raspios-bookworm-arm64-lite.img to +6000 MB
++++ echo -e -n '\e[0m'
+[0m+++ mount_image 2025-05-13-raspios-bookworm-arm64-lite.img 2 /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/mount boot/firmware ''
++++ image_path=2025-05-13-raspios-bookworm-arm64-lite.img
++++ root_partition=2
++++ mount_path=/home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/mount
++++ boot_mount_path=boot
++++ '[' 5 -gt 3 ']'
++++ boot_mount_path=boot/firmware
++++ '[' 5 -gt 4 ']'
++++ '[' '' '!=' '' ']'
++++ boot_partition=1
+++++ sfdisk --json 2025-05-13-raspios-bookworm-arm64-lite.img
++++ fdisk_output='{
+   "partitiontable": {
+      "label":"dos",
+      "id":"0xd9c86127",
+      "device":"2025-05-13-raspios-bookworm-arm64-lite.img",
+      "unit":"sectors",
+      "partitions": [
+         {"node":"2025-05-13-raspios-bookworm-arm64-lite.img1", "start":16384, "size":1048576, "type":"c"},
+         {"node":"2025-05-13-raspios-bookworm-arm64-lite.img2", "start":1064960, "size":16613376, "type":"83"}
+      ]
+   }
+}'
+++++ jq '.partitiontable.partitions[] | select(.node == "2025-05-13-raspios-bookworm-arm64-lite.img1").start'
++++ boot_offset=8388608
+++++ jq '.partitiontable.partitions[] | select(.node == "2025-05-13-raspios-bookworm-arm64-lite.img2").start'
++++ root_offset=545259520
++++ echo_green 'Mounting image 2025-05-13-raspios-bookworm-arm64-lite.img on /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/mount, offset for boot partition is 8388608, offset for root partition is 545259520'
++++ echo -e -n '\e[92m'
+[92m+++ echo Mounting image 2025-05-13-raspios-bookworm-arm64-lite.img on /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/mount, offset for boot partition is 8388608, offset for root partition is 545259520
+Mounting image 2025-05-13-raspios-bookworm-arm64-lite.img on /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/mount, offset for boot partition is 8388608, offset for root partition is 545259520
++++ echo -e -n '\e[0m'
+[0m+++ detach_all_loopback 2025-05-13-raspios-bookworm-arm64-lite.img
++++ image_name=2025-05-13-raspios-bookworm-arm64-lite.img
+++++ losetup
+++++ grep 2025-05-13-raspios-bookworm-arm64-lite.img
+++++ awk '{ print $1 }'
++++ echo_green 'Mounting root partition'
++++ echo -e -n '\e[92m'
+[92m+++ echo Mounting root partition
+Mounting root partition
++++ echo -e -n '\e[0m'
+[0m+++ sudo losetup -f
+/dev/loop13
++++ sudo mount -o loop,offset=545259520 2025-05-13-raspios-bookworm-arm64-lite.img /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/mount/
++++ [[ 1 != \2 ]]
++++ echo_green 'Mounting boot partition'
++++ echo -e -n '\e[92m'
+[92m+++ echo Mounting boot partition
+Mounting boot partition
++++ echo -e -n '\e[0m'
+[0m+++ sudo losetup -f
+/dev/loop61
+++++ expr 545259520 - 8388608
++++ sudo mount -o loop,offset=8388608,sizelimit=536870912 2025-05-13-raspios-bookworm-arm64-lite.img /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/mount/boot/firmware
++++ sudo mkdir -p /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/mount/dev/pts
++++ sudo mkdir -p /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/mount/proc
++++ sudo mkdir -p /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/mount/sys
++++ sudo mount -o bind /dev /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/mount/dev
++++ sudo mount -o bind /dev/pts /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/mount/dev/pts
++++ sudo mount -o bind,ro /proc /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/mount/proc
++++ sudo mount -o bind,ro /sys /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/mount/sys
++++ '[' -n /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/aptcache ']'
++++ '[' /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/aptcache '!=' no ']'
++++ mkdir -p /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/aptcache
++++ mount --bind /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/aptcache /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/mount/var/cache/apt
++++ pushd /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/mount
+/home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/mount /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64 /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src
++++ '[' yes == yes ']'
++++ fixLd
++++ '[' -f etc/ld.so.preload ']'
++++ '[' -n '' ']'
++++ '[' -n /home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src/variants/raspios_lite_arm64 ']'
++++ '[' -f /home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src/variants/raspios_lite_arm64/pre_chroot_script ']'
++++ CHROOT_SCRIPT=/home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/chroot_script
++++ MODULES_AFTER_PATH=/home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/modules_after
++++ MODULES_BEFORE='base(network,mybase,pythongpio,platformio,devops,homeautomation,pkgupgrade)'
++++ /home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src/custompios_core/execution_order.py 'base(network,mybase,pythongpio,platformio,devops,homeautomation,pkgupgrade)' /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/chroot_script /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/modules_after /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/remote_and_meta_config
+Running: /home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src/modules/base/meta
+ENV: raspberrypiarmhf
+Adding in modules: 
+Running: /home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src/modules/network/meta
+ENV: raspberrypiarmhf
+Adding in modules: 
+Running: /home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src/modules/network/meta
+ENV: raspberrypiarmhf
+Adding in modules: 
+Running: /home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src/modules/base/meta
+ENV: raspberrypiarmhf
+Adding in modules: 
+WARNING: No file at - /home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src/modules/network/end_chroot_script
++++ '[' -f /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/remote_and_meta_config ']'
++++ echo 'Sourcing remote and submodules config'
+Sourcing remote and submodules config
++++ source /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/remote_and_meta_config raspios_lite_arm64
+++++ cat /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/modules_after
++++ MODULES_AFTER=
++++ load_module_config ''
++++ MODULES_AFTER=
+++++ echo ''
+++++ tr , '\n'
++++ echo
+
++++ export -f chroot_correct_qemu
++++ export -f execute_chroot_script
++++ bash -x /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/chroot_script
++ set -x
++ set -e
++ execute_chroot_script /home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src/modules/base /home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src/modules/base/start_chroot_script
++ '[' -f /.dockerenv ']'
++ '[' -d /home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src/modules/base/filesystem ']'
++ cp -vr --preserve=mode,timestamps /home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src/modules/base/filesystem .
+'/home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src/modules/base/filesystem' -> './filesystem'
+'/home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src/modules/base/filesystem/ubuntu' -> './filesystem/ubuntu'
+'/home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src/modules/base/filesystem/ubuntu/usr' -> './filesystem/ubuntu/usr'
+'/home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src/modules/base/filesystem/ubuntu/usr/lib' -> './filesystem/ubuntu/usr/lib'
+'/home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src/modules/base/filesystem/ubuntu/usr/lib/dhcpcd' -> './filesystem/ubuntu/usr/lib/dhcpcd'
+'/home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src/modules/base/filesystem/ubuntu/usr/lib/dhcpcd/dhcpcd-hooks' -> './filesystem/ubuntu/usr/lib/dhcpcd/dhcpcd-hooks'
+'/home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src/modules/base/filesystem/ubuntu/usr/lib/dhcpcd/dhcpcd-hooks/10-wpa_supplicant' -> './filesystem/ubuntu/usr/lib/dhcpcd/dhcpcd-hooks/10-wpa_supplicant'
+++ uname -m
++ '[' x86_64 '!=' armv7l ']'
++ '[' armhf == armv7l ']'
++ '[' armhf == armhf ']'
++ grep -q gentoo /etc/os-release
+++ which qemu-arm-static
++ cp /usr/bin/qemu-arm-static usr/bin/qemu-arm-static
++ cp /home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src/modules/base/start_chroot_script chroot_script
++ chmod 755 chroot_script
++ cp /home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src/common.sh common.sh
++ chmod 755 common.sh
+++ uname -m
++ chroot_correct_qemu x86_64 armhf /home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src/modules/base/start_chroot_script /home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src
++ local host_arch=x86_64
++ local target_arch=armhf
++ local chroot_script=/home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src/modules/base/start_chroot_script
++ local custom_pi_os_path=/home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src
++ [[ -z x86_64 ]]
++ [[ -z armhf ]]
++ cp /home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src/modules/base/start_chroot_script chroot_script
++ chmod 755 chroot_script
++ cp /home/michl/Dokumente/Projekte/Raspberry/CustomPiOS/src/common.sh common.sh
++ chmod 755 common.sh
++ [[ x86_64 != \a\r\m\v\7\l ]]
++ [[ armhf == \a\r\m\v\7\l ]]
++ [[ armhf == \a\r\m\h\f ]]
++ grep -q gentoo /etc/os-release
+++ which qemu-arm-static
++ cp /usr/bin/qemu-arm-static usr/bin/qemu-arm-static
++ [[ x86_64 != \a\r\m\v\7\l ]]
++ [[ x86_64 != \a\a\r\c\h\6\4 ]]
++ [[ x86_64 != \a\r\m\6\4 ]]
++ echo 'Detected we are on a non-arm device'
+Detected we are on a non-arm device
++ [[ armhf == \a\r\m\v\7\l ]]
++ [[ armhf == \a\r\m\h\f ]]
++ echo 'Building on non-ARM device a armv7l system, using qemu-arm-static'
+Building on non-ARM device a armv7l system, using qemu-arm-static
++ grep -q gentoo /etc/os-release
++ echo 'Using normal non-arm qemu for armv7l'
+Using normal non-arm qemu for armv7l
++ chroot . usr/bin/qemu-arm-static /bin/bash /chroot_script
+/bin/bash: Invalid ELF image for this architecture
+++++ echo_red 'build failed, unmounting image...'
+++++ echo -e -n '\e[91m'
+[91m++++ echo build failed, unmounting image...
+build failed, unmounting image...
+++++ echo -e -n '\e[0m'
+[0m++++ cd /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src
+++++ unmount_image /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/mount force
+++++ mount_path=/home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/mount
+++++ force=
+++++ '[' 2 -gt 1 ']'
+++++ force=force
+++++ sync
+++++ '[' -n force ']'
++++++ sudo lsof -t /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/mount
++++++ sudo mount
++++++ grep /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/mount
++++++ awk -F ' on ' '{print $2}'
++++++ awk '{print $1}'
++++++ sort -r
+++++ for m in $(sudo mount | grep $mount_path | awk -F " on " '{print $2}' | awk '{print $1}' | sort -r)
+++++ echo_green 'Unmounting /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/mount/var/cache/apt...'
+++++ echo -e -n '\e[92m'
+[92m++++ echo Unmounting /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/mount/var/cache/apt...
+Unmounting /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/mount/var/cache/apt...
+++++ echo -e -n '\e[0m'
+[0m++++ sudo umount /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/mount/var/cache/apt
+++++ for m in $(sudo mount | grep $mount_path | awk -F " on " '{print $2}' | awk '{print $1}' | sort -r)
+++++ echo_green 'Unmounting /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/mount/sys...'
+++++ echo -e -n '\e[92m'
+[92m++++ echo Unmounting /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/mount/sys...
+Unmounting /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/mount/sys...
+++++ echo -e -n '\e[0m'
+[0m++++ sudo umount /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/mount/sys
+++++ for m in $(sudo mount | grep $mount_path | awk -F " on " '{print $2}' | awk '{print $1}' | sort -r)
+++++ echo_green 'Unmounting /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/mount/proc...'
+++++ echo -e -n '\e[92m'
+[92m++++ echo Unmounting /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/mount/proc...
+Unmounting /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/mount/proc...
+++++ echo -e -n '\e[0m'
+[0m++++ sudo umount /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/mount/proc
+++++ for m in $(sudo mount | grep $mount_path | awk -F " on " '{print $2}' | awk '{print $1}' | sort -r)
+++++ echo_green 'Unmounting /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/mount/dev/pts...'
+++++ echo -e -n '\e[92m'
+[92m++++ echo Unmounting /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/mount/dev/pts...
+Unmounting /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/mount/dev/pts...
+++++ echo -e -n '\e[0m'
+[0m++++ sudo umount /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/mount/dev/pts
+++++ for m in $(sudo mount | grep $mount_path | awk -F " on " '{print $2}' | awk '{print $1}' | sort -r)
+++++ echo_green 'Unmounting /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/mount/dev...'
+++++ echo -e -n '\e[92m'
+[92m++++ echo Unmounting /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/mount/dev...
+Unmounting /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/mount/dev...
+++++ echo -e -n '\e[0m'
+[0m++++ sudo umount /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/mount/dev
+++++ for m in $(sudo mount | grep $mount_path | awk -F " on " '{print $2}' | awk '{print $1}' | sort -r)
+++++ echo_green 'Unmounting /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/mount/boot/firmware...'
+++++ echo -e -n '\e[92m'
+[92m++++ echo Unmounting /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/mount/boot/firmware...
+Unmounting /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/mount/boot/firmware...
+++++ echo -e -n '\e[0m'
+[0m++++ sudo umount /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/mount/boot/firmware
+++++ for m in $(sudo mount | grep $mount_path | awk -F " on " '{print $2}' | awk '{print $1}' | sort -r)
+++++ echo_green 'Unmounting /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/mount...'
+++++ echo -e -n '\e[92m'
+[92m++++ echo Unmounting /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/mount...
+Unmounting /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/mount...
+++++ echo -e -n '\e[0m'
+[0m++++ sudo umount /home/michl/Dokumente/Projekte/Raspberry/devopsPiOS/src/workspace-raspios_lite_arm64/mount
+++++ echo_red -e '\nBUILD FAILED!\n'
+++++ echo -e -n '\e[91m'
+[91m++++ echo -e '\nBUILD' 'FAILED!\n'
+
+BUILD FAILED!
+
+++++ echo -e -n '\e[0m'
+[0m
