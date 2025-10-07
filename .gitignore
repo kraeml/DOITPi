@@ -6,3 +6,4 @@ custompios_path
 src/config.*
 *.swp
 tmp/
+make.txt
