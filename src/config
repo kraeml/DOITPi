@@ -29,7 +29,7 @@ export DOCKER_COMPOSE_BOOT_PATH=default
 
 export PKGUPGRADE_DISTUPGRADE=y # y/n
 # upgrade vs full upgrade.
-export PKGUPGRADE_DISTUPGRADE_METHOD=full-upgrade
+export PKGUPGRADE_DISTUPGRADE_METHOD=upgrade
 export PKGUPGRADE_USE_PREINSTALLER=n # y/n
 # Add Packages that should be PKGUPGRADEed.
 export PKGUPGRADE_PRE_INSTALL_PKGS=""
