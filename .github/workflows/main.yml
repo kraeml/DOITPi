@@ -84,7 +84,7 @@ jobs:
         cd repository/src
         echo "Plattenplatz vor Build"
         df -h
-        time sudo make arm64
+        time sudo make arm64 armhf
         echo "Plattenplatz nach Build"
         df -h
 
@@ -128,23 +128,23 @@ jobs:
         path: ${{ steps.get_arm64_info.outputs.image }}
         name: ${{ steps.get_arm64_info.outputs.image }}
 
-    #- name: Create armhf image
-    #  id: get_armhf_info
-    #  run: |
-    #    source repository/src/config
-    #    IMAGE=devops-${{ steps.release_name.outputs.release }}_armhf
+    - name: Create armhf image
+      id: get_armhf_info
+      run: |
+        source repository/src/config
+        IMAGE=devops-${{ steps.release_name.outputs.release }}_armhf
 
-    #    sudo mv repository/src/workspace-raspios/*.img.xz ${IMAGE}.img.xz
-    #    echo "image=${IMAGE}.img.xz" >> $GITHUB_OUTPUT
-    #    df -h
+        sudo mv repository/src/workspace-raspios/*.img.xz ${IMAGE}.img.xz
+        echo "image=${IMAGE}.img.xz" >> $GITHUB_OUTPUT
+        df -h
 
-    #- name: Uploading armhf image as artifact
-    #  uses: actions/upload-artifact@v4
-    #  env:
-    #    GITHUB_TOKEN: ${{ github.token }}
-    #  with:
-    #    path: ${{ steps.get_armhf_info.outputs.image }}
-    #    name: ${{ steps.get_armhf_info.outputs.image }}
+    - name: Uploading armhf image as artifact
+      uses: actions/upload-artifact@v4
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+      with:
+        path: ${{ steps.get_armhf_info.outputs.image }}
+        name: ${{ steps.get_armhf_info.outputs.image }}
     
     - name: Create Release
       uses: softprops/action-gh-release@v2
@@ -161,6 +161,7 @@ jobs:
         #  ${{ steps.get_arm64_info.outputs.image }}
         #  ${{ steps.get_ubuntu_arm64_info.outputs.image || ''}}
         files: |
+          ${{ steps.get_armhf_info.outputs.image }}
           ${{ steps.get_arm64_info.outputs.image }}
         
       env:
