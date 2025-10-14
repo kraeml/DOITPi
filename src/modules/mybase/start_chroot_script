@@ -30,7 +30,8 @@ echo "From here the MYBASE-Module starts"
 echo "$MYBASE_VAR auf ${BASE_DISTRO}/${BASE_ARCH}"
 echo "$MYBASE_PKGS"
 
-apt_update_skip
+# apt_update_skip
+apt-get update
 check_install_pkgs ${MYBASE_PKGS}
 
 if [ ${BASE_DISTRO} != "ubuntu" ]

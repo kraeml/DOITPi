@@ -1,8 +1,8 @@
 MAKEFLAGS += "--jobs=$(shell nproc)"
 
 # https://downloads.raspberrypi.com/raspios_lite_arm64/images/
-RASPIOS_DATE ?= 2024-07-04
-RASPIOS_DATE_URL ?= 2024-07-04
+RASPIOS_DATE ?= 2025-05-13
+RASPIOS_DATE_URL ?= 2025-05-13
 
 RASPIOS_NAME ?= bookworm
 
@@ -13,7 +13,7 @@ WORKSPACE_ARMHF = workspace-raspios
 WORKSPACE_ARMHF_NAME = ${WORKSPACE_ARMHF}/${RASPIOS_LITE_ARMHF_VERSION}
 
 RASPIOS_LITE_ARM64_VERSION = ${RASPIOS_DATE}-raspios-${RASPIOS_NAME}-arm64-lite
-IMAGE_ARM64 = image-raspios_lite_arm64
+IMAGE_ARM64 = image-raspberrypiarm64
 IMAGE_NAME_ARM64 = ${IMAGE_ARM64}/${RASPIOS_LITE_ARM64_VERSION}
 WORKSPACE_ARM64 = workspace-raspios_lite_arm64
 WORKSPACE_ARM64_NAME = ${WORKSPACE_ARM64}/${RASPIOS_LITE_ARM64_VERSION}
@@ -104,7 +104,7 @@ ${WORKSPACE_ARMHF_NAME}.img.xz: | ${WORKSPACE_ARMHF_NAME}.img
 	@sudo rm ./${WORKSPACE_ARMHF_NAME}.img
 
 ${WORKSPACE_ARM64_NAME}.img: | ${IMAGE_NAME_ARM64}.img.xz
-	@sudo bash ./build_dist raspios_lite_arm64
+	@sudo BASE_BOARD=raspberrypiarm64 bash ./build_dist raspios_lite_arm64
 	@echo Build raspios_lite_arm64 finished
 	@sync
 

@@ -1,0 +1,2 @@
+export BASE_ARCH=arm64
+export BASE_BOARD=raspberrypiarm64

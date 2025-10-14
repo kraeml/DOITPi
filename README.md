@@ -1,249 +1,165 @@
 # DOITPi
 
-**D**ev**O**ps  
-**I**o**T**  
-**Pi** - RaspberryPi
+**D**ev**O**ps **I**o**T** **Pi** – Raspberry Pi
 
-Zugriff über Browser oder SSH.
+DOITPi ist ein **Open-Source-Projekt**, das eine Sammlung von **DevOps- und IoT-Tools** auf **Raspberry Pi OS Lite** bereitstellt. Das Projekt bietet ein **vorgefertigtes Image**, das die Installation und Einrichtung der Tools automatisiert. Es richtet sich an  **Bildungseinrichtungen, Entwickler:innen und Lernende**, die DevOps-Praktiken und IoT-Anwendungen auf dem Raspberry Pi umsetzen möchten.
 
-| DevOps | IoT | Pi |
-|--------|-----|----|
-| - Kollaboration| - vernetzte Geräte | - Betriebssystem |
-| - Automatisierung | - Smart Home | - Netzwerk |
-| - Kontinuierliche Bereitstellung (CD/CI) | - Daten sammeln auswerten | - Headless Server |
-| - Überwachung und Feedback | - Dashboard | - Backup |
-| - Skalierbarkeit | - Automatisierung | - Power Supply |
+🔹 **Zugang:** Browser oder SSH (Headless)
 
+🔹 **Ziel:** Eine **praxisnahe, schnell einsatzbereite Plattform** für DevOps und IoT.
 
-[DOITPi][doitpi] ist eine DevOps-IoT-Toolsammlung auf Basis von Raspberry Pi OS Lite. Gebaut wird DOITPi mit Hilfe von [CustomPiOS][custompios].
+DOITPi basiert auf **[CustomPiOS](https://github.com/guysoft/CustomPiOS)** und wird kontinuierlich weiterentwickelt.
 
-## Themen
+---
 
-* Systemadministration
+## Themenbereiche
 
-* Netzwerk
+DOITPi deckt folgende Themen ab:
 
-* Elektrotechnik
+| **Systemadministration** | **Netzwerk** | **Elektrotechnik** | **Programmierung** |
+|--------------------------|--------------|--------------------|---------------------|
+| Linux-Konfiguration      | LAN/WLAN     | Schaltungen        | Microcontroller     |
+| Automatisierung          | VPN/Proxy    | Sensoren           | Python, Bash, YAML  |
 
-* Programmierung (Microcntroller)
+---
 
-## DevOps
+## DevOps-Tools
 
-* [Ansible][ansible]  
-    Ansible konfiguriert Systeme, stellt Software bereit. Somit sind fortschrittliche IT-Aufgaben, wie kontinuierliche Bereitstellungen oder rollierende Updates, ohne Ausfallzeiten möglich.
+DOITPi integriert folgende DevOps-Lösungen:
 
-* [testinfra][testinfra]  
-    Mit Testinfra werden Unit-Tests in Python geschrieben, um den aktuellen Zustand eines Server zu testen, die mit Management-Tools wie Salt, Ansible, Puppet, Chef usw. konfiguriert wurden.
+| Tool               | Beschreibung                                                                                     |
+|--------------------|-------------------------------------------------------------------------------------------------|
+| **[Ansible](https://docs.ansible.com/)** | Automatisierte Systemkonfiguration und Softwarebereitstellung (CI/CD, rollierende Updates).     |
+| **[Testinfra](https://testinfra.readthedocs.io/)** | Python-basierte Unit-Tests für Serverzustände (kompatibel mit Ansible, Puppet, Chef).             |
+| **[Code-Server](https://github.com/coder/code-server)** | VS Code im Browser – ideal für Remote-Entwicklung.                                               |
+| **[Etckeeper](https://manpages.debian.org/etckeeper)** | Versionskontrolle für `/etc`-Konfigurationen.                                                   |
+| **LXC/Docker**     | Containerisierung für isolierte Umgebungen.                                                     |
+| **Git/GitOps**     | Versionskontrolle und deklarative Infrastruktur.                                                |
+| **Cockpit**        | [Webbasierte Serververwaltung](https://cockpit-project.org/).                                  |
 
-* [Codeserver][codeserver]  
-    Führt VS Code auf dem Raspberry aus. Editiert wird über den Browser.
+---
 
-* [Etckeeper][etckeeper]
+## IoT-Tools
 
-* LXC
+DOITPi unterstützt IoT-Projekte mit folgenden Komponenten:
 
-* Docker
+| Tool                     | Beschreibung                                                                                     |
+|--------------------------|--------------------------------------------------------------------------------------------------|
+| **[IOTstack](https://sensorsiot.github.io/IOTstack/)** | Docker-Compose-Templates für IoT-Stacks (z. B. MQTT, Datenbanken).                              |
+| **[Node-RED](https://nodered.org/)** | Low-Code-Tool zur Verbindung von Hardware, APIs und Dienste.                        |
+| **[Heimdall](https://heimdall.site/)** | Dashboard für Webanwendungen und Links.                                           |
+| **[Mosquitto](https://mosquitto.org/)** | MQTT-Broker (v5.0, v3.1.1) für leichte IoT-Kommunikation.                        |
+| **Monitoring**           | Telegraf, InfluxDB, Grafana, Prometheus für Echtzeitdaten.                                      |
+| **PlatformIO**           | Unterstützung für Arduino, ESP32, RP2040.                                                       |
+| **[ESPHome](https://esphome.io/)** | YAML-basierte Steuerung von ESP8266/ESP32-Geräten.                                    |
 
-* Git
+---
 
-* Low Code
+## Raspberry Pi-Features
 
-* Cockpit
+DOITPi optimiert den Raspberry Pi für folgende Anwendungen:
 
-* GitOps
+| Bereich          | Tools/Technologien                                                                              |
+|------------------|-------------------------------------------------------------------------------------------------|
+| **Netzwerk**    | LAN/WLAN, Hotspot, VPN (P2P), Reverse Proxy, Let’s Encrypt                                      |
+| **Headless**     | SSH, Webdienste                                                                                 |
+| **Backup**       | Automatisierte Sicherungen                                                                      |
+| **Stromversorgung** | USB-C PD, Powerbank, USV                                                                     |
+| **GPIO**         | pigpiod, I²C-Setup, [Blockly-gPIO](https://github.com/GrazerComputerClub/Blockly-gPIo)           |
 
-* Proxmox
+---
 
-* [Cockpit][cockpit]  
-    Cockpit ist eine webbasierte grafische Oberfläche für Server.
+## Programmiersprachen & DSLs
 
-## IoT
+DOITPi unterstützt folgende Sprachen und Domänenspezifische Sprachen (DSLs):
 
-* [IOTstack][iotstack]  
-        IOTstack erstellt docker-compose Dateien, zur einfachen Erstellung und Wartung von IoT-Stacks auf dem Raspberry Pi.  
-        Folgendes kann u.U. eingerichtet werden:
+- **Python** ([JupyterLab](http://jupyter.org/), virtualenv)
+- **Bash** (Skripte für Automatisierung)
+- **YAML** (Konfigurationen für IoT/DevOps)
+- **Golang, Ruby (inspec.io), JavaScript (Node-RED)**
 
-* [Node-Red][nodered]  
-    Node-RED ist ein Programmierwerkzeug, mit dem sich Hardwaregeräte, APIs und Online-Dienste auf neue und interessante Weise miteinander verbinden lassen.
+---
 
-* [Heimdall][heimdall]  
-    Heimdall Application Dashboard ist ein Dashboard für Webanwendungen. Es es nicht auf Anwendungen beschränkt, es können auch Weblinks zu allem hinzugefügt werden.
+## Low-Code-Tools
 
-* [Eclipse Mosquitto][mosquitto]  
-    Eclipse Mosquitto ist ein quelloffener Message Broker, der die MQTT-Protokollversionen 5.0, 3.1.1 und 3.1 implementiert. Mosquitto ist leichtgewichtig und eignet sich für den Einsatz auf allen Geräten, von stromsparenden Einplatinencomputern bis hin zu kompletten Servern.   
+Für schnelle Prototypen und Bildungskontexte:
 
-* Monitoring Dashboard
-    * Telegraf
-    * InfluxDB und 
-    * Grafana
-    * Prometheus
+- **Blockly/Scratch** (visuelle Programmierung)
+- **Node-RED** (Flow-basierte Automatisierung)
+- **YAML** (deklarative Konfigurationen)
 
-* Vernetzte Geräte nit Platform.io
-
-    * Arduino
-    * ESP
-    * PI2040
-
-* [ESP Home][esphome]  
-    ESPHome ist ein System, mit dem ESP8266/ESP32 durch einfache, aber leistungsfähige Konfigurationsdateien (YAML) steuern und über Home Automation Systeme fernsteuern können.
-
-Weitere Projekte die auf DoItPi aufbauen:
-
-* Fischertechnik
-    * frduino
-    * ftswarm
-    * TX-PI
-
-* Solar für maker
-    * libre.solar
-    * MPPT
-    * STM32
-
-## Raspberry Pi
-
-* Linux
-
-* Netzwerke
-    * LAN
-    * WLAN
-    * Hotspot
-    * (P2P) VPN
-    * Reverse Proxy
-    * Letsencrypt
-
-* Headless
-    * SSH
-    * Webdienste
-
-* Backup
-
-* Power Supply
-    * USB-C Power Delivery
-    * Powerbank
-    * USV
-
-* PiGPIO Dienste
-    * pigpiod
-    * Setup i2c and other
-    * [Blockly-gPIo][blocklypi]
-
-## Programmiersprachen/DSL
-
-* Python
-
-    * [Jupyter Lab][jupyterlab]  
-        JupyterLab ist eine webbasierte interaktive Entwicklungsumgebung für Notebooks, Code und Daten. Die flexible Benutzeroberfläche ermöglicht es Benutzern, Arbeitsabläufe in den Bereichen Datenwissenschaft, wissenschaftliches Rechnen, Computerjournalismus und maschinelles Lernen zu konfigurieren und zu gestalten. Ein modulares Design lädt zu Erweiterungen ein, um die Funktionalität zu erweitern und zu bereichern.
-
-    * virtualenv
-
-* Bash Skripte
-
-* YAML
-
-* Golang
-
-* Ruby/inspec.io
-
-* JavaScript/node-red
-
-* ...
-
-## LowCode
-
-* Blockly/Scratch
-
-* node-red
-
-* YAML
-
-Unter [DOITPI Releas latest][doitpi-release] findet man das neuste Image.
-
-
-[doitpi]: https://github.com/kraeml/doitpi
-[doitpi-release]: https://github.com/kraeml/DOITPi/releases/latest
-[codeserver]: https://github.com/coder/code-server
-[ansible]: https://docs.ansible.com/ansible-core/devel/index.html
-[testinfra]: https://testinfra.readthedocs.io/en/latest/index.html
-[cockpit]: https://cockpit-project.org/
-[autohotspot]: https://github.com/guysoft/CustomPiOS/blob/devel/src/modules/auto-hotspot/start_chroot_script
-[blocklypi]: https://github.com/GrazerComputerClub/Blockly-gPIo
-[custompios]: https://github.com/guysoft/CustomPiOS
-[iotstack]: https://sensorsiot.github.io/IOTstack/
-[nodered]: https://nodered.org/
-[heimdall]: https://heimdall.site/
-[mosquitto]: https://mosquitto.org/
-[esphome]: https://esphome.io/
-[jupyterlab]: http://jupyter.org/
-[Etckeeper]: https://manpages.debian.org/bullseye/etckeeper/etckeeper.8.en.html
+---
 
 ## Mitentwickeln?
 
-**JAA**
+✅ **Ja!** DOITPi ist ein **Community-Projekt** – Beiträge sind willkommen!
 
 ### Anforderungen
 
-* qemu-arm-static
-* CustomPiOS
-* Heruntergeladenes Raspbian-Image.
-* root-Rechte für chroot
-* Bash
-* git
-* sudo  
-  (das Skript selbst ruft es auf. Als root, ohne sudo, wird nicht funktionieren)
+- `qemu-arm-static`
+- [CustomPiOS](https://github.com/guysoft/CustomPiOS)
+- Raspbian-Image (heruntergeladen)
+- Root-Rechte für `chroot`
+- Bash, Git, Sudo
 
-### DOITPi in Raspbian/Debian/Ubuntu aus bauen
+### Build-Anleitung (Debian/Ubuntu/Raspbian)
 
-DOITPi kann in Debian, Ubuntu, Raspbian oder sogar in DOITPi aus gebaut werden. Die Erstellung erfordert etwa 2,5 GB freien Speicherplatz. Mit den folgenden Befehlen kann DOITPI gebaut werden:
+1. Abhängigkeiten installieren:
 
-```bash
-sudo apt-get install gawk util-linux qemu-user-static git p7zip-full python3 coreutils
+   ```bash
+   sudo apt-get install gawk util-linux qemu-user-static git p7zip-full python3 coreutils
+   ```
 
-git clone https://github.com/guysoft/CustomPiOS.git
-git clone https://github.com/kraeml/DOITPi.git
-cd DOITPi/src/image
-wget -c --trust-server-names 'https://downloads.raspberrypi.org/raspios_lite_armhf_latest'
-cd ../image-raspios_lite_arm64
-wget -c --trust-server-names 'https://downloads.raspberrypi.org/raspios_lite_arm64_latest'
-cd ..
-../../CustomPiOS/src/update-custompios-paths
-sudo modprobe loop
-sudo make build_arm64
-```
+2. Repositories klonen:
 
-__Code-Beiträge sind erwünscht!__
+   ```bash
+   git clone https://github.com/guysoft/CustomPiOS.git
+   git clone https://github.com/kraeml/DOITPi.git
+   ```
 
+3. Image herunterladen und bauen:
 
-### ToDo Bauen mit Vagrant
+   ```bash
+   cd DOITPi/src/image
+   wget -c --trust-server-names 'https://downloads.raspberrypi.org/raspios_lite_armhf_latest'
+   cd ../image-raspios_lite_arm64
+   wget -c --trust-server-names 'https://downloads.raspberrypi.org/raspios_lite_arm64_latest'
+   cd ..
+   ../../CustomPiOS/src/update-custompios-paths
+   sudo modprobe loop
+   sudo make build_arm64
+   ```
 
-Es gibt eine Vagrant-Maschinenkonfiguration, mit der DOITPi gebaut werden kann. Wenn Sie keine zusätzliche Konfiguration vornehmen, muss `vagrant` als `root` laufen, damit nfs folder sync funktioniert.
+### Build mit Vagrant
 
-Vergewissern Sie sich, dass Sie eine Version von vagrant haben, die neuer als 1.9 ist! Wenn Sie ältere Versionen von Ubuntu/Debian verwenden und nicht `apt-get` von der Download-Seite verwenden.
+Für automatisierte Builds in einer VM:
 
-Um `vagrant` auf Ubuntu zu benutzen:
+1. Vagrant + VirtualBox installieren:
 
-```bash
-sudo apt-get install vagrant nfs-kernel-server virtualbox
-sudo vagrant plugin install vagrant-nfs_guest
-sudo modprobe nfs
-cd ../DOITPi
-git clone https://github.com/guysoft/CustomPiOS.git
-cd DOITPi/src
-../../CustomPiOS/src/update-custompios-paths
-cd DOITPi/src/vagrant
-sudo vagrant up
-run_vagrant_build.sh
-```
+   ```bash
+   sudo apt-get install vagrant nfs-kernel-server virtualbox
+   sudo vagrant plugin install vagrant-nfs_guest
+   sudo modprobe nfs
+   ```
 
-Nach der Bereitstellung des Vagrant-Rechners ist es auch möglich, einen nächtlichen Build auszuführen, der Updates von devel verwendet:
+2. DOITPi-Vagrant-Konfiguration nutzen:
 
-```bash
-cd DOITPi/src/vagrant
-run_vagrant_build.sh
-```
+   ```bash
+   cd DOITPi/src/vagrant
+   sudo vagrant up
+   ./run_vagrant_build.sh
+   ```
 
-Um eine Variante auf der Maschine zu bauen, führen Sie einfach aus:
+3. **Optionale Varianten:**
 
-```bash
-cd src/vagrant
-run_vagrant_build.sh [Variante]
-```
+   ```bash
+   ./run_vagrant_build.sh [VARIANTE]
+   ```
+
+---
+
+**📥 [Aktuelles Image herunterladen](https://github.com/kraeml/DOITPi/releases/latest)**
+
+---
+
+**Fragen oder Ideen?** Öffne ein Issue auf [GitHub](https://github.com/kraeml/doitpi) oder trage direkt bei!
