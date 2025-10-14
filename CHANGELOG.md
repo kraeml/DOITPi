@@ -1,3 +1,6 @@
+VERSION=0.4.16
+   - [x] Raspberry OS 2024-07-04
+
 VERSION=0.4.15
    - [x] Raspberry OS 2024-07-04
    - [ ] Ubuntu 24.04.1
