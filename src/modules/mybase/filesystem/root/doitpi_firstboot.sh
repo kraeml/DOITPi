@@ -47,6 +47,11 @@ then
   cd -
 fi
 
+if [ -f /etc/apt/apt.conf.d/99forceconfnew ]
+then
+  rm /etc/apt/apt.conf.d/99forceconfnew
+fi
+
 # Löschen von doitpi_firstboot
 systemctl disable doitpi_firstboot.service
 
