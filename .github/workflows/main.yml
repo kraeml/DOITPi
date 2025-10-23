@@ -68,11 +68,12 @@ jobs:
       run: |
         echo ${{ github.evnet.ref }}
         ref='refs/tags/v'
+        clean_ref_name=$(echo "${{ github.ref_name }}" | tr '/' '-')
         if [[ ${{ github.event.ref }} == *${ref}* ]]; then
           echo "release=${{ steps.version.outputs.version }}" >> $GITHUB_OUTPUT
           echo "prerelease=false" >> $GITHUB_OUTPUT
         else
-          echo "release=${{ steps.version.outputs.version }}-${{ github.ref_name }}-$(date +%y.%m.%d-%H_%M_%S)" >> $GITHUB_OUTPUT
+          echo "release=${{ steps.version.outputs.version }}-${{ clean_ref_name }}-$(date +%y.%m.%d-%H_%M_%S)" >> $GITHUB_OUTPUT
           echo "prerelease=true" >> $GITHUB_OUTPUT
         fi
         cat $GITHUB_OUTPUT
