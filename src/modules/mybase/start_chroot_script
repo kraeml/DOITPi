@@ -54,6 +54,12 @@ cd ${BASE_USER_WORKSPACE}
 
 chown --recursive ${BASE_USER}: ${BASE_USER_HOME}
 
+if [ -d /filesystem/root ]
+then
+    echo "Unpack root filesystem"
+    unpack /filesystem/root /
+fi
+
 cd ${BASE_USER_WORKSPACE}
   gitclone MYBASE_DOITPI_TEST_REPO
   chown --recursive "${BASE_USER}": ./doitpi-test
