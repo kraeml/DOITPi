@@ -1,3 +1,6 @@
+VERSION=0.4.17
+   - [x] Enable full-upgrade
+
 VERSION=0.4.16
    - [x] Raspberry OS 2024-07-04
 
