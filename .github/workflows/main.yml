@@ -8,14 +8,17 @@ on:
   push:
     branches:
       - develop
-      - feature/**
-      - release/**
+      - 'feature/*'
+      - 'release/*'
     tags:
       - '*'
   pull_request:
-    branches: [ "master" ]
+    branches:
+      - master
+      - develop
+  
   # Allows you to run this workflow manually from the Actions tab
-  # workflow_dispatch:
+  workflow_dispatch:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -66,7 +69,7 @@ jobs:
 
     - name: Generate Release Name
       run: |
-        echo ${{ github.evnet.ref }}
+        echo ${{ github.event.ref }}
         ref='refs/tags/v'
         clean_ref_name=$(echo "${{ github.ref_name }}" | tr '/' '-')
         if [[ ${{ github.event.ref }} == *${ref}* ]]; then
