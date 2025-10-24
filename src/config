@@ -1,5 +1,5 @@
 export DIST_NAME=DOITPi
-export DIST_VERSION=v0.4.16
+export DIST_VERSION=v0.4.17
 
 # Raspios 2023-05-03 bullseye
 export RASPIOS_DATE="2025-05-13"
@@ -27,9 +27,9 @@ export DOCKER_COMPOSE=yes
 export DOCKER_COMPOSE_BOOT=no
 export DOCKER_COMPOSE_BOOT_PATH=default
 
-export PKGUPGRADE_DISTUPGRADE=n # y/n
+export PKGUPGRADE_DISTUPGRADE=y # y/n
 # upgrade vs full upgrade.
-export PKGUPGRADE_DISTUPGRADE_METHOD=upgrade
+export PKGUPGRADE_DISTUPGRADE_METHOD=full-upgrade
 export PKGUPGRADE_USE_PREINSTALLER=n # y/n
 # Add Packages that should be PKGUPGRADEed.
 export PKGUPGRADE_PRE_INSTALL_PKGS=""
