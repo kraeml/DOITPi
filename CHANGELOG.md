@@ -1,5 +1,9 @@
 # Changelog
 
+VERSION=0.5.0
+
+-[x] Raspberry OS Trixi
+
 VERSION=0.4.17
 
 - [x] Enable full-upgrade

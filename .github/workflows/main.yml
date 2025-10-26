@@ -50,8 +50,8 @@ jobs:
       - name: Install Dependencies and Cleanup
         run: |
           sudo apt-get update
-          sudo rm -rf /usr/local/lib/android /usr/local/node_modules /opt/hostedtoolcache/CodeQL
-          sudo rm -rf /opt/hostedtoolcache/go /opt/hostedtoolcache/Python /usr/local/.ghcup /usr/local/share/chromium
+          sudo rm -rf /usr/local/lib/android /usr/local/node_modules /opt/hostedtoolcache/CodeQL || true
+          sudo rm -rf /opt/hostedtoolcache/go /opt/hostedtoolcache/Python /usr/local/.ghcup /usr/local/share/chromium || true
           sudo docker system prune --force
           sudo docker volume prune --force
           df -h

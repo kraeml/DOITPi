@@ -43,7 +43,7 @@ if [ -d ${USER_HOME}/workspace/doitpi-ansible ]
 then
   cd ${USER_HOME}/workspace/doitpi-ansible/
   # Run Playbook allways true
-  ansible-playbook --limit $(hostname) --tags firstrun --skip-tags mybase main.yaml || true
+  ansible-playbook --limit lokal --tags firstrun --skip-tags mybase main.yaml || true
   cd -
 fi
 
