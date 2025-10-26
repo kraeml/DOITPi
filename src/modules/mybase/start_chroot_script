@@ -47,10 +47,12 @@ export LC_ALL=C.UTF-8
 
 cd ${BASE_USER_WORKSPACE}
   gitclone MYBASE_DOITPI_ANSIBLE_REPO
+  echo Rechte holen
   chown --recursive "${BASE_USER}": ${BASE_USER_HOME}
+  echo Wechseln ins Verzeichnis
   cd ./doitpi-ansible
-  # HOME für pyenv Rolle setzen
-  su "${BASE_USER}" -c "env HOME=\"${BASE_USER_HOME}\" ansible-playbook --extra-vars \"ansible_user_id=${BASE_USER} ansible_user_dir=${BASE_USER_HOME}\" --tags ${MYBASE_DOITPI_ANSIBLE_REPO_TAGS} --limit lokal main.yaml"
+  echo HOME für pyenv Rolle setzen
+  su --command "env HOME=\"${BASE_USER_HOME}\" ansible-playbook --extra-vars \"ansible_user_id=${BASE_USER} ansible_user_dir=${BASE_USER_HOME}\" --tags ${MYBASE_DOITPI_ANSIBLE_REPO_TAGS} --limit lokal main.yaml" ${BASE_USER}
 
 chown --recursive ${BASE_USER}: ${BASE_USER_HOME}
 
