@@ -43,13 +43,15 @@ jobs:
       - name: Cache apt packages
         uses: awalsh128/cache-apt-pkgs-action@v1
         with:
-          packages: coreutils p7zip-full qemu-user-static pv time python3-git python3-yaml jq
+          packages: coreutils p7zip-full qemu-user-static pv time python3-git python3-yaml jq binfmt-support
           version: 1.0
 
       # System vorbereiten und aufräumen
       - name: Install Dependencies and Cleanup
         run: |
           sudo apt-get update
+          sudo apt-get install --yes coreutils p7zip-full qemu-user-static pv time python3-git python3-yaml jq binfmt-support
+          sudo systemctl restart systemd-binfmt
           sudo rm -rf /usr/local/lib/android /usr/local/node_modules /opt/hostedtoolcache/CodeQL || true
           sudo rm -rf /opt/hostedtoolcache/go /opt/hostedtoolcache/Python /usr/local/.ghcup /usr/local/share/chromium || true
           sudo docker system prune --force
