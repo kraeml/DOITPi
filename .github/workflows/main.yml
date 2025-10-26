@@ -61,7 +61,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: 'guysoft/CustomPiOS'
-          ref: '1.4.0'
+          ref: '0f05cda'
           path: CustomPiOS
 
       - name: Checkout Project Repository
