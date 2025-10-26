@@ -50,7 +50,7 @@ cd ${BASE_USER_WORKSPACE}
   chown --recursive "${BASE_USER}": ${BASE_USER_HOME}
   cd ./doitpi-ansible
   # HOME für pyenv Rolle setzen
-  HOME=${BASE_USER_HOME} ansible-playbook --extra-vars "ansible_user_id=${BASE_USER} ansible_user_dir=${BASE_USER_HOME}" --tags ${MYBASE_DOITPI_ANSIBLE_REPO_TAGS} --limit lokal main.yaml
+  sudo -u ${BASE_USER} env HOME=${BASE_USER_HOME} ansible-playbook --extra-vars "ansible_user_id=${BASE_USER} ansible_user_dir=${BASE_USER_HOME}" --tags ${MYBASE_DOITPI_ANSIBLE_REPO_TAGS} --limit lokal main.yaml
 
 chown --recursive ${BASE_USER}: ${BASE_USER_HOME}
 
