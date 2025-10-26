@@ -52,7 +52,7 @@ cd ${BASE_USER_WORKSPACE}
   echo Wechseln ins Verzeichnis
   cd ./doitpi-ansible
   echo HOME für pyenv Rolle setzen
-  su --command "env HOME=\"${BASE_USER_HOME}\" ansible-playbook --extra-vars \"ansible_user_id=${BASE_USER} ansible_user_dir=${BASE_USER_HOME}\" --tags ${MYBASE_DOITPI_ANSIBLE_REPO_TAGS} --limit lokal main.yaml" ${BASE_USER}
+  echo su --command "env HOME=\"${BASE_USER_HOME}\" ansible-playbook --extra-vars \"ansible_user_id=${BASE_USER} ansible_user_dir=${BASE_USER_HOME}\" --tags ${MYBASE_DOITPI_ANSIBLE_REPO_TAGS} --limit lokal main.yaml" ${BASE_USER}
 
 chown --recursive ${BASE_USER}: ${BASE_USER_HOME}
 
