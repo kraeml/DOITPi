@@ -3,6 +3,8 @@
 VERSION=0.5.0
 
 -[x] Raspberry OS Trixi
+-[ ] Install Node Red
+-[ ] Codeserver für Baseuser
 
 VERSION=0.4.17
 
