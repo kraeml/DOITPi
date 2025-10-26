@@ -64,12 +64,6 @@ jobs:
         with:
           repository: 'guysoft/CustomPiOS'
           path: CustomPiOS
-          fetch-depth: 0
-
-      # Spezifischen Commit auschecken
-      - name: Checkout specific commit
-        run: git checkout 0f05cda
-        working-directory: CustomPiOS  # Führt den Befehl im CustomPiOS-Verzeichnis aus
 
       - name: Checkout Project Repository
         uses: actions/checkout@v4
