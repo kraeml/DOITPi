@@ -1,8 +1,53 @@
 #!/usr/bin/env bash
-# <Script Name>
-# <Description what this module does>
-# Written by <Author>
-# GPL V3
+# -*- mode: shell-script; coding: utf-8; -*-
+#
+# doitpi-mybase-setup.sh
+#
+# **Description:**
+# This script configures a base system inside a chroot environment from CustomPiOS.
+# It installs essential packages, sets up Ansible and test environments,
+# and performs system-wide configurations.
+#
+# **Author:** Michael Schaar
+# **License:** GPLv3
+#
+# ---
+
+########
+# **Expected Environment Variables:**
+#
+#   BASE_USER               Username for which the script is executed.
+#                           Example: "pi"
+#
+#   MYBASE_VAR              Target distribution and architecture.
+#                           Format: "<arch>" (e.g., "arm64")
+#
+#   MYBASE_PKGS             List of packages to install (space-separated).
+#                           Example: "vim git curl"
+#
+#   MYBASE_DOITPI_ANSIBLE_REPO
+#                           URL of the Ansible repository.
+#                           Example: "https://github.com/user/doitpi-ansible.git"
+#
+#   MYBASE_DOITPI_ANSIBLE_REPO_TAGS
+#                           Tags for the Ansible playbook (comma-separated).
+#                           Example: "mybase,hotspot"
+#
+#   MYBASE_DOITPI_TEST_REPO  URL of the test repository.
+#                           Example: "https://github.com/user/doitpi-test.git"
+#
+# ---
+
+########
+# **Dependencies:**
+# - CustomPiOS: This script is designed to run inside a CustomPiOS chroot.
+#               (https://github.com/guysoft/CustomPiOS)
+# - /common.sh: Contains shared functions like `unpack`, `gitclone`, and `install_cleanup_trap`.
+# - apt-get: Package manager for installing packages.
+# - git: Required for cloning repositories.
+# - python3/pip: Required for the test environment (pytest).
+# - direnv: Used for the test environment (optional).
+#
 ########
 
 
