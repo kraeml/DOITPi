@@ -33,6 +33,7 @@ DOITPi deckt folgende Themen ab:
 |--------------------------|--------------|--------------------|---------------------|
 | Linux-Konfiguration      | LAN/WLAN     | Schaltungen        | Microcontroller     |
 | Automatisierung          | VPN/Proxy    | Sensoren           | Python, Bash, YAML  |
+| Headless-Setup           | Firewall     | Aktoren            | Python, Bash, YAML          |
 
 ---
 
@@ -66,6 +67,14 @@ DOITPi unterstützt IoT-Projekte mit folgenden Komponenten:
 | **PlatformIO**           | Unterstützung für Arduino, ESP32, RP2040.                                                       |
 | **[ESPHome](https://esphome.io/)** | YAML-basierte Steuerung von ESP8266/ESP32-Geräten.                                    |
 
+## Robotik-Tools
+
+DOITPi integriert ROS2 für Robotik- und IoT-Projekte:
+
+| Tool               | Beschreibung                                                                                     |
+|--------------------|-------------------------------------------------------------------------------------------------|
+| **[ROS2](https://docs.ros.org/)** | Framework für Robotik: Kommunikation zwischen Knoten, Sensorintegration, Algorithmen. Ideal für IoT-Projekte mit Bewegungssteuerung, KI oder Echtzeitdatenverarbeitung. Kompatibel mit Raspberry Pi und Docker. |
+
 ---
 
 ## Raspberry Pi-Features
@@ -74,11 +83,11 @@ DOITPi optimiert den Raspberry Pi für folgende Anwendungen:
 
 | Bereich          | Tools/Technologien                                                                              |
 |------------------|-------------------------------------------------------------------------------------------------|
-| **Netzwerk**    | LAN/WLAN, Hotspot, VPN (P2P), Reverse Proxy, Let’s Encrypt                                      |
+| **Netzwerk**    | LAN/WLAN, Hotspot, VPN (P2P), Reverse Proxy, Let’s Encrypt                                       |
 | **Headless**     | SSH, Webdienste                                                                                 |
 | **Backup**       | Automatisierte Sicherungen                                                                      |
 | **Stromversorgung** | USB-C PD, Powerbank, USV                                                                     |
-| **GPIO**         | pigpiod, I²C-Setup, [Blockly-gPIO](https://github.com/GrazerComputerClub/Blockly-gPIo)           |
+| **GPIO**         | I²C-Setup, node-red, [Blockly-gPIO](https://github.com/GrazerComputerClub/Blockly-gPIo)         |
 
 ---
 
@@ -89,6 +98,7 @@ DOITPi unterstützt folgende Sprachen und Domänenspezifische Sprachen (DSLs):
 - **Python** ([JupyterLab](http://jupyter.org/), virtualenv)
 - **Bash** (Skripte für Automatisierung)
 - **YAML** (Konfigurationen für IoT/DevOps)
+- **C++** (Hauptsprache für **ROS2**)
 - **Golang, Ruby (inspec.io), JavaScript (Node-RED)**
 
 ---
