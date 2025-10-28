@@ -2,13 +2,26 @@
 
 **D**ev**O**ps **I**o**T** **Pi** – Raspberry Pi
 
-DOITPi ist ein **Open-Source-Projekt**, das eine Sammlung von **DevOps- und IoT-Tools** auf **Raspberry Pi OS Lite** bereitstellt. Das Projekt bietet ein **vorgefertigtes Image**, das die Installation und Einrichtung der Tools automatisiert. Es richtet sich an  **Bildungseinrichtungen, Entwickler:innen und Lernende**, die DevOps-Praktiken und IoT-Anwendungen auf dem Raspberry Pi umsetzen möchten.
+DOITPi ist ein **Open-Source-Projekt**, das eine **vorgefertigte Sammlung von DevOps- und IoT-Tools** die auf das **Raspberry Pi OS Lite** aufsetzt. Das Projekt bietet ein **fertiges Image**, das die Installation und Einrichtung der Tools **vollautomatisch** übernimmt.
 
-🔹 **Zugang:** Browser oder SSH (Headless)
+🔹 **Zielgruppe:**
+Bildungseinrichtungen, Entwickler:innen und Lernende, die **DevOps-Praktiken und IoT-Anwendungen** auf dem Raspberry Pi umsetzen möchten.
 
-🔹 **Ziel:** Eine **praxisnahe, schnell einsatzbereite Plattform** für DevOps und IoT.
+🔹 **Zugangsoptionen:**
 
-DOITPi basiert auf **[CustomPiOS](https://github.com/guysoft/CustomPiOS)** und wird kontinuierlich weiterentwickelt.
+- **Browser** (Weboberfläche)
+- **SSH** (Headless-Betrieb)
+
+🔹 **Ziel:**
+Eine **praxisnahe, sofort einsatzbereite Plattform** für DevOps und IoT.
+
+---
+
+## **Technische Basis**
+
+DOITPi basiert auf **[CustomPiOS](https://github.com/guysoft/CustomPiOS)** – einem Framework zum Erstellen **eigener Raspberry Pi-Distributionen**. 📖 **[Was ist CustomPiOS?](wiki/CustomPiOS-–-Eigene-Raspberry-Pi-Distributionen-leicht-gebaut)**
+
+DOITPi wird **kontinuierlich weiterentwickelt** und bietet eine **modulare, anpassbare Umgebung** für DevOps- und IoT-Projekte.
 
 ---
 
