@@ -19,7 +19,7 @@ Eine **praxisnahe, sofort einsatzbereite Plattform** für DevOps und IoT.
 
 ## **Technische Basis**
 
-DOITPi basiert auf **[CustomPiOS](https://github.com/guysoft/CustomPiOS)** – einem Framework zum Erstellen **eigener Raspberry Pi-Distributionen**. 📖 **[Was ist CustomPiOS?](wiki/CustomPiOS-–-Eigene-Raspberry-Pi-Distributionen-leicht-gebaut)**
+DOITPi basiert auf **[CustomPiOS](https://github.com/guysoft/CustomPiOS)** – einem Framework zum Erstellen **eigener Raspberry Pi-Distributionen**. 📖 **[Was ist CustomPiOS?](../../wiki/CustomPiOS-–-Eigene-Raspberry-Pi-Distributionen-leicht-gebaut)**
 
 DOITPi wird **kontinuierlich weiterentwickelt** und bietet eine **modulare, anpassbare Umgebung** für DevOps- und IoT-Projekte.
 
