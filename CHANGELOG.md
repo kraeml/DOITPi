@@ -1,5 +1,9 @@
 # Changelog
 
+VERSION=0.5.1
+
+- [ ] git hub runner release
+
 VERSION=0.5.0
 
 -[x] Raspberry OS Trixi
