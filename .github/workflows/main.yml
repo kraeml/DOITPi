@@ -1,172 +1,169 @@
-# This is a basic workflow to help you get started with Actions
+name: CI mit Artifakten und Matrix-Builds
 
-name: CI mit Artifakte
-
-# Controls when the workflow will run
 on:
-  # Triggers the workflow on push develop or tag or pull request events
   push:
     branches:
       - develop
       - 'feature/*'
       - 'release/*'
     tags:
-      - '*'
+      - 'v[0-9]+.[0-9]+.[0-9]+'  # Nur semantische Versionen (z. B. v1.0.0)
   pull_request:
     branches:
-      - master
       - develop
-  
-  # Allows you to run this workflow manually from the Actions tab
+      - master
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+env:
+  IMAGE_PREFIX: devops
+
+defaults:
+  run:
+    shell: bash
+
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    outputs:
+      release: ${{ steps.release_name.outputs.release }}
+      prerelease: ${{ steps.release_name.outputs.prerelease }}
+    strategy:
+      matrix:
+        arch: [arm64, armhf]
+        include:
+          - arch: arm64
+            workspace: workspace-raspios_lite_arm64
+            image_suffix: arm64
+          - arch: armhf
+            workspace: workspace-raspios
+            image_suffix: armhf
+
+    steps:
+      # Caching für apt-Pakete
+      - name: Cache apt packages
+        uses: awalsh128/cache-apt-pkgs-action@v1
+        with:
+          packages: coreutils p7zip-full qemu-user-static pv time python3-git python3-yaml jq binfmt-support
+          version: 1.0
+
+      # System vorbereiten und aufräumen
+      - name: Install Dependencies and Cleanup
+        run: |
+          sudo apt-get update
+          sudo systemctl restart systemd-binfmt
+          sudo rm -rf /usr/local/lib/android /usr/local/node_modules /opt/hostedtoolcache/CodeQL || true
+          sudo rm -rf /opt/hostedtoolcache/go /opt/hostedtoolcache/Python /usr/local/.ghcup /usr/local/share/chromium || true
+          sudo docker system prune --force
+          sudo docker volume prune --force
+          df -h
+
+      # Repositories auschecken
+      - name: Checkout CustomPiOS
+        uses: actions/checkout@v4
+        with:
+          repository: 'guysoft/CustomPiOS'
+          path: CustomPiOS
+
+      - name: Checkout Project Repository
+        uses: actions/checkout@v4
+        with:
+          path: repository
+          submodules: true
+
+      # CustomPiOS-Pfade anpassen
+      - name: Update CustomPiOS Paths
+        run: |
+          cd repository/src
+          ../../CustomPiOS/src/update-custompios-paths
+
+      # Version extrahieren (mit Fehlerbehandlung)
+      - name: Determine Version
+        id: version
+        run: |
+          version=$(awk -F '=' '/DIST_VERSION/ {gsub(/ /,"",$2); print $2}' repository/src/config)
+          if [ -z "$version" ]; then
+            echo "::error::DIST_VERSION not found in config!"
+            exit 1
+          fi
+          echo "version=$version" >> $GITHUB_OUTPUT
+
+      # Release-Name generieren (robuster Check für Tags)
+      - name: Generate Release Name
+        id: release_name
+        run: |
+          ref='refs/tags/v'
+          clean_ref_name=$(echo "${{ github.ref_name }}" | tr '/' '-')
+          if [[ ${{ github.ref_type }} == "tag" ]]; then
+            echo "release=${{ steps.version.outputs.version }}" >> $GITHUB_OUTPUT
+            echo "prerelease=false" >> $GITHUB_OUTPUT
+          else
+            echo "release=${{ steps.version.outputs.version }}-${clean_ref_name}-$(date +%y.%m.%d-%H_%M_%S)" >> $GITHUB_OUTPUT
+            echo "prerelease=true" >> $GITHUB_OUTPUT
+          fi
+          cat $GITHUB_OUTPUT
+
+      # Build für die jeweilige Architektur (parallelisiert mit -j)
+      - name: Build ${{ matrix.arch }} Image
+        run: |
+          sudo modprobe loop
+          cd repository/src
+          echo "Building ${{ matrix.arch }} with $(nproc) cores..."
+          time sudo make ${{ matrix.arch }}
+          df -h
+
+      # Image erstellen und validieren (Handhabung mehrerer Dateien)
+      - name: Create ${{ matrix.arch }} Image
+        id: get_image_info
+        run: |
+          source repository/src/config
+          IMAGE=${{ env.IMAGE_PREFIX }}-${{ steps.release_name.outputs.release }}_${{ matrix.image_suffix }}
+          img_files=(repository/src/${{ matrix.workspace }}/*.img.xz)
+          if [ ${#img_files[@]} -eq 0 ]; then
+            echo "::error::No ${{ matrix.arch }} image found!"
+            exit 1
+          elif [ ${#img_files[@]} -gt 1 ]; then
+            echo "::warning::Multiple images found, using first: ${img_files[0]}"
+          fi
+          sudo mv "${img_files[0]}" "${IMAGE}.img.xz"
+          echo "image=${IMAGE}.img.xz" >> $GITHUB_OUTPUT
+          df -h
+
+      # Image als Artifact hochladen
+      - name: Upload ${{ matrix.arch }} Image
+        uses: actions/upload-artifact@v4
+        with:
+          path: ${{ steps.get_image_info.outputs.image }}
+          name: ${{ steps.get_image_info.outputs.image }}
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+
+      # Cleanup (aggressiv)
+      - name: Cleanup
+        if: always()
+        run: |
+          sudo docker system prune --force --all
+          sudo rm -rf /tmp/*
+          df -h
+
+  # Release erstellen (nur bei Tags)
+  release:
+    needs: build
+    if: startsWith(github.ref, 'refs/tags/')
     runs-on: ubuntu-latest
     steps:
-    # Prepare Build
-    - name: Install Dependencies remove not needed directories
-      run: |
-        sudo apt-get update
-        sudo apt-get install --yes coreutils p7zip-full qemu-user-static pv time python3-git python3-yaml jq
-        # sudo python3 -m pip install gitpython
-        sudo rm -rf /usr/local/lib/android
-        sudo rm -rf /usr/local/node_modules
-        sudo rm -rf /opt/hostedtoolcache/CodeQL
-        sudo rm -rf /opt/hostedtoolcache/go
-        sudo rm -rf /opt/hsotedtoolcache/Python /usr/local/.ghcup /usr/local/share/chromium
-        sudo docker system prune --force
-        sudo docker volume prune --force
-        df -h
+      - name: Download Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
 
-    - name: Checkout CustomPiOS
-      uses: actions/checkout@v4
-      with:
-        repository: 'guysoft/CustomPiOS'
-        path: CustomPiOS
-
-    - name: Checkout Project Repository
-      uses: actions/checkout@v4
-      with:
-        path: repository
-        submodules: true
-
-    - name: Enforce and detach the filesystem from the filesystem hierarchy.
-      run: |
-        sed -i 's/sudo umount $m/sudo umount --lazy --force $m/g' ./CustomPiOS/src/common.sh
-
-    - name: Update CustomPiOS Paths
-      run: |
-        cd repository/src
-        ../../CustomPiOS/src/update-custompios-paths
-
-    - name: Determine versions number 
-      run: echo "version=$(grep DIST_VERSION repository/src/config | cut -d '=' -f 2)" >> $GITHUB_OUTPUT
-      id: version
-
-    - name: Generate Release Name
-      run: |
-        echo ${{ github.event.ref }}
-        ref='refs/tags/v'
-        clean_ref_name=$(echo "${{ github.ref_name }}" | tr '/' '-')
-        if [[ ${{ github.event.ref }} == *${ref}* ]]; then
-          echo "release=${{ steps.version.outputs.version }}" >> $GITHUB_OUTPUT
-          echo "prerelease=false" >> $GITHUB_OUTPUT
-        else
-          echo "release=${{ steps.version.outputs.version }}-${clean_ref_name}-$(date +%y.%m.%d-%H_%M_%S)" >> $GITHUB_OUTPUT
-          echo "prerelease=true" >> $GITHUB_OUTPUT
-        fi
-        cat $GITHUB_OUTPUT
-      id: release_name
-
-    - name: Build Images
-      run: |
-        sudo modprobe loop
-        cd repository/src
-        echo "Plattenplatz vor Build"
-        df -h
-        time sudo make arm64 armhf
-        echo "Plattenplatz nach Build"
-        df -h
-
-
-    #- name: Create ubuntu_arm64 image
-    #  id: get_ubuntu_arm64_info
-    #  run: |
-    #    source repository/src/config
-    #    IMAGE=devops-${{ steps.release_name.outputs.release }}_ubuntu_arm64
-    #    if [ -f repository/src/workspace-ubuntu_arm64/*.img.xz ]
-    #    then
-    #      sudo mv repository/src/workspace-ubuntu_arm64/*.img.xz ${IMAGE}.img.xz
-    #      echo "image=${IMAGE}.img.xz" >> $GITHUB_OUTPUT
-    #    fi
-    #    df -h
-
-    #- name: Uploading arm64 ubuntu image as artifact
-    #  uses: actions/upload-artifact@v4
-    #  if: steps.get_ubuntu_arm64_info.outputs.image
-    #  env:
-    #    GITHUB_TOKEN: ${{ github.token }}
-    #  with:
-    #    path: ${{ steps.get_ubuntu_arm64_info.outputs.image }}
-    #    name: ${{ steps.get_ubuntu_arm64_info.outputs.image }}
-
-    - name: Create arm64 image
-      id: get_arm64_info
-      run: |
-        source repository/src/config
-        IMAGE=devops-${{ steps.release_name.outputs.release }}_arm64
-        
-        sudo mv repository/src/workspace-raspios_lite_arm64/*.img.xz ${IMAGE}.img.xz
-        echo "image=${IMAGE}.img.xz" >> $GITHUB_OUTPUT
-        df -h
-
-    - name: Uploading arm64 image as artifact
-      uses: actions/upload-artifact@v4
-      env:
-        GITHUB_TOKEN: ${{ github.token }}
-      with:
-        path: ${{ steps.get_arm64_info.outputs.image }}
-        name: ${{ steps.get_arm64_info.outputs.image }}
-
-    - name: Create armhf image
-      id: get_armhf_info
-      run: |
-        source repository/src/config
-        IMAGE=devops-${{ steps.release_name.outputs.release }}_armhf
-
-        sudo mv repository/src/workspace-raspios/*.img.xz ${IMAGE}.img.xz
-        echo "image=${IMAGE}.img.xz" >> $GITHUB_OUTPUT
-        df -h
-
-    - name: Uploading armhf image as artifact
-      uses: actions/upload-artifact@v4
-      env:
-        GITHUB_TOKEN: ${{ github.token }}
-      with:
-        path: ${{ steps.get_armhf_info.outputs.image }}
-        name: ${{ steps.get_armhf_info.outputs.image }}
-    
-    - name: Create Release
-      uses: softprops/action-gh-release@v2
-      if: startsWith(github.ref, 'refs/tags/')
-      id: create_release
-      with:
-        draft: false
-        prerelease: ${{ steps.release_name.outputs.prerelease == 'true' }}
-        name: Release ${{ steps.release_name.outputs.release }}
-        #tag_name: ${{ github.ref }}
-        body_path: repository/CHANGELOG.md
-        #files: |
-        #  ${{ steps.get_armhf_info.outputs.image }}
-        #  ${{ steps.get_arm64_info.outputs.image }}
-        #  ${{ steps.get_ubuntu_arm64_info.outputs.image || ''}}
-        files: |
-          ${{ steps.get_armhf_info.outputs.image }}
-          ${{ steps.get_arm64_info.outputs.image }}
-        
-      env:
-        GITHUB_TOKEN: ${{ github.token }}
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          draft: false
+          prerelease: ${{ needs.build.outputs.prerelease == 'true' }}
+          name: Release ${{ needs.build.outputs.release }}
+          body_path: repository/CHANGELOG.md
+          files: |
+            artifacts/**/*.img.xz  # Rekursiv alle .img.xz-Dateien
+        env:
+          GITHUB_TOKEN: ${{ github.token }}

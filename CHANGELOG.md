@@ -1,5 +1,11 @@
 # Changelog
 
+VERSION=0.5.0
+
+-[x] Raspberry OS Trixi
+-[x] Install Node Red
+-[x] Codeserver for Baseuser
+
 VERSION=0.4.17
 
 - [x] Enable full-upgrade
