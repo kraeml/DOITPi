@@ -2,7 +2,7 @@
 
 VERSION=0.5.3
 
-- [ ] git hub runner release
+- [x] git hub runner release
 
 VERSION=0.5.2
 

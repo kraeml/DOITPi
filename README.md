@@ -2,7 +2,7 @@
 
 **D**ev**O**ps **I**o**T** **Pi** – Raspberry Pi
 
-DOITPi ist ein **Open-Source-Projekt**, das eine **vorgefertigte Sammlung von DevOps- und IoT-Tools** die auf das **Raspberry Pi OS Lite** aufsetzt. Das Projekt bietet ein **fertiges Image**, das die Installation und Einrichtung der Tools **vollautomatisch** übernimmt.
+DOITPi ist ein **Open-Source-Projekt**, das eine **vorgefertigte Sammlung von DevOps-, IoT-Tools und Robot Operating System 2 (ROS2)** als Image bereitstellt. Es basiert auf dem **Raspberry Pi OS Lite**. Das Projekt bietet ein **fertiges Image**, das die Installation und Einrichtung der Tools **vollautomatisch** übernimmt.
 
 🔹 **Zielgruppe:**
 Bildungseinrichtungen, Entwickler:innen und Lernende, die **DevOps-Praktiken und IoT-Anwendungen** auf dem Raspberry Pi umsetzen möchten.
@@ -13,6 +13,7 @@ Bildungseinrichtungen, Entwickler:innen und Lernende, die **DevOps-Praktiken und
 - **SSH** (Headless-Betrieb)
 
 🔹 **Ziel:**
+
 Eine **praxisnahe, sofort einsatzbereite Plattform** für DevOps und IoT.
 
 ---
@@ -49,7 +50,6 @@ DOITPi integriert folgende DevOps-Lösungen:
 | **[Etckeeper](https://manpages.debian.org/etckeeper)** | Versionskontrolle für `/etc`-Konfigurationen.                                                   |
 | **LXC/Docker**     | Containerisierung für isolierte Umgebungen.                                                     |
 | **Git/GitOps**     | Versionskontrolle und deklarative Infrastruktur.                                                |
-| **Cockpit**        | [Webbasierte Serververwaltung](https://cockpit-project.org/).                                  |
 
 ---
 
@@ -73,7 +73,9 @@ DOITPi integriert ROS2 für Robotik- und IoT-Projekte:
 
 | Tool               | Beschreibung                                                                                     |
 |--------------------|-------------------------------------------------------------------------------------------------|
-| **[ROS2](https://docs.ros.org/)** | Framework für Robotik: Kommunikation zwischen Knoten, Sensorintegration, Algorithmen. Ideal für IoT-Projekte mit Bewegungssteuerung, KI oder Echtzeitdatenverarbeitung. Kompatibel mit Raspberry Pi und Docker. |
+| **[ROS2](https://docs.ros.org/)** | Framework für Robotik, das Kommunikation zwischen Knoten ermöglicht. Ideal für Echtzeitdatenverarbeitung, Sensorintegration und Algorithmen wie SLAM oder Pfadplanung. Voll kompatibel mit Raspberry Pi und Docker, und integrierbar mit Node-RED und Webots. |
+|**Node-RED** | Flow-basierte Automatisierungsplattform. Ermöglicht visuelle Programmierung ohne tiefgehende Code-Kenntnisse. Unterstützt ROS2-Integration für Robotik-Projekte. Ideal für die Steuerung von IoT-Geräten und schnelle Prototypen. |
+| **[Webots](https://cyberbotics.com)** | 3D-Robotersimulationssoftware für Forschung und Bildung. Bietet eine realistische Physik-Engine und unterstützt ROS2. Perfekt zum Testen von Algorithmen für autonome Roboter oder IoT-Systeme vor der Implementierung auf echter Hardware. |
 
 ---
 
