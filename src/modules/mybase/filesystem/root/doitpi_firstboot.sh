@@ -43,7 +43,7 @@ if [ -d ${USER_HOME}/workspace/doitpi-ansible ]
 then
   cd ${USER_HOME}/workspace/doitpi-ansible/
   # Run Playbook allways true
-  sudo -u "#1000" ansible-playbook --limit lokal --tags "firstrun,mybase" main.yaml | tee -a ${USER_HOME}/.ansible-playbook-$(date +%Y-%m-%d_%H-%M-%S).log || true
+  sudo -u "#1000" ansible-playbook --limit lokal --tags "firstrun,mybase,autohotspot" main.yaml | tee -a ${USER_HOME}/.ansible-playbook-$(date +%Y-%m-%d_%H-%M-%S).log || true
   cd -
 fi
 
