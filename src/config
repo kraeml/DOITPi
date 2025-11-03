@@ -34,6 +34,6 @@ export PKGUPGRADE_USE_PREINSTALLER=n # y/n
 # Add Packages that should be PKGUPGRADEed.
 export PKGUPGRADE_PRE_INSTALL_PKGS=""
 
-export MODULES="base(network,disable-services(auto-hotspot),mybase,pythongpio,platformio,devops,homeautomation,pkgupgrade)"
+export MODULES="base(network,mybase,pythongpio,platformio,devops,homeautomation,pkgupgrade)"
 
 export DOCKER_COMPOSE=no
