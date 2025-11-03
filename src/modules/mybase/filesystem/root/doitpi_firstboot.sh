@@ -77,8 +77,8 @@ if [ "$HAS_INTERNET" = true ]; then
 
   rm -rf /etc/systemd/system/doitpi_firstboot.service
   rm -f /doitpi_firstboot.sh
+  sleep 20
+  reboot
 fi
 
-sleep 20
 
-reboot
