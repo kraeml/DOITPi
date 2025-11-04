@@ -19,7 +19,7 @@ export BASE_DISTRO=raspbian
 export BASE_RELEASE_IMG_NAME=${DIST_NAME}
 
 export AUTO_HOTSPOT_NAME=${DIST_NAME,,}
-export AUTO_HOTSPOT_PASSWORD=raspberry
+export AUTO_HOTSPOT_PASSWORD=ChangeMe
 export AUTO_HOTSPOT_CHANNEL=6
 
 export DOCKER_ADD_USER_TO_GROUP=yes
@@ -34,7 +34,6 @@ export PKGUPGRADE_USE_PREINSTALLER=n # y/n
 # Add Packages that should be PKGUPGRADEed.
 export PKGUPGRADE_PRE_INSTALL_PKGS=""
 
-# ToDo Cockpit-install mit festem pi-USER
 export MODULES="base(network,mybase,pythongpio,platformio,devops,homeautomation,pkgupgrade)"
 
 export DOCKER_COMPOSE=no
