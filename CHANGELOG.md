@@ -1,5 +1,9 @@
 # Changelog
 
+VERSION=0.6.0
+
+- [x] autohotspot if now WLAN
+
 VERSION=0.5.3
 
 - [x] git hub runner release
