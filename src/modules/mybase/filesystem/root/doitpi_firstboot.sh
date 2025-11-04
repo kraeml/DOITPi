@@ -50,20 +50,17 @@ fi
 localectl set-locale LANG=de_DE.UTF-8
 export USER_HOME=$(getent passwd 1000 | cut --delimiter=: --fields=6)
 
-# Playbook, wenn Internetverbindung besteht
-if [ "$HAS_INTERNET" = true ]; then
+if [ -d ${USER_HOME}/workspace/doitpi-ansible ]; then
   cd ${USER_HOME}/workspace/doitpi-ansible/
-  if [ -d ${USER_HOME}/workspace/doitpi-ansible ]
-  then
-    
-    # Run Playbook allways true
-    sudo -u "#1000" ansible-playbook --limit lokal --tags "firstrun,mybase,autohotspot" main.yaml | tee -a ${USER_HOME}/.ansible-playbook-$(date +%Y-%m-%d_%H-%M-%S).log || true
-    cd -
+# Playbook, wenn Internetverbindung besteht
+  if [ "$HAS_INTERNET" = true ]; then
+      # Run Playbook allways true
+      sudo -u "#1000" ansible-playbook --limit lokal --tags "firstrun,mybase,autohotspot" main.yaml | tee -a ${USER_HOME}/.ansible-playbook-$(date +%Y-%m-%d_%H-%M-%S).log || true
+  else
+      # Run Playbook allways true
+      sudo -u "#1000" ansible-playbook --limit lokal --tags "autohotspot" main.yaml | tee -a ${USER_HOME}/.ansible-playbook-$(date +%Y-%m-%d_%H-%M-%S).log || true
   fi
-else
-    # Run Playbook allways true
-    sudo -u "#1000" ansible-playbook --limit lokal --tags "autohotspot" main.yaml | tee -a ${USER_HOME}/.ansible-playbook-$(date +%Y-%m-%d_%H-%M-%S).log || true
-    cd -
+  cd -
 fi
 
 if [ -f /etc/apt/apt.conf.d/99forceconfnew ]
