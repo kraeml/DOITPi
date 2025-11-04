@@ -7,7 +7,7 @@ ConditionPathExists=/doitpi_firstboot.sh
 Type=oneshot
 RemainAfterExit=no
 ExecStart=/doitpi_firstboot.sh
-TimeoutStartSec=60
+TimeoutStartSec=1200
 StandardOutput=journal
 StandardError=journal
 
