@@ -1,5 +1,9 @@
 # Changelog
 
+VERSION=0.6.1
+
+- [ ] timeout doitfirst-boot
+
 VERSION=0.6.0
 
 - [x] autohotspot if now WLAN
