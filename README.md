@@ -10,6 +10,8 @@ Bildungseinrichtungen, Entwickler:innen und Lernende, die **DevOps-Praktiken und
 🔹 **Zugangsoptionen:**
 
 - **Browser** (Weboberfläche)
+  - [Codeserver](../../wiki/Codeserver)
+  - [Node-Red](../../wiki/NodeRed)
 - **SSH** (Headless-Betrieb)
 - **Access Point** (falls kein WLAN verfügbar ist, SSID: AP-YOUR_HOSTNAME, Passphrase: 123456789)
 
