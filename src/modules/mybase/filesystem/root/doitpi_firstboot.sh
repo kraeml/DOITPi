@@ -71,6 +71,8 @@ then
   rm /etc/apt/apt.conf.d/99forceconfnew
 fi
 
+systemctl stop doitpi_firstboot.service 2>/dev/null || echo "Warning: Failed to stop doitpi_firstboot.service" >&2
+
 # Löschen von doitpi_firstboot, wenn Internetverbindung besteht
 if [ "$HAS_INTERNET" = true ]; then
   systemctl disable doitpi_firstboot.service
@@ -80,5 +82,6 @@ if [ "$HAS_INTERNET" = true ]; then
   sleep 20
   reboot
 fi
+
 
 
