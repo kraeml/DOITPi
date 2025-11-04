@@ -1,7 +1,16 @@
 [Unit]
 Description=One time boot script
+After=network-online.target
+Wants=network-online.target
+ConditionPathExists=/doitpi_firstboot.sh
+
 [Service]
-Type=simple
+Type=oneshot
+RemainAfterExit=no
 ExecStart=/doitpi_firstboot.sh
+TimeoutStartSec=20
+StandardOutput=journal
+StandardError=journal
+
 [Install]
 WantedBy=multi-user.target
