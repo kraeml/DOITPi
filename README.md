@@ -7,17 +7,74 @@ DOITPi ist ein **Open-Source-Projekt**, das eine **vorgefertigte Sammlung von [D
 🔹 **Zielgruppe:**
 Bildungseinrichtungen, Entwickler:innen und Lernende, die **DevOps-Praktiken und IoT-Anwendungen** auf dem Raspberry Pi umsetzen möchten.
 
-🔹 **Zugangsoptionen:**
+#### Zugangsoptionen
 
-- **Browser** (Weboberfläche)
-  - [CodeServer (für webbasiertes Code-Editing)](../../wiki/Codeserver)
-  - [Node-RED (für visuelles IoT- ROS2-Programmieren)](../../wiki/NodeRed)
-- **SSH** (Headless-Betrieb)
-- **Access Point** (falls kein WLAN verfügbar ist, SSID: AP-YOUR_HOSTNAME, Passphrase: 123456789)
+DOITPi bietet flexible Zugriffsmöglichkeiten für verschiedene Einsatzszenarien:
 
-🔹 **Ziel:**
+- **🌐 Browser (Weboberfläche)**
+  - **[CodeServer](../../wiki/Codeserver)**: VS Code im Browser – ideal für Remote-Entwicklung.
+  - **[Node-RED](../../wiki/NodeRed)**: Visuelle Programmierung für IoT und ROS2.
 
-Eine **praxisnahe, sofort einsatzbereite Plattform** für DevOps und IoT.
+- **🖥️ SSH (Headless-Betrieb)**
+
+  Direkter Zugriff über die Kommandozeile (Standard-Port: `22`).
+
+- **📶 Auto-Hotspot (falls kein WLAN verfügbar)**
+
+  DOITPi aktiviert **automatisch einen Access Point**, wenn **keine bekannte WLAN-Verbindung** gefunden wird.
+  - **SSID:** `AP-<HOSTNAME>` (z. B. `AP-doitpi-abc123`)
+  - **Standard-Passphrase:** `123456789` *(**Hinweis:** Ändere dieses Passwort nach der ersten Einrichtung!)*
+  - **Zweck:** Ermöglicht eine **sofortige Verbindung** für die Erstkonfiguration oder in Umgebungen ohne WLAN.
+  - **Sicherheit:**
+    > ⚠️ **Wichtig:**
+    > - Der Auto-Hotspot ist **nur aktiv**, wenn kein bekanntes WLAN verfügbar ist.
+    > - Das **Standard-Passwort** ist unsicher und sollte **sofort geändert** werden (siehe [Wiki: Hotspot konfigurieren](../../wiki/Hotspot)).
+    > - Für den **Dauerbetrieb** empfiehlt sich die Nutzung eines **gesicherten WLANs** oder VPNs.
+
+---
+
+#### **🔹 Warum ein Auto-Hotspot?**
+- **Plug & Play:** Keine manuelle Netzwerkkonfiguration nötig – ideal für **Bildungseinrichtungen** oder Workshops.
+- **Fallback-Lösung:** Garantiert Zugriff auf das System, selbst wenn kein WLAN verfügbar ist.
+- **Einfache Erstinbetriebnahme:** Nutzer:innen können sich **sofort verbinden** und die Einrichtung abschließen.
+
+---
+
+#### Ziel: Sofort einsatzbereit
+
+DOITPi liefert ein **vollständig vorinstalliertes Image** für den Raspberry Pi.
+
+- **Keine manuelle Installation nötig:** Alle Tools (DevOps, IoT, ROS2) sind **bereits integriert** und konfiguriert.
+- **Schnelle Inbetriebnahme:**
+  - Image auf die SD-Karte flashen.
+  - Raspberry Pi starten.
+  - **Nach ~10 Minuten und einem Reboot** ist das System **einsatzbereit** – ohne weitere Schritte!
+
+> 💡 **Warum "vollautomatisch"?**
+> - **Kein Herunterladen oder Installieren** von Paketen nötig.
+> - **Keine komplexen Konfigurationen** – alles ist vorab eingerichtet.
+> - Ideal für **Bildungseinrichtungen**, Workshops oder schnelle Prototypen.
+
+---
+
+#### 🔧 Was passiert im Hintergrund?
+1. **Erststart:**
+   - Das System bootet und führt **automatische Konfigurationen** durch.
+   - **Auto-Hotspot** wird aktiviert (falls kein WLAN verfügbar).
+2. **Reboot (~10 Minuten später):**
+   - Alle Dienste (CodeServer, Node-RED, ROS2, etc.) sind **startbereit**.
+   - Zugriff über **Browser, SSH oder Hotspot** möglich.
+
+---
+
+### Wichtige Hinweise für Nutzer:innen
+
+- **Erstkonfiguration:**
+  - Nach dem ersten Reboot **Passwörter ändern** (Hotspot, SSH – siehe [[Sicherheitshinweise](https://github.com/kraeml/DOITPi/issues/25#-zugangsoptionen)](#-zugangsoptionen)).
+  - Optional: **WLAN einrichten** (falls der Hotspot nicht mehr benötigt wird).
+- **Updates:**
+  - DOITPi bleibt **up-to-date** durch regelmäßige Image-Releases.
+  - Aktualisierungen können über `sudo apt update && sudo apt upgrade` installiert werden.
 
 ---
 
