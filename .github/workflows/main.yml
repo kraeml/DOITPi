@@ -163,14 +163,45 @@ jobs:
         with:
           path: artifacts
 
+      - name: Extract latest changelog entry
+        id: changelog
+        run: |
+          echo "Extrahiere Changelog für Version: ${{ needs.build.outputs.release }}"
+
+          # Extrahiere den Abschnitt für die aktuelle Version (Markdown-kompatibel)
+          awk -v version="${{ needs.build.outputs.release }}" '
+            $0 ~ "^## VERSION " version {
+              found = 1; next
+            }
+            found && /^## VERSION / { exit }
+            found { print }
+          ' repository/CHANGELOG.md > latest_release_notes.txt
+
+          # Falls keine Änderungen vorhanden sind, Standard-Text ausgeben
+          if [ ! -s latest_release_notes.txt ]; then
+            {
+              echo "## DOITPi Release ${{ needs.build.outputs.release }}"
+              echo
+              echo "Keine expliziten Änderungen für diese Version dokumentiert."
+            } > latest_release_notes.txt
+          fi
+
+          # Setze die Umgebungsvariable für die Release-Beschreibung
+          {
+            echo "RELEASE_BODY<<EOF"
+            cat latest_release_notes.txt
+            echo "EOF"
+          } >> "$GITHUB_ENV"
+
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
+          token: ${{ secrets.GITHUB_TOKEN }}
           draft: false
           prerelease: ${{ needs.build.outputs.prerelease == 'true' }}
           name: Release ${{ needs.build.outputs.release }}
-          body_path: repository/CHANGELOG.md
+          body: ${{ env.RELEASE_BODY }}
           files: |
             artifacts/**/*.img.xz
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
+            repository/CHANGELOG.md
+
