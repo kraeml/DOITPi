@@ -2,12 +2,17 @@
 
 **D**ev**O**ps **I**o**T** **Pi** – Raspberry Pi
 
-DOITPi ist ein **Open-Source-Projekt**, das eine **vorgefertigte Sammlung von [DevOps](../../wiki/DevOps)-, [IoT](../../wiki/IoT)-Tools und [Robot Operating System 2 (ROS2)](../../wiki/ROS2)** als Image bereitstellt. Es basiert auf dem **[Raspberry Pi OS Lite](../../wiki/RaspbianOsLite)**. Das Projekt bietet ein **fertiges Image**, das die [Installation](../../wiki/Installation) und Einrichtung der Tools **vollautomatisch** übernimmt.
+DOITPi ist ein **Open-Source-Projekt**, das eine **vorgefertigte Sammlung von [DevOps](../../wiki/DevOps)-, [IoT](../../wiki/IoT)-Tools und [Robot Operating System 2 (ROS2)](../../wiki/ROS2)** als **sofort einsatzbereites Image** bereitstellt. Es basiert auf dem **[Raspberry Pi OS Lite](../../wiki/RaspbianOsLite)**. Das Projekt bietet ein **fertiges Image**, das die [Installation](../../wiki/Installation) und Einrichtung der Tools **vollautomatisch** übernimmt – **ohne manuelle Schritte**
 
-🔹 **Zielgruppe:**
+**📥 [Aktuelles Image herunterladen](https://github.com/kraeml/DOITPi/releases/latest)**
+
+---
+
+## Zielgruppe
+
 Bildungseinrichtungen, Entwickler:innen und Lernende, die **DevOps-Praktiken und IoT-Anwendungen** auf dem Raspberry Pi umsetzen möchten.
 
-#### Zugangsoptionen
+## Zugangsoptionen
 
 DOITPi bietet flexible Zugriffsmöglichkeiten für verschiedene Einsatzszenarien:
 
@@ -33,14 +38,14 @@ DOITPi bietet flexible Zugriffsmöglichkeiten für verschiedene Einsatzszenarien
 
 ---
 
-#### **🔹 Warum ein Auto-Hotspot?**
+### **🔹 Warum ein Auto-Hotspot?**
 - **Plug & Play:** Keine manuelle Netzwerkkonfiguration nötig – ideal für **Bildungseinrichtungen** oder Workshops.
 - **Fallback-Lösung:** Garantiert Zugriff auf das System, selbst wenn kein WLAN verfügbar ist.
 - **Einfache Erstinbetriebnahme:** Nutzer:innen können sich **sofort verbinden** und die Einrichtung abschließen.
 
 ---
 
-#### Ziel: Sofort einsatzbereit
+## Ziel: Sofort einsatzbereit
 
 DOITPi liefert ein **vollständig vorinstalliertes Image** für den Raspberry Pi.
 
@@ -48,7 +53,7 @@ DOITPi liefert ein **vollständig vorinstalliertes Image** für den Raspberry Pi
 - **Schnelle Inbetriebnahme:**
   - Image auf die SD-Karte flashen.
   - Raspberry Pi starten.
-  - **Nach ~10 Minuten und einem Reboot** ist das System **einsatzbereit** – ohne weitere Schritte!
+  - **Nach ~10 Minuten (ja nach Hardware) und einem Reboot** ist das System **einsatzbereit** – ohne weitere Schritte!
 
 > 💡 **Warum "vollautomatisch"?**
 > - **Kein Herunterladen oder Installieren** von Paketen nötig.
@@ -57,7 +62,8 @@ DOITPi liefert ein **vollständig vorinstalliertes Image** für den Raspberry Pi
 
 ---
 
-#### 🔧 Was passiert im Hintergrund?
+### 🔧 Was passiert im Hintergrund?
+
 1. **Erststart:**
    - Das System bootet und führt **automatische Konfigurationen** durch.
    - **Auto-Hotspot** wird aktiviert (falls kein WLAN verfügbar).
@@ -65,12 +71,20 @@ DOITPi liefert ein **vollständig vorinstalliertes Image** für den Raspberry Pi
    - Alle Dienste (CodeServer, Node-RED, ROS2, etc.) sind **startbereit**.
    - Zugriff über **Browser, SSH oder Hotspot** möglich.
 
+```mermaid
+graph TD
+  A[Image flashen] --> B[Raspberry Pi starten]
+  B --> C[Automatische Konfiguration (~10 Min.)]
+  C --> D[Reboot]
+  D --> E[System einsatzbereit!]
+```
+
 ---
 
 ### Wichtige Hinweise für Nutzer:innen
 
 - **Erstkonfiguration:**
-  - Nach dem ersten Reboot **Passwörter ändern** (Hotspot, SSH – siehe [[Sicherheitshinweise](https://github.com/kraeml/DOITPi/issues/25#-zugangsoptionen)](#-zugangsoptionen)).
+  - Nach dem ersten Reboot **Passwörter ändern** (Hotspot, SSH – siehe [Sicherheitshinweise](../../wiki/Autohotspot).
   - Optional: **WLAN einrichten** (falls der Hotspot nicht mehr benötigt wird).
 - **Updates:**
   - DOITPi bleibt **up-to-date** durch regelmäßige Image-Releases.
@@ -240,10 +254,6 @@ Für automatisierte Builds in einer VM:
    ```bash
    ./run_vagrant_build.sh [VARIANTE]
    ```
-
----
-
-**📥 [Aktuelles Image herunterladen](https://github.com/kraeml/DOITPi/releases/latest)**
 
 ---
 
