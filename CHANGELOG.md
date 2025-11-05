@@ -2,7 +2,7 @@
 
 VERSION=0.6.1
 
-- [ ] timeout doitfirst-boot
+- [x] timeout doitfirst-boot
 
 VERSION=0.6.0
 
