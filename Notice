@@ -1,0 +1,15 @@
+DOITPi © 2025
+
+Dieses Projekt nutzt die folgenden Tools und Bibliotheken:
+
+- ROS2 (Apache 2.0 License)
+  Copyright [ROS2 Contributors]. Lizenztest: https://github.com/ros2/ros2/blob/master/LICENSE
+
+- Node-RED (Apache 2.0 License)
+  Copyright OpenJS Foundation. Lizenztest: https://github.com/node-red/node-red/blob/master/LICENSE
+
+- Ansible (GPLv3 License)
+  Copyright Red Hat, Inc. Lizenztest: https://github.com/ansible/ansible/blob/devel/COPYING
+
+- CustomPiOS (MIT License)
+  Copyright Guy Sheffer. Lizenztest: https://github.com/guysoft/CustomPiOS/blob/master/LICENSE
