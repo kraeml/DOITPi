@@ -191,3 +191,35 @@ Für automatisierte Builds in einer VM:
 ---
 
 **Fragen oder Ideen?** Öffne ein Issue auf [GitHub](https://github.com/kraeml/doitpi) oder trage direkt bei!
+
+---
+
+## Lizenz
+
+DOITPi steht unter der [MIT-Lizenz](LICENSE).
+
+### Lizenzen Dritter
+
+DOITPi nutzt die folgenden Tools und Bibliotheken:
+
+| Tool          | Lizenz                     | Quelle                                  |
+|---------------|----------------------------|-----------------------------------------|
+| ROS2          | Apache 2.0                 | [docs.ros.org](https://docs.ros.org/)   |
+| Node-RED      | Apache 2.0                 | [nodered.org](https://nodered.org/)     |
+| Ansible       | GPLv3                      | [ansible.com](https://www.ansible.com/)|
+| CustomPiOS    | MIT                        | [GitHub](https://github.com/guysoft/CustomPiOS) |
+
+---
+
+## 📦 Abhängigkeiten & Danksagungen
+
+DOITPi steht auf den Schultern von Riesen. Besonderer Dank gilt:
+
+- **[Raspberry Pi OS](https://www.raspberrypi.com/software/)** (Basis-System)
+- **[CustomPiOS](https://github.com/guysoft/CustomPiOS)** (Image-Erstellung)
+- **[NetworkManager](https://networkmanager.dev/)** (Auto-Hotspot-Funktion)
+- **[ROS2](https://docs.ros.org/)** & **[Node-RED](https://nodered.org/)** (Robotik & IoT)
+- **[Ansible](https://www.ansible.com/)** (Automatisierung)
+- **Allen Mitwirkenden** ([GitHub Contributors](https://github.com/kraeml/DOITPi/graphs/contributors))!
+
+💙 **Möchtest du hier auftauchen?** Trage bei und sende einen Pull Request!
