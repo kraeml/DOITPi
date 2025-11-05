@@ -1,5 +1,11 @@
 # Changelog
 
+VERSION=0.6.2
+
+- [ ] dynamically generate release notes from CHANGELOG
+- [x] add GitHub badges for release, license, and build status
+- [x] docs(README): refine structure, clarity, and user onboarding
+
 VERSION=0.6.1
 
 - [x] timeout doitfirst-boot
