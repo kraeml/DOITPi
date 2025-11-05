@@ -78,10 +78,10 @@ DOITPi liefert ein **vollständig vorinstalliertes Image** für den Raspberry Pi
 
 ```mermaid
 graph TD
-  A[Image flashen] --> B[Raspberry Pi starten]
-  B --> C[Automatische Konfiguration (~10 Min.)]
+  A[Image_flaschen] --> B[Raspberry_Pi_starten]
+  B --> C[Automatische_Konfiguration]
   C --> D[Reboot]
-  D --> E[System einsatzbereit!]
+  D --> E[System_einsatzbereit]
 ```
 
 ---
