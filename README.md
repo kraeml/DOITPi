@@ -2,6 +2,8 @@
 
 **D**ev**O**ps **I**o**T** **Pi** – Raspberry Pi
 
+![DOITPi Logo](./images/DOITPI250.png)
+
 DOITPi ist ein **Open-Source-Projekt**, das eine **vorgefertigte Sammlung von [DevOps](../../wiki/DevOps)-, [IoT](../../wiki/IoT)-Tools und [Robot Operating System 2 (ROS2)](../../wiki/ROS2)** als Image bereitstellt. Es basiert auf dem **[Raspberry Pi OS Lite](../../wiki/RaspbianOsLite)**. Das Projekt bietet ein **fertiges Image**, das die [Installation](../../wiki/Installation) und Einrichtung der Tools **vollautomatisch** übernimmt.
 
 🔹 **Zielgruppe:**
