@@ -27,6 +27,10 @@ DOITPi bietet flexible Zugriffsmöglichkeiten für verschiedene Einsatzszenarien
   - **[CodeServer](../../wiki/Codeserver)**: VS Code im Browser – ideal für Remote-Entwicklung.
   - **[Node-RED](../../wiki/NodeRed)**: Visuelle Programmierung für IoT und ROS2.
 
+![DOITPi Codeserver](../../wiki/pictures/24_codeserver_screenshot.png)
+
+![DOITPi Nodered](../../wiki/pictures/22_nodered_screenshot.png)
+
 - **🖥️ SSH (Headless-Betrieb)**
 
   Direkter Zugriff über die Kommandozeile (Standard-Port: `22`).
