@@ -1,8 +1,8 @@
 MAKEFLAGS += "--jobs=$(shell nproc)"
 
 # https://downloads.raspberrypi.com/raspios_lite_arm64/images/
-RASPIOS_DATE ?= 2025-10-01
-RASPIOS_DATE_URL ?= 2025-10-02
+RASPIOS_DATE ?= 2025-11-24
+RASPIOS_DATE_URL ?= 2025-11-24
 
 RASPIOS_NAME ?= trixie
 
