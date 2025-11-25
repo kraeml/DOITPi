@@ -31,11 +31,11 @@ DOITPi bietet flexible Zugriffsmöglichkeiten für verschiedene Einsatzszenarien
 
 ![DOITPi Nodered](../../wiki/pictures/22_nodered_screenshot.png)
 
-- **🖥️ SSH (Headless-Betrieb)**
+- **🖥️ [SSH](../../wiki/SSH) (Headless-Betrieb)**
 
   Direkter Zugriff über die Kommandozeile (Standard-Port: `22`).
 
-- **📶 Auto-Hotspot (falls kein WLAN verfügbar)**
+- **📶 [Auto-Hotspot](../../wiki/Autohotspot) (falls kein WLAN verfügbar)**
 
   DOITPi aktiviert **automatisch einen Access Point**, wenn **keine bekannte WLAN-Verbindung** gefunden wird.
   - **SSID:** `AP-<HOSTNAME>` (z. B. `AP-doitpi-abc123`)
@@ -60,7 +60,7 @@ DOITPi bietet flexible Zugriffsmöglichkeiten für verschiedene Einsatzszenarien
 
 DOITPi liefert ein **vollständig vorinstalliertes Image** für den Raspberry Pi.
 
-- **Keine manuelle Installation nötig:** Alle Tools (DevOps, IoT, ROS2) sind **bereits integriert** und konfiguriert.
+- **Keine manuelle Installation nötig:** Alle Tools ([DevOps](../../wiki/DevOps), [IoT](../../wiki/IoT), [ROS2](../../wiki/ROS2)) sind **bereits integriert** und konfiguriert.
 - **Schnelle Inbetriebnahme:**
   - Image auf die SD-Karte flashen.
   - Raspberry Pi starten.
@@ -79,7 +79,7 @@ DOITPi liefert ein **vollständig vorinstalliertes Image** für den Raspberry Pi
    - Das System bootet und führt **automatische Konfigurationen** durch.
    - **Auto-Hotspot** wird aktiviert (falls kein WLAN verfügbar).
 2. **Reboot (~10 Minuten später):**
-   - Alle Dienste (CodeServer, Node-RED, ROS2, etc.) sind **startbereit**.
+   - Alle Dienste ([CodeServer](../../wiki/Codeserver), [Node-RED](../../wiki/NodeRed), [ROS2](../../wiki/ROS2), etc.) sind **startbereit**.
    - Zugriff über **Browser, SSH oder Hotspot** möglich.
 
 ```mermaid
@@ -96,7 +96,7 @@ graph TD
 
 - **Erstkonfiguration:**
   - Nach dem ersten Reboot **Passwörter ändern** (Hotspot, SSH – siehe [Sicherheitshinweise](../../wiki/Autohotspot).
-  - Optional: **WLAN einrichten** (falls der Hotspot nicht mehr benötigt wird).
+  - Optional: **[WLAN einrichten](../../wiki/NmtuiWlan)** (falls der Hotspot nicht mehr benötigt wird).
 - **Updates:**
   - DOITPi bleibt **up-to-date** durch regelmäßige Image-Releases.
   - Aktualisierungen können über `sudo apt update && sudo apt upgrade` installiert werden.
@@ -159,7 +159,7 @@ DOITPi integriert ROS2 für Robotik- und IoT-Projekte:
 | Tool               | Beschreibung                                                                                     |
 |--------------------|-------------------------------------------------------------------------------------------------|
 | **[ROS2](https://docs.ros.org/)** | Framework für Robotik, das Kommunikation zwischen Knoten ermöglicht. Ideal für Echtzeitdatenverarbeitung, Sensorintegration und Algorithmen wie SLAM oder Pfadplanung. Voll kompatibel mit Raspberry Pi und Docker, und integrierbar mit Node-RED und Webots. |
-|**Node-RED** | Flow-basierte Automatisierungsplattform. Ermöglicht visuelle Programmierung ohne tiefgehende Code-Kenntnisse. Unterstützt ROS2-Integration für Robotik-Projekte. Ideal für die Steuerung von IoT-Geräten und schnelle Prototypen. |
+|**[Node-RED](https://nodered.org/)** | Flow-basierte Automatisierungsplattform. Ermöglicht visuelle Programmierung ohne tiefgehende Code-Kenntnisse. Unterstützt ROS2-Integration für Robotik-Projekte. Ideal für die Steuerung von IoT-Geräten und schnelle Prototypen. |
 | **[Webots](https://cyberbotics.com)** | 3D-Robotersimulationssoftware für Forschung und Bildung. Bietet eine realistische Physik-Engine und unterstützt ROS2. Perfekt zum Testen von Algorithmen für autonome Roboter oder IoT-Systeme vor der Implementierung auf echter Hardware. |
 
 ---
@@ -194,9 +194,9 @@ DOITPi unterstützt folgende Sprachen und Domänenspezifische Sprachen (DSLs):
 
 Für schnelle Prototypen und Bildungskontexte:
 
-- **Blockly/Scratch** (visuelle Programmierung)
-- **Node-RED** (Flow-basierte Automatisierung)
-- **YAML** (deklarative Konfigurationen)
+- **[Blockly/Scratch](../../wiki/BlochlyVSScratch)** (visuelle Programmierung)
+- **[Node-RED](../../wiki/NodeRed)** (Flow-basierte Automatisierung)
+- **[YAML](../../wiki/YAML)** (deklarative Konfigurationen)
 
 ---
 
