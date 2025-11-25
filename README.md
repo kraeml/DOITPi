@@ -9,7 +9,7 @@
 [![Build Status](https://img.shields.io/github/actions/workflow/status/kraeml/DOITPi/main.yml?branch=develop)](https://github.com/kraeml/DOITPi/actions/workflows/main.yml)
 
 
-DOITPi ist ein **Open-Source-Projekt**, das eine **vorgefertigte Sammlung von [DevOps](../../wiki/DevOps)-, [IoT](../../wiki/IoT)-Tools und [Robot Operating System 2 (ROS2)](../../wiki/ROS2)** als **sofort einsatzbereites Image** bereitstellt. Es basiert auf dem **[Raspberry Pi OS Lite](../../wiki/RaspbianOsLite)**. Das Projekt bietet ein **fertiges Image**, das die [Installation](../../wiki/Installation) und Einrichtung der Tools **vollautomatisch** übernimmt – **ohne manuelle Schritte**
+DOITPi ist ein **Open-Source-Projekt**, das eine **vorgefertigte Sammlung von [DevOps](https://github.com/kraeml/DOITPi/wiki/DevOps)-, [IoT](https://github.com/kraeml/DOITPi/wiki/IoT)-Tools und [Robot Operating System 2 (ROS2)](https://github.com/kraeml/DOITPi/wiki/ROS2)** als **sofort einsatzbereites Image** bereitstellt. Es basiert auf dem **[Raspberry Pi OS Lite](https://github.com/kraeml/DOITPi/wiki/RaspbianOsLite)**. Das Projekt bietet ein **fertiges Image**, das die [Installation](https://github.com/kraeml/DOITPi/wiki/Installation) und Einrichtung der Tools **vollautomatisch** übernimmt – **ohne manuelle Schritte**
 
 **📥 [Aktuelles Image herunterladen](https://github.com/kraeml/DOITPi/releases/latest)**
 
@@ -24,18 +24,18 @@ Bildungseinrichtungen, Entwickler:innen und Lernende, die **DevOps-Praktiken und
 DOITPi bietet flexible Zugriffsmöglichkeiten für verschiedene Einsatzszenarien:
 
 - **🌐 Browser (Weboberfläche)**
-  - **[CodeServer](../../wiki/Codeserver)**: VS Code im Browser – ideal für Remote-Entwicklung.
-  - **[Node-RED](../../wiki/NodeRed)**: Visuelle Programmierung für IoT und ROS2.
+  - **[CodeServer](https://github.com/kraeml/DOITPi/wiki/Codeserver)**: VS Code im Browser – ideal für Remote-Entwicklung.
+  - **[Node-RED](https://github.com/kraeml/DOITPi/wiki/NodeRed)**: Visuelle Programmierung für IoT und ROS2.
 
-![DOITPi Codeserver](../../wiki/pictures/24_codeserver_screenshot.png)
+![DOITPi Codeserver](https://github.com/kraeml/DOITPi/wiki/pictures/24_codeserver_screenshot.png)
 
-![DOITPi Nodered](../../wiki/pictures/22_nodered_screenshot.png)
+![DOITPi Nodered](https://github.com/kraeml/DOITPi/wiki/pictures/22_nodered_screenshot.png)
 
-- **🖥️ SSH (Headless-Betrieb)**
+- **🖥️ [SSH](https://github.com/kraeml/DOITPi/wiki/SSH) (Headless-Betrieb)**
 
   Direkter Zugriff über die Kommandozeile (Standard-Port: `22`).
 
-- **📶 Auto-Hotspot (falls kein WLAN verfügbar)**
+- **📶 [Auto-Hotspot](https://github.com/kraeml/DOITPi/wiki/Autohotspot) (falls kein WLAN verfügbar)**
 
   DOITPi aktiviert **automatisch einen Access Point**, wenn **keine bekannte WLAN-Verbindung** gefunden wird.
   - **SSID:** `AP-<HOSTNAME>` (z. B. `AP-doitpi-abc123`)
@@ -44,7 +44,7 @@ DOITPi bietet flexible Zugriffsmöglichkeiten für verschiedene Einsatzszenarien
   - **Sicherheit:**
     > ⚠️ **Wichtig:**
     > - Der Auto-Hotspot ist **nur aktiv**, wenn kein bekanntes WLAN verfügbar ist.
-    > - Das **Standard-Passwort** ist unsicher und sollte **sofort geändert** werden (siehe [Wiki: Hotspot konfigurieren](../../wiki/Hotspot)).
+    > - Das **Standard-Passwort** ist unsicher und sollte **sofort geändert** werden (siehe [Wiki: Hotspot konfigurieren](https://github.com/kraeml/DOITPi/wiki/Hotspot)).
     > - Für den **Dauerbetrieb** empfiehlt sich die Nutzung eines **gesicherten WLANs** oder VPNs.
 
 ---
@@ -60,7 +60,7 @@ DOITPi bietet flexible Zugriffsmöglichkeiten für verschiedene Einsatzszenarien
 
 DOITPi liefert ein **vollständig vorinstalliertes Image** für den Raspberry Pi.
 
-- **Keine manuelle Installation nötig:** Alle Tools (DevOps, IoT, ROS2) sind **bereits integriert** und konfiguriert.
+- **Keine manuelle Installation nötig:** Alle Tools ([DevOps](https://github.com/kraeml/DOITPi/wiki/DevOps), [IoT](https://github.com/kraeml/DOITPi/wiki/IoT), [ROS2](https://github.com/kraeml/DOITPi/wiki/ROS2)) sind **bereits integriert** und konfiguriert.
 - **Schnelle Inbetriebnahme:**
   - Image auf die SD-Karte flashen.
   - Raspberry Pi starten.
@@ -79,7 +79,7 @@ DOITPi liefert ein **vollständig vorinstalliertes Image** für den Raspberry Pi
    - Das System bootet und führt **automatische Konfigurationen** durch.
    - **Auto-Hotspot** wird aktiviert (falls kein WLAN verfügbar).
 2. **Reboot (~10 Minuten später):**
-   - Alle Dienste (CodeServer, Node-RED, ROS2, etc.) sind **startbereit**.
+   - Alle Dienste ([CodeServer](https://github.com/kraeml/DOITPi/wiki/Codeserver), [Node-RED](https://github.com/kraeml/DOITPi/wiki/NodeRed), [ROS2](https://github.com/kraeml/DOITPi/wiki/ROS2), etc.) sind **startbereit**.
    - Zugriff über **Browser, SSH oder Hotspot** möglich.
 
 ```mermaid
@@ -95,8 +95,8 @@ graph TD
 ### Wichtige Hinweise für Nutzer:innen
 
 - **Erstkonfiguration:**
-  - Nach dem ersten Reboot **Passwörter ändern** (Hotspot, SSH – siehe [Sicherheitshinweise](../../wiki/Autohotspot).
-  - Optional: **WLAN einrichten** (falls der Hotspot nicht mehr benötigt wird).
+  - Nach dem ersten Reboot **Passwörter ändern** (Hotspot, SSH – siehe [Sicherheitshinweise](https://github.com/kraeml/DOITPi/wiki/Autohotspot).
+  - Optional: **[WLAN einrichten](https://github.com/kraeml/DOITPi/wiki/NmtuiWlan)** (falls der Hotspot nicht mehr benötigt wird).
 - **Updates:**
   - DOITPi bleibt **up-to-date** durch regelmäßige Image-Releases.
   - Aktualisierungen können über `sudo apt update && sudo apt upgrade` installiert werden.
@@ -105,7 +105,7 @@ graph TD
 
 ## **Technische Basis**
 
-DOITPi basiert auf **[CustomPiOS](https://github.com/guysoft/CustomPiOS)** – einem Framework zum Erstellen **eigener Raspberry Pi-Distributionen**. 📖 **[Was ist CustomPiOS?](../../wiki/CustomPiOS-–-Eigene-Raspberry‐Pi‐Distributionen-leicht-gebaut)**
+DOITPi basiert auf **[CustomPiOS](https://github.com/guysoft/CustomPiOS)** – einem Framework zum Erstellen **eigener Raspberry Pi-Distributionen**. 📖 **[Was ist CustomPiOS?](https://github.com/kraeml/DOITPi/wiki/CustomPiOS-–-Eigene-Raspberry‐Pi‐Distributionen-leicht-gebaut)**
 
 DOITPi wird **kontinuierlich weiterentwickelt** und bietet eine **modulare, anpassbare Umgebung** für DevOps- und IoT-Projekte.
 
@@ -159,7 +159,7 @@ DOITPi integriert ROS2 für Robotik- und IoT-Projekte:
 | Tool               | Beschreibung                                                                                     |
 |--------------------|-------------------------------------------------------------------------------------------------|
 | **[ROS2](https://docs.ros.org/)** | Framework für Robotik, das Kommunikation zwischen Knoten ermöglicht. Ideal für Echtzeitdatenverarbeitung, Sensorintegration und Algorithmen wie SLAM oder Pfadplanung. Voll kompatibel mit Raspberry Pi und Docker, und integrierbar mit Node-RED und Webots. |
-|**Node-RED** | Flow-basierte Automatisierungsplattform. Ermöglicht visuelle Programmierung ohne tiefgehende Code-Kenntnisse. Unterstützt ROS2-Integration für Robotik-Projekte. Ideal für die Steuerung von IoT-Geräten und schnelle Prototypen. |
+|**[Node-RED](https://nodered.org/)** | Flow-basierte Automatisierungsplattform. Ermöglicht visuelle Programmierung ohne tiefgehende Code-Kenntnisse. Unterstützt ROS2-Integration für Robotik-Projekte. Ideal für die Steuerung von IoT-Geräten und schnelle Prototypen. |
 | **[Webots](https://cyberbotics.com)** | 3D-Robotersimulationssoftware für Forschung und Bildung. Bietet eine realistische Physik-Engine und unterstützt ROS2. Perfekt zum Testen von Algorithmen für autonome Roboter oder IoT-Systeme vor der Implementierung auf echter Hardware. |
 
 ---
@@ -194,9 +194,9 @@ DOITPi unterstützt folgende Sprachen und Domänenspezifische Sprachen (DSLs):
 
 Für schnelle Prototypen und Bildungskontexte:
 
-- **Blockly/Scratch** (visuelle Programmierung)
-- **Node-RED** (Flow-basierte Automatisierung)
-- **YAML** (deklarative Konfigurationen)
+- **[Blockly/Scratch](https://github.com/kraeml/DOITPi/wiki/BlochlyVSScratch)** (visuelle Programmierung)
+- **[Node-RED](https://github.com/kraeml/DOITPi/wiki/NodeRed)** (Flow-basierte Automatisierung)
+- **[YAML](https://github.com/kraeml/DOITPi/wiki/YAML)** (deklarative Konfigurationen)
 
 ---
 
@@ -293,7 +293,7 @@ DOITPi nutzt die folgenden Tools und Bibliotheken:
 
 DOITPi steht auf den Schultern von Riesen. Besonderer Dank gilt:
 
-- **[Raspberry Pi OS](https://www.raspberrypi.com/software/)** (Basis-System)
+- **[Raspberry Pi OS](https://www.raspberrypi.com/software/operating-systems/)** (Basis-System)
 - **[CustomPiOS](https://github.com/guysoft/CustomPiOS)** (Image-Erstellung)
 - **[NetworkManager](https://networkmanager.dev/)** (Auto-Hotspot-Funktion)
 - **[ROS2](https://docs.ros.org/)** & **[Node-RED](https://nodered.org/)** (Robotik & IoT)
