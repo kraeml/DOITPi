@@ -194,7 +194,7 @@ DOITPi unterstützt folgende Sprachen und Domänenspezifische Sprachen (DSLs):
 
 Für schnelle Prototypen und Bildungskontexte:
 
-- **[Blockly/Scratch](https://github.com/kraeml/DOITPi/wiki/BlochlyVSScratch)** (visuelle Programmierung)
+- **[Blockly/Scratch](https://github.com/kraeml/DOITPi/wiki/BlocklyVSScratch)** (visuelle Programmierung)
 - **[Node-RED](https://github.com/kraeml/DOITPi/wiki/NodeRed)** (Flow-basierte Automatisierung)
 - **[YAML](https://github.com/kraeml/DOITPi/wiki/YAML)** (deklarative Konfigurationen)
 
