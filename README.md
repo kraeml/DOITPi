@@ -8,7 +8,6 @@
 [![GitHub License](https://img.shields.io/github/license/kraeml/DOITPi)](LICENSE)
 [![Build Status](https://img.shields.io/github/actions/workflow/status/kraeml/DOITPi/main.yml?branch=develop)](https://github.com/kraeml/DOITPi/actions/workflows/main.yml)
 
-
 DOITPi ist ein **Open-Source-Projekt**, das eine **vorgefertigte Sammlung von [DevOps](https://github.com/kraeml/DOITPi/wiki/DevOps)-, [IoT](https://github.com/kraeml/DOITPi/wiki/IoT)-Tools und [Robot Operating System 2 (ROS2)](https://github.com/kraeml/DOITPi/wiki/ROS2)** als **sofort einsatzbereites Image** bereitstellt. Es basiert auf dem **[Raspberry Pi OS Lite](https://github.com/kraeml/DOITPi/wiki/RaspbianOsLite)**. Das Projekt bietet ein **fertiges Image**, das die [Installation](https://github.com/kraeml/DOITPi/wiki/Installation) und Einrichtung der Tools **vollautomatisch** übernimmt – **ohne manuelle Schritte**
 
 **📥 [Aktuelles Image herunterladen](https://github.com/kraeml/DOITPi/releases/latest)**
@@ -17,7 +16,7 @@ DOITPi ist ein **Open-Source-Projekt**, das eine **vorgefertigte Sammlung von [D
 
 ## Zielgruppe
 
-Bildungseinrichtungen, Entwickler:innen und Lernende, die **DevOps-Praktiken und IoT-Anwendungen** auf dem Raspberry Pi umsetzen möchten.
+Bildungseinrichtungen, Entwickler:innen und Lernende, die **DevOps-Praktiken, IoT-Anwendungen und/oder ROS2-Projekte** auf dem Raspberry Pi umsetzen möchten.
 
 ## Zugangsoptionen
 
@@ -38,7 +37,7 @@ DOITPi bietet flexible Zugriffsmöglichkeiten für verschiedene Einsatzszenarien
 - **📶 [Auto-Hotspot](https://github.com/kraeml/DOITPi/wiki/Autohotspot) (falls kein WLAN verfügbar)**
 
   DOITPi aktiviert **automatisch einen Access Point**, wenn **keine bekannte WLAN-Verbindung** gefunden wird.
-  - **SSID:** `AP-<HOSTNAME>` (z. B. `AP-doitpi-abc123`)
+  - **SSID:** `AP_<HOSTNAME>` (z. B. `AP_doitpi-abc123`)
   - **Standard-Passphrase:** `123456789` *(**Hinweis:** Ändere dieses Passwort nach der ersten Einrichtung!)*
   - **Zweck:** Ermöglicht eine **sofortige Verbindung** für die Erstkonfiguration oder in Umgebungen ohne WLAN.
   - **Sicherheit:**
@@ -50,6 +49,7 @@ DOITPi bietet flexible Zugriffsmöglichkeiten für verschiedene Einsatzszenarien
 ---
 
 ### **🔹 Warum ein Auto-Hotspot?**
+
 - **Plug & Play:** Keine manuelle Netzwerkkonfiguration nötig – ideal für **Bildungseinrichtungen** oder Workshops.
 - **Fallback-Lösung:** Garantiert Zugriff auf das System, selbst wenn kein WLAN verfügbar ist.
 - **Einfache Erstinbetriebnahme:** Nutzer:innen können sich **sofort verbinden** und die Einrichtung abschließen.
@@ -64,12 +64,13 @@ DOITPi liefert ein **vollständig vorinstalliertes Image** für den Raspberry Pi
 - **Schnelle Inbetriebnahme:**
   - Image auf die SD-Karte flashen.
   - Raspberry Pi starten.
-  - **Nach ~10 Minuten (ja nach Hardware) und einem Reboot** ist das System **einsatzbereit** – ohne weitere Schritte!
+  - **Nach ~10 Minuten (ja nach Hardware und Netzanbindung) und einem Reboot** ist das System **einsatzbereit** – ohne weitere Schritte!
 
-> 💡 **Warum "vollautomatisch"?**
-> - **Kein Herunterladen oder Installieren** von Paketen nötig.
-> - **Keine komplexen Konfigurationen** – alles ist vorab eingerichtet.
-> - Ideal für **Bildungseinrichtungen**, Workshops oder schnelle Prototypen.
+💡 **Warum "vollautomatisch"?**
+
+- **Kein Herunterladen oder Installieren** von Paketen nötig.
+- **Keine komplexen Konfigurationen** – alles ist vorab eingerichtet.
+- Ideal für **Bildungseinrichtungen**, Workshops oder schnelle Prototypen.
 
 ---
 
