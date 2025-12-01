@@ -1,6 +1,6 @@
 # Changelog
 
-VERSION=v0.6.4
+VERSION=0.6.4
 
 - [x] Refactor Readme.
 - [x] New Ansible Skript
