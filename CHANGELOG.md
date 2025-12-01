@@ -1,8 +1,13 @@
 # Changelog
 
+VERSION=0.6.4
+
+- [x] Refactor Readme.
+- [x] New Ansible Skript
+
 VERSION=0.6.3
 
-- [ ] New raspios Release 2025.11.24
+- [x] New raspios Release 2025.11.24
 
 VERSION=0.6.2
 
