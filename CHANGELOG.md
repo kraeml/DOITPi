@@ -9,99 +9,99 @@ VERSION=0.6.3
 
 - [x] New raspios Release 2025.11.24
 
-VERSION=0.6.2
+VERSION=v0.6.2
 
 - [x] dynamically generate release notes from CHANGELOG
 - [x] add GitHub badges for release, license, and build status
 - [x] docs(README): refine structure, clarity, and user onboarding
 
-VERSION=0.6.1
+VERSION=v0.6.1
 
 - [x] timeout doitfirst-boot
 
-VERSION=0.6.0
+VERSION=v0.6.0
 
 - [x] autohotspot if now WLAN
 
-VERSION=0.5.3
+VERSION=v0.5.3
 
 - [x] git hub runner release
 
-VERSION=0.5.2
+VERSION=v0.5.2
 
 - [ ] git hub runner release
 
-VERSION=0.5.1
+VERSION=v0.5.1
 
 - [ ] git hub runner release
 
-VERSION=0.5.0
+VERSION=v0.5.0
 
 -[x] Raspberry OS Trixi
 -[x] Install Node Red
 -[x] Codeserver for Baseuser
 
-VERSION=0.4.17
+VERSION=v0.4.17
 
 - [x] Enable full-upgrade
 
-VERSION=0.4.16
+VERSION=v0.4.16
 
 - [x] Raspberry OS 2024-07-04
 
-VERSION=0.4.15
+VERSION=v0.4.15
 
 - [x] Raspberry OS 2024-07-04
 - [ ] Ubuntu 24.04.1
-VERSION=0.4.14
+VERSION=v0.4.14
 - [ ] Ubunut 24.04
 - [x] Raspberry OS 2024-03-15
 - [x] Prometheus 2.45.5 LTS
 - [x] Grafana 10.4.3
 
-VERSION=0.4.13
+VERSION=v0.4.13
 
 - [x] Prometheus 2.50.1
 - [x] Grafana 10.4.0
 - [x] firstboot Skript ruft ansible-playbook auf
 
-VERSION=0.4.12.1
+VERSION=v0.4.12.1
 
 - [x] Mit xz wegen Image Größe
 - [x] neue Raspain Version
 
-VERSION=0.4.11
+VERSION=v0.4.11
 
 - [x] neue softprops/action-gh-release eingefügt
 - [x] Build ohne xz Kompremierung
 - [x] IOTstack mit volumes Verzeichnis
 
-VERSION=0.4.10
+VERSION=v0.4.10
 
 - [x] IoTstack im Benutzerverzeichnis
 - [x] Direnv für borgbackup und doitpi-test
 - [x] Direnv für Baseuser
 
-VERSION=0.4.9
+VERSION=v0.4.9
 
 - [x] Pyenv für Standarduser
 - [x] Testinfra tests über doitpi-test
 
-VERSION=0.4.8
+VERSION=v0.4.8
 
 - mybase mit ansible
 - Codeserver automatisch auf neuster Version
 
-VERSION=0.4.7
+VERSION=v0.4.7
 
 - [x] Grafana für armhf und arm64 unterschiedlich, hotfix build ging nicht
 
-Version=0.4.6-1
+VERSION=v0.4.6-1
 
 - [x] Grafana für arm64 10.1.5
 - [x] Grafana für armhf 10.1.2
 
-VERSION=0.4.6
+VERSION=v0.4.6
 
 - [x] Prometheus 2.47.1
 - [x] Grafana 10.1.5
@@ -111,14 +111,14 @@ VERSION=0.4.6
   - [x] Auto-Hotspot  
       Dies ist ein Modul, das Ihre Himbeere zu einem WLAN-Hotspot macht, wenn sich das WLAN nicht mit einem Netzwerk verbindet. Wenn ein Ethernet-Kabel angeschlossen ist, leitet es die Verbindung weiter. Ursprünglich auf dieser Anleitung. Muss in einem disable-servicesModulblock.
 
-VERSION=0.4.5
+VERSION=v0.4.5
 
 - [x] Coderserver Version v4.16.0
 - [x] Ubuntu
 - [x] Workflow mit Artifakten
 - [x] Mit Release
 
-VERSION=0.4.4
+VERSION=v0.4.4
 
 - [ ] Ubuntu (Geht wegen docker nicht)
 - [x] Prometheus
@@ -169,23 +169,23 @@ WantedBy=multi-user.target
 
 - Umstrukturierung des Github-Workflows
 
-VERSION=0.4.3
+VERSION=v0.4.3
 
 - Build auf master
 
-VERSION=0.4.2
+VERSION=v0.4.2
 
 - Build workflow angepasst
 
-VERSION=0.4.1
+VERSION=v0.4.1
 
 - Mit armhf
 
-VERSION=0.4.0
+VERSION=v0.4.0
 
 - Neue Basis Images 2023-05-03 raspios und ubuntu22.0.4.2
 
-VERSION=0.3.2-4
+VERSION=v0.3.2-4
 
 - Ohne Base Distro respianos
 - Build mit raspios Verzeichnis
@@ -197,13 +197,13 @@ VERSION=0.3.2-4
 - Ubuntu Build komplett mit raspbianos
 - Rollback build assert v1
 
-VERSION=0.2.11
+VERSION=v0.2.11
 
 - Jupyter PW foowashere
 - codeserver in Version 4.9.1
 - raspianos (armhf) ohne Docker (Workaround da rust nicht aktuell für arm32)
 
-VERSION=0.2.10
+VERSION=v0.2.10
 
 - Thonny inatalliert und als regular View eingerichtet
 - codeserver in Version 4.9.0
