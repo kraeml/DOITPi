@@ -78,9 +78,11 @@ ANSIBLE_FULL_ARGS="${ANSIBLE_BASE_ARGS},firstrun,mybase" # Minimal tags for offl
 if [ -d "${USER_HOME}/workspace/doitpi-ansible" ]; then
   cd ${USER_HOME}/workspace/doitpi-ansible/
   if [ "${HAS_INTERNET}" = true ]; then
-      sudo -u "${USER_NAME}" ansible-playbook main.yaml ${ANSIBLE_FULL_ARGS} | tee -a "${USER_HOME}/.ansible-playbook-$(date +%Y-%m-%d_%H-%M-%S).log"
+      sudo -u "${USER_NAME}" ansible-playbook main.yaml ${ANSIBLE_FULL_ARGS} | \
+        tee -a "${USER_HOME}/.ansible-playbook-$(date +%Y-%m-%d_%H-%M-%S).log"
   else
-      sudo -u "${USER_NAME}" ansible-playbook main.yaml ${ANSIBLE_BASE_ARGS} | tee -a "${USER_HOME}/.ansible-playbook-$(date +%Y-%m-%d_%H-%M-%S).log"
+      sudo -u "${USER_NAME}" ansible-playbook main.yaml ${ANSIBLE_BASE_ARGS} | \
+        tee -a "${USER_HOME}/.ansible-playbook-$(date +%Y-%m-%d_%H-%M-%S).log"
   fi
   cd - >/dev/null || true
 fi
