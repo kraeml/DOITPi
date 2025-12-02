@@ -1,84 +1,86 @@
 #!/bin/bash
+# doitpi_firstboot.sh – Post-installation script for DoitPi
+# Purpose: One-time post-installation script to:
+#          - Replace legacy user/paths (e.g., /home/pi → dynamic user)
+#          - Update system packages (if internet is available)
+#          - Run Ansible playbooks for system configuration
 
-#SOME COMMANDS YOU WANT TO EXECUTE
+set -euo pipefail  # Fail on errors, unset variables, and pipeline errors
 
-# Prüfe, ob Internetverbindung besteht
-if ping -c 3 -W 2 9.9.9.9 &> /dev/null; then
+# Log function to print messages with timestamp
+log() {
+    echo "[$(date +'%Y-%m-%d %H:%M:%S')] $@" >&2
+}
+
+# Replace occurrences of $1 with $2 in files under $3
+replace_in_files() {
+    local search="$1"
+    local replace="$2"
+    local dir="$3"
+    if [ -d "${dir}" ]; then
+        find "${dir}" -type f -exec grep -l "${search}" {} + | while read -r file; do
+            sed -i "s@${search}@${replace}@g" "${file}"
+        done
+    fi
+}
+
+update-locale LANG=de_DE.UTF8
+
+# Check for internet connectivity (3 attempts, timeout 2s each)
+if ping -c 3 -W 2 9.9.9.9 &>/dev/null || curl --connect-timeout 2 -sI https://1.1.1.1 &>/dev/null; then
     HAS_INTERNET=true
 else
     HAS_INTERNET=false
-    echo "Warning: No internet connection detected. Skipping Ansible playbook and service cleanup." >&2
+    log "Warning: No internet connection. Skipping network-dependent tasks."
 fi
 
-function rm_home_pi {
-  if grep -r '/home/pi' $1
-  then
-	  grep -rl '/home/pi' $1 | xargs sed -i 's@/home/pi@'$(getent passwd 1000 | cut --delimiter=: --fields=6)'@g'
-  fi
-}
+# Get dynamic user home and name (UID 1000 = first non-system user)
+export USER_HOME=$(getent passwd 1000 | cut --delimiter=: --fields=6)
+export USER_NAME=$(getent passwd 1000 | cut --delimiter=: --fields=1)
 
-function rm_user_pi {
-  if grep -r 'User=pi' $1
-  then
-	  grep -rl 'User=pi' $1 | xargs sed -i 's@User=pi@'User=$(getent passwd 1000 | cut --delimiter=: --fields=1)'@g'
-  fi
-}
+# Replace legacy paths and usernames in systemd services
+replace_in_files "/home/pi" "${USER_HOME}" /etc/systemd/system
+replace_in_files "User=pi" "User=${USER_NAME}" /etc/systemd/system
 
-# Ersetzt den Pfad /home/pi für aktuellen Benutzer
-rm_home_pi /etc/systemd/system
-rm_home_pi $(getent passwd 1000 | cut --delimiter=: --fields=6)
+# Clean up Python cache files (may contain legacy paths)
+find "${USER_HOME}/" -name '*.pyc' -delete
 
-# ToDo Ersetze User=pi mit richtigen user
-rm_user_pi /etc/systemd/system
-
-# Löscht alle pythoncache Dateien, da hier auch noch /home/pi angegeben.
-find $(getent passwd 1000 | cut --delimiter=: --fields=6)/ -name '*.pyc' -delete
-
-# APT-Cache nur aktualisieren, wenn Internetverbindung besteht
-if [ "$HAS_INTERNET" = true ]; then
+# Update APT cache if internet is available
+if [ "${HAS_INTERNET}" = true ]; then
   ansible --extra-vars ansible_python_interpreter=/usr/bin/python3 \
     --inventory localhost, --connection local \
     --module-name apt \
     --args "update_cache=yes cache_valid_time=3600" localhost
 fi
 
-if [ -f /etc/systemd/system/cockpit_installer.service ]
-then
+# Restart cockpit_installer if service file exists
+if [ -f /etc/systemd/system/cockpit_installer.service ]; then
   systemctl restart cockpit_installer
 fi
 
-localectl set-locale LANG=de_DE.UTF-8
-export USER_HOME=$(getent passwd 1000 | cut --delimiter=: --fields=6)
+ANSIBLE_BASE_ARGS="--limit lokal --tags autohotspot"   # Minimal tags for offline execution
+ANSIBLE_FULL_ARGS="${ANSIBLE_BASE_ARGS},firstrun,mybase" # Minimal tags for offline execution
 
-if [ -d ${USER_HOME}/workspace/doitpi-ansible ]; then
+if [ -d "${USER_HOME}/workspace/doitpi-ansible" ]; then
   cd ${USER_HOME}/workspace/doitpi-ansible/
-# Playbook, wenn Internetverbindung besteht
-  if [ "$HAS_INTERNET" = true ]; then
-      # Run Playbook allways true
-      sudo -u "#1000" ansible-playbook --limit lokal --tags "firstrun,mybase,autohotspot" main.yaml | tee -a ${USER_HOME}/.ansible-playbook-$(date +%Y-%m-%d_%H-%M-%S).log || true
+  if [ "${HAS_INTERNET}" = true ]; then
+      sudo -u "#1000" ansible-playbook ${ANSIBLE_FULL_ARGS} main.yaml | tee -a "${USER_HOME}/.ansible-playbook-$(date +%Y-%m-%d_%H-%M-%S).log
   else
-      # Run Playbook allways true
-      sudo -u "#1000" ansible-playbook --limit lokal --tags "autohotspot" main.yaml | tee -a ${USER_HOME}/.ansible-playbook-$(date +%Y-%m-%d_%H-%M-%S).log || true
+      sudo -u "#1000" ansible-playbook ${ANSIBLE_BASE_ARGS} main.yaml | tee -a "${USER_HOME}/.ansible-playbook-$(date +%Y-%m-%d_%H-%M-%S).log"
   fi
   cd -
 fi
 
-if [ -f /etc/apt/apt.conf.d/99forceconfnew ]
-then
+# Remove force-confnew config (forces new config files on package updates)
+if [ -f /etc/apt/apt.conf.d/99forceconfnew ]; then
   rm /etc/apt/apt.conf.d/99forceconfnew
 fi
 
-systemctl stop doitpi_firstboot.service 2>/dev/null || echo "Warning: Failed to stop doitpi_firstboot.service" >&2
-
 # Löschen von doitpi_firstboot, wenn Internetverbindung besteht
-if [ "$HAS_INTERNET" = true ]; then
-  systemctl disable doitpi_firstboot.service
-
-  rm -rf /etc/systemd/system/doitpi_firstboot.service
-  rm -f /doitpi_firstboot.sh
+if [ "${HAS_INTERNET}" = true ]; then
+  systemctl disable --now doitpi_firstboot.service ||  log "Warning: Failed to disable service."
+  sync
+  log "Rebooting in 20 seconds..."
   sleep 20
   reboot
 fi
-
-
-
