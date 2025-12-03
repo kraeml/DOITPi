@@ -1,5 +1,10 @@
 # Changelog
 
+VERSION=0.6.5
+
+- [ ] Refactor first boot script
+- [ ] Rund first boot script after network
+
 VERSION=0.6.4
 
 - [x] Refactor Readme.
